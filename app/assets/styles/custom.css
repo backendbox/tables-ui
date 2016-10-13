@@ -1,0 +1,40 @@
+.mauto{
+	margin: auto
+}
+
+.margintop10{
+	margin-top: 10%
+}
+
+td{
+	border:1px solid #DDD;
+}
+
+.hide{
+	display: none;
+}
+
+.pointer{
+	cursor: pointer;
+}
+
+.mdl-data-table__cell--non-numeric{
+    min-width: 225px;
+    max-width: 225px;
+    
+}
+
+.mdl-data-table td{
+	padding: 2px 6px;
+}
+
+.fr{
+	float: right;
+}
+.width0{
+	display: none !important;
+}
+.mtl2{
+	margin-top: 3px;
+	margin-left: 6px
+}
