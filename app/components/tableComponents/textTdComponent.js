@@ -8,14 +8,13 @@ class TextTdComponent extends React.Component {
 	}
 	componentDidMount(){
 		this.state = {
-			inputHidden:true,
-			textInput:this.props.data
+			inputHidden:true
 		}
 		this.setState(this.state)
 	}
 	toggleInput(which,e){
 		if(which){
-			this.props.updateObject(this.state.textInput)
+			this.props.updateObject()
 		}
 		this.state['inputHidden'] = which
 		this.setState(this.state)
@@ -25,15 +24,11 @@ class TextTdComponent extends React.Component {
      		ReactDOM.findDOMNode(this.refs.Input).focus()
      	}
     }
-	changeHandler(which,e){
-		this.state[which] = e.target.value
-		this.setState(this.state)
-	}
 	render() {
 		return (
-            <td className="mdl-data-table__cell--non-numeric pointer"  onDoubleClick={this.toggleInput.bind(this,false)}>
-            	<span className={!this.state.inputHidden ? 'hide':''}>{this.state.textInput}</span>
-            	<input ref="Input" value={this.state.textInput} onChange={this.changeHandler.bind(this,'textInput')} className={this.state.inputHidden ? 'hide':'form-control'} onBlur={this.toggleInput.bind(this,true)} type="text" />
+            <td className='mdl-data-table__cell--non-numeric pointer' onDoubleClick={this.toggleInput.bind(this,false)}>
+            	<span className={!this.state.inputHidden ? 'hide':''}>{this.props.elementData}</span>
+            	<input ref="Input" value={this.props.elementData || ''} onChange={this.props.changeHandler.bind(this,'elementData')} className={this.state.inputHidden ? 'hide':'form-control'} onBlur={this.toggleInput.bind(this,true)} type="text" />
             </td>
 		);
 	}

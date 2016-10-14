@@ -16,6 +16,18 @@ class TableStore {
 		})
 	}
 
+	updateColumnsData(index,data){
+		this.columnsData.splice(index,1,data)
+	}
+
+	addRow(data){
+		data.save().then((res)=>{
+			this.columnsData.push(data)
+		},(err)=>{
+			console.log(err)
+		})
+	}
+
 	@computed get getColumns(){
 		if(this.columns.document){
 			return this.columns.document.columns.map( x => x.document )

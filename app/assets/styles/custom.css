@@ -3,7 +3,7 @@
 }
 
 .margintop10{
-	margin-top: 10%
+	/*margin-top: 10%*/
 }
 
 td{
@@ -19,13 +19,13 @@ td{
 }
 
 .mdl-data-table__cell--non-numeric{
-    min-width: 225px;
+    min-width: 205px;
     max-width: 225px;
     
 }
 
 .mdl-data-table td{
-	padding: 2px 6px;
+	padding: 0px 8px;
 }
 
 .fr{
@@ -35,6 +35,27 @@ td{
 	display: none !important;
 }
 .mtl2{
-	margin-top: 3px;
+	margin-top: 2px;
 	margin-left: 6px
+}
+
+.tacenter{
+	text-align: center !important;
+}
+
+.lgrey{
+	background-color: #EEE
+}
+
+.mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type {
+    padding-left: 0px;
+}
+
+.mdl-data-table tbody tr {
+    height: 40px;
+    line-height: 13px;
+}
+
+.mdl-data-table td {
+    height: 40px;
 }

@@ -11,7 +11,7 @@ class DateTdComponent extends React.Component {
 	}
 	componentDidMount(){
 		this.state = {
-			dateInput:this.dateFormat(this.props.data)
+			dateInput:this.dateFormat(this.props.elementData)
 		}
 		this.setState(this.state)
 	}
@@ -33,12 +33,12 @@ class DateTdComponent extends React.Component {
 	}
 	render() {
 		return (
-            <td className="mdl-data-table__cell--non-numeric pointer">
+            <td className='mdl-data-table__cell--non-numeric pointer'>
             	<span className={''}>{this.state.dateInput}</span>
             	<i className="fa fa-calendar fr mtl2" aria-hidden="true" onClick={this.openInput.bind(this,'InputDate')}></i>
             	<i className="fa fa-clock-o fr mtl2" aria-hidden="true" onClick={this.openInput.bind(this,'InputTime')}></i>
-            	<DatePicker ref="InputDate" className='width0' onChange={this.viewChangeDate.bind(this)}/>
-            	<TimePicker ref="InputTime" className='width0' onChange={this.viewChangeTime.bind(this)}/>
+            	<DatePicker id="date" ref="InputDate" className='width0' onChange={this.viewChangeDate.bind(this)}/>
+            	<TimePicker id="time" ref="InputTime" className='width0' onChange={this.viewChangeTime.bind(this)}/>
             </td>
 		);
 	}

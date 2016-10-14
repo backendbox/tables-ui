@@ -10,15 +10,45 @@ import DateTd from './dateTdComponent'
 class GenericTdComponent extends React.Component {
 	constructor(){
 		super()
-		this.state = {}
+		this.state = {
+			initialElementData:null,
+			elementData:null,
+			componentToRender:TextTd
+		}
 	}
 	componentDidMount(){
-		//console.log(this.props)
+		switch (this.props.columnType.dataType) {
+			case "Text":
+				this.state.componentToRender =  TextTd
+				this.state.elementData = this.props.columnData.document[this.props.columnType.name]
+				break;
+
+			case "Email":
+				this.state.componentToRender =  TextTd
+				this.state.elementData = this.props.columnData.document[this.props.columnType.name]
+				break;
+
+			case "Id":
+				this.state.componentToRender =  TextTd
+				this.state.elementData = this.props.columnData.document['_id']
+				break;
+
+			case "DateTime":
+				this.state.componentToRender =  DateTd
+				this.state.elementData = this.props.columnData.document[this.props.columnType.name]
+				break;
+			
+			default:
+				this.state.componentToRender =  TextTd
+				this.state.elementData = "a"
+				break;
+		}
+		this.setState(this.state)
 	}
 	updateObject(data){
-		this.props.columnData.set(this.props.columnType.name,data)
+		this.props.columnData.set(this.props.columnType.name,this.state.elementData)
 		this.props.columnData.save().then((res)=>{
-			console.log(res)
+			//console.log(res)
 		},(err)=>{
 			console.log(err)
 		})
@@ -27,33 +57,9 @@ class GenericTdComponent extends React.Component {
 		this.state[which] = e.target.value
 		this.setState(this.state)
 	}
-	render() {
-		let componentToRender = TextTd
-		let columnData
-		switch (this.props.columnType.dataType) {
-			case "Text":
-				componentToRender =  TextTd
-				columnData = this.props.columnData.document[this.props.columnType.name]
-				break;
-
-			case "Id":
-				componentToRender =  TextTd
-				columnData = this.props.columnData.document['_id']
-				break;
-
-			case "DateTime":
-				componentToRender =  DateTd
-				columnData = this.props.columnData.document[this.props.columnType.name]
-				break;
-			
-			default:
-				componentToRender =  TextTd
-				columnData = "a"
-				break;
-		}
-
+	render() {		
 		return (
-           React.createElement(componentToRender, {data:columnData,updateObject:this.updateObject.bind(this)})
+           React.createElement(this.state.componentToRender, {elementData:this.state.elementData,updateObject:this.updateObject.bind(this),changeHandler:this.changeHandler.bind(this)})
 		);
 	}
 }

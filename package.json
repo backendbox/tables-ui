@@ -27,5 +27,8 @@
     "webpack-dev-server": "~1.14.1",
     "react-tap-event-plugin": "^1.0.0",
     "material-ui": "^0.16.0"
+  },
+  "devDependencies": {
+    "babel-preset-react": "^6.16.0"
   }
 }
