@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import configObject from '../../config/app.js'
 import Checkbox from 'material-ui/Checkbox';
 
-class CheckBoxTdComponent extends React.Component {
+class RowCheckBoxComponent extends React.Component {
 	constructor(){
 		super()
 		this.state = {
@@ -23,4 +23,4 @@ class CheckBoxTdComponent extends React.Component {
 	}
 }
 
-export default CheckBoxTdComponent;
+export default RowCheckBoxComponent;

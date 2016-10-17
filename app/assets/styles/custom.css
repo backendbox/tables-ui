@@ -59,3 +59,30 @@ td{
 .mdl-data-table td {
     height: 40px;
 }
+
+.color888{
+	color: #888
+}
+
+.paperError{
+	width: 87%;
+    height: 50px;
+    position: absolute;
+    left: 14px;
+    z-index: 1;
+    top: 40px;
+    border-radius: 8px !important;
+    color:red;
+}
+
+.abstext {
+    position: relative;
+}
+
+.jsonmodal{
+	width: 500px !important;
+	height: 360px !important;
+}
+.ml5{
+	margin-left: 5px;
+}

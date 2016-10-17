@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from "mobx-react"
 //components
 import GenericTd from './tableComponents/genericTdComponent'
-import CheckBoxTdComponent from './tableComponents/checkBoxTdComponent';
+import RowCheckBoxComponent from './tableComponents/rowCheckBoxComponent';
 import Checkbox from 'material-ui/Checkbox';
 
 @observer
@@ -42,8 +42,8 @@ class Table extends React.Component {
 
 		let clomunTr = columnsData.map((i,index)=>{
 			return  <tr key={index} ref={'row'+index}> 
-						<CheckBoxTdComponent key={index} indexValue = { index } checkHandler={ this.rowCheckHandler.bind(this) }/>
-						{ getColumns.map((x,index) => <GenericTd key={index} columnType={ x } columnData={ i }></GenericTd> ) } 
+						<RowCheckBoxComponent key={index} indexValue = { index } checkHandler={ this.rowCheckHandler.bind(this) }/>
+						{ getColumns.map((x,index) => <GenericTd key={index} columnType={ x } columnData={ i } tableStore={ this.props.tableStore }></GenericTd> ) } 
 					</tr>
 		})
 

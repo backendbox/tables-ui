@@ -16,8 +16,13 @@ class TableStore {
 		})
 	}
 
-	updateColumnsData(index,data){
-		this.columnsData.splice(index,1,data)
+	updateColumnsData(id,data){
+		this.columnsData = this.columnsData.map((x)=>{
+			if(x.id == id){
+				x = data
+			}
+			return x
+		})
 	}
 
 	addRow(data){

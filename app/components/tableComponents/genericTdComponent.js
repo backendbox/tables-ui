@@ -3,39 +3,65 @@ import ReactDOM from 'react-dom';
 import configObject from '../../config/app.js'
 
 //components
-import TextTd from './textTdComponent'
-import DateTd from './dateTdComponent'
+import TextTd from './td/textTdComponent'
+import DateTd from './td/dateTdComponent'
+import IdTd from './td/idTdComponent'
+import PasswordTd from './td/passwordTdComponent'
+import EmailTd from './td/emailTdComponent'
+import ObjectTd from './td/objectTdComponent'
+import GeoTd from './td/geoTdComponent'
+
 
 
 class GenericTdComponent extends React.Component {
 	constructor(){
 		super()
 		this.state = {
-			initialElementData:null,
 			elementData:null,
 			componentToRender:TextTd
 		}
 	}
 	componentDidMount(){
-		switch (this.props.columnType.dataType) {
+		this.generaliseComponent(this.props)
+	}
+	componentWillReceiveProps(props){
+		this.generaliseComponent(props)
+	}
+	generaliseComponent(props){
+		switch (props.columnType.dataType) {
 			case "Text":
 				this.state.componentToRender =  TextTd
-				this.state.elementData = this.props.columnData.document[this.props.columnType.name]
+				this.state.elementData = props.columnData.document[props.columnType.name]
 				break;
 
 			case "Email":
-				this.state.componentToRender =  TextTd
-				this.state.elementData = this.props.columnData.document[this.props.columnType.name]
+				this.state.componentToRender =  EmailTd
+				this.state.elementData = props.columnData.document[props.columnType.name]
 				break;
 
 			case "Id":
-				this.state.componentToRender =  TextTd
-				this.state.elementData = this.props.columnData.document['_id']
+				this.state.componentToRender =  IdTd
+				this.state.elementData = props.columnData.document['_id']
+				break;
+
+			case "EncryptedText":
+				this.state.componentToRender =  PasswordTd
+				this.state.elementData = props.columnData.document[props.columnType.name]
 				break;
 
 			case "DateTime":
 				this.state.componentToRender =  DateTd
-				this.state.elementData = this.props.columnData.document[this.props.columnType.name]
+				this.state.elementData = props.columnData.document[props.columnType.name]
+				break;
+
+			case "Object":
+				this.state.componentToRender =  ObjectTd
+				this.state.elementData = JSON.stringify(props.columnData.document[props.columnType.name])
+				break;
+
+			case "GeoPoint":
+				this.state.componentToRender =  GeoTd
+				this.state.elementData = props.columnData.document[props.columnType.name]
 				break;
 			
 			default:
@@ -45,21 +71,38 @@ class GenericTdComponent extends React.Component {
 		}
 		this.setState(this.state)
 	}
-	updateObject(data){
-		this.props.columnData.set(this.props.columnType.name,this.state.elementData)
+	updateObject(which){
+		if(which === 'object'){
+			this.state.elementData = JSON.parse(this.state.elementData)
+		}
+		this.props.columnData.set(which,this.state.elementData)
 		this.props.columnData.save().then((res)=>{
 			//console.log(res)
 		},(err)=>{
 			console.log(err)
 		})
 	}
-	changeHandler(which,e){
-		this.state[which] = e.target.value
+	fetchObject(){
+		this.props.columnData.fetch().then((data)=>{
+			console.log(data)
+			this.props.tableStore.updateColumnsData(data.id,data)
+		},(err)=>{
+			console.log(err)
+		})
+	}
+	updateElement(data){
+		this.state.elementData = data
 		this.setState(this.state)
 	}
-	render() {		
+
+	render() {
 		return (
-           React.createElement(this.state.componentToRender, {elementData:this.state.elementData,updateObject:this.updateObject.bind(this),changeHandler:this.changeHandler.bind(this)})
+           React.createElement(this.state.componentToRender, {
+		       	elementData:this.state.elementData,
+		       	updateObject:this.updateObject.bind(this),
+		       	updateElement:this.updateElement.bind(this),
+		       	fetchObject:this.fetchObject.bind(this)
+           })
 		);
 	}
 }
