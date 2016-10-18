@@ -86,3 +86,29 @@ td{
 .ml5{
 	margin-left: 5px;
 }
+.previewImage{
+	width: 100px;
+	height: 100px;
+	width: 400px;
+    height: 223px;
+    margin-left: 15px;
+}
+.dropFile{
+	width: 200px;
+    height: 223px;
+    border: 2px dashed rgb(102, 102, 102);
+    border-radius: 5px;
+	float: left;
+}
+
+.clearboth{
+	clear: both;
+}
+.mt10{
+	margin-top: 10px
+}
+.previewSmallImage{
+	width: 30px;
+	height: 30px;
+	margin-left:15px; 
+}

@@ -25,7 +25,7 @@ class ObjectTdComponent extends React.Component {
 	jsonValidate(){
 		try {
         	JSON.parse(this.props.elementData)
-        	this.props.updateObject('object')
+        	this.props.updateObject()
         	this.openCloseModal(false)
 	    } catch (e) {
 	        //this.cancelJsonUpdate(false)
@@ -52,7 +52,6 @@ class ObjectTdComponent extends React.Component {
 					    name="json"
 					    className="jsonmodal"
 					/>
-					<p className="fl">this.state.error</p>
 	          		<button className="btn btn-primary fr ml5" onClick={this.jsonValidate.bind(this)}>SUBMIT</button>
 	          		<button className="btn btn-danger fr" onClick={this.cancelJsonUpdate.bind(this)}>CLOSE</button>
         		</Dialog>

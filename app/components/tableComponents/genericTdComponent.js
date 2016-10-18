@@ -10,7 +10,7 @@ import PasswordTd from './td/passwordTdComponent'
 import EmailTd from './td/emailTdComponent'
 import ObjectTd from './td/objectTdComponent'
 import GeoTd from './td/geoTdComponent'
-
+import FileTd from './td/fileTdComponent'
 
 
 class GenericTdComponent extends React.Component {
@@ -63,6 +63,11 @@ class GenericTdComponent extends React.Component {
 				this.state.componentToRender =  GeoTd
 				this.state.elementData = props.columnData.document[props.columnType.name]
 				break;
+
+			case "File":
+				this.state.componentToRender =  FileTd
+				this.state.elementData = props.columnData.document[props.columnType.name]
+				break;
 			
 			default:
 				this.state.componentToRender =  TextTd
@@ -71,20 +76,20 @@ class GenericTdComponent extends React.Component {
 		}
 		this.setState(this.state)
 	}
-	updateObject(which){
-		if(which === 'object'){
+	updateObject(){
+		if(this.props.columnType.dataType === 'Object'){
 			this.state.elementData = JSON.parse(this.state.elementData)
 		}
-		this.props.columnData.set(which,this.state.elementData)
+		this.props.columnData.set(this.props.columnType.name,this.state.elementData)
 		this.props.columnData.save().then((res)=>{
 			//console.log(res)
 		},(err)=>{
 			console.log(err)
+			this.fetchObject()
 		})
 	}
 	fetchObject(){
 		this.props.columnData.fetch().then((data)=>{
-			console.log(data)
 			this.props.tableStore.updateColumnsData(data.id,data)
 		},(err)=>{
 			console.log(err)
@@ -101,7 +106,9 @@ class GenericTdComponent extends React.Component {
 		       	elementData:this.state.elementData,
 		       	updateObject:this.updateObject.bind(this),
 		       	updateElement:this.updateElement.bind(this),
-		       	fetchObject:this.fetchObject.bind(this)
+		       	fetchObject:this.fetchObject.bind(this),
+		       	columnName:this.props.columnType.name,
+		       	columnData:this.props.columnData
            })
 		);
 	}

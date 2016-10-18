@@ -14,7 +14,7 @@ class TextTdComponent extends React.Component {
 	}
 	toggleInput(which,e){
 		if(which){
-			this.props.updateObject('username')
+			this.props.updateObject()
 		}
 		this.state['inputHidden'] = which
 		this.setState(this.state)

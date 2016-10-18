@@ -17,7 +17,7 @@ class EmailTdComponent extends React.Component {
 	toggleInput(which,e){
 		e.preventDefault()
 		if(which){
-			this.props.updateObject('email')
+			this.props.updateObject()
 		} else {
 			ReactDOM.findDOMNode(this.refs.Input).value = ''
 		}

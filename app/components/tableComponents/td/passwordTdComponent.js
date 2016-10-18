@@ -15,7 +15,7 @@ class PasswordTdComponent extends React.Component {
 	toggleInput(which,e){
 		e.preventDefault()
 		if(which){
-			this.props.updateObject('password')
+			this.props.updateObject()
 		} else {
 			ReactDOM.findDOMNode(this.refs.Input).value = ''
 		}
