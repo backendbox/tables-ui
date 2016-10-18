@@ -10,31 +10,34 @@ class DateTdComponent extends React.Component {
 		this.state = {}
 	}
 	componentDidMount(){
-		this.state = {
-			dateInput:this.dateFormat(this.props.elementData)
-		}
-		this.setState(this.state)
+
 	}
 	openInput(which){
 		this.refs[which].openDialog()
 	}
 	viewChangeDate(e,data){
-		console.log(data)
+		let date = new Date(this.props.elementData)
+		date.setDate(data.getDate())
+		date.setFullYear(data.getFullYear())
+		date.setMonth(data.getMonth())
+		this.props.updateElement(date.toISOString())
+		this.props.updateObject()
 	}
 	viewChangeTime(e,data){
-		console.log(data)
-	}
-	changeHandler(which,e){
-		this.state[which] = e.target.value
-		this.setState(this.state)
+		let date = new Date(this.props.elementData)
+		date.setHours(data.getHours())
+		date.setMinutes(data.getMinutes())
+		date.setSeconds(data.getSeconds())
+		this.props.updateElement(date.toISOString())
+		this.props.updateObject()
 	}
 	dateFormat(date){
-		return new Date(date).toISOString().slice(0,10).replace(/-/g,"/") + ", " + new Date(date).toISOString().slice(11,16)
+		return new Date(date).toISOString().slice(0,10).replace(/-/g,"/") + ", " + new Date(date).getHours()+":"+new Date(date).getMinutes()
 	}
 	render() {
 		return (
             <td className='mdl-data-table__cell--non-numeric pointer'>
-            	<span className={''}>{this.state.dateInput}</span>
+            	<span className={''}>{ this.dateFormat(this.props.elementData) }</span>
             	<i className="fa fa-calendar fr mtl2" aria-hidden="true" onClick={this.openInput.bind(this,'InputDate')}></i>
             	<i className="fa fa-clock-o fr mtl2" aria-hidden="true" onClick={this.openInput.bind(this,'InputTime')}></i>
             	<DatePicker id="date" ref="InputDate" className='width0' onChange={this.viewChangeDate.bind(this)}/>
