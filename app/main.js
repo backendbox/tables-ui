@@ -6,6 +6,7 @@ injectTapEventPlugin();
 
 //components
 import Table from './components/table.js';
+import Header from './components/header.js';
 
 //stores
 import TableStore from './stores/tableStore.js';
@@ -18,7 +19,10 @@ class Layout extends React.Component {
 	render() {
 	  return (
 	  	<MuiThemeProvider>
-	  		<Table tableStore={ TableStore }></Table>
+	  		<div id="reactmain">
+		  		<Header tableStore={ TableStore } appName={ 'jjwiumppcgur' }/>
+		  		<Table tableStore={ TableStore }></Table>
+	  		</div>
 	  	</MuiThemeProvider>
 	  );
 	}

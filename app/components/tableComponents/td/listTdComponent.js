@@ -25,7 +25,6 @@ class ListTdComponent extends React.Component {
 
 	}
 	render() {
-		console.log(this.props)
 		return (
             <td className='mdl-data-table__cell--non-numeric pointer'>
             	<span className="color888">List</span>

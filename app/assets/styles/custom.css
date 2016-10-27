@@ -1,3 +1,10 @@
+body{
+	height: 100%
+}
+#main{
+	height: 100%;
+}
+
 .mauto{
 	margin: auto
 }
@@ -6,7 +13,7 @@
 	/*margin-top: 10%*/
 }
 
-td{
+td,th{
 	border:1px solid #DDD;
 }
 
@@ -25,6 +32,9 @@ td{
 }
 
 .mdl-data-table td{
+	padding: 0px 8px;
+}
+.mdl-data-table th{
 	padding: 0px 8px;
 }
 
@@ -50,6 +60,9 @@ td{
 .mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type {
     padding-left: 0px;
 }
+.mdl-data-table th:first-of-type, .mdl-data-table th:first-of-type {
+    padding-left: 0px;
+}
 
 .mdl-data-table tbody tr {
     height: 40px;
@@ -57,6 +70,9 @@ td{
 }
 
 .mdl-data-table td {
+    height: 40px;
+}
+.mdl-data-table th {
     height: 40px;
 }
 
@@ -111,4 +127,122 @@ td{
 	width: 30px;
 	height: 30px;
 	margin-left:15px; 
+}
+
+#dataHeader{
+	height: 70px;
+    background-color: #158AE5;
+}
+
+#dataSubHeader{
+	height: 45px;
+    background-color: #5BAEED;
+}
+
+#datatable{
+	height: 80%;
+	width: 100%;
+	overflow-x: scroll;
+}
+#reactmain{
+	height: 100%
+}
+.appname{
+	margin: auto;
+    text-align: center;
+    color: white;
+    font-size: 22px;
+    padding-top: 8px;
+}
+.subhbtn{
+	height: 37px;
+    margin-top: 4px;
+    margin-left: 1px;
+    border-radius: 2px;
+    background-color: #DEEFFB;
+}
+.subhbtnpop{
+	height: 37px;
+    margin-top: 4px;
+    margin-left: 1px;
+    border-radius: 2px;
+    background-color: #DEEFFB;
+    width: 220px
+}
+.ml5{
+	margin-left: 5px !important;
+}
+.mr2{
+	margin-right: 2px
+}
+.popupshowhideleft{
+	width: 85px;
+    height: 30px;
+    margin-top: 6px;
+    margin-left: 19px;
+    background-color: white;
+    border: 1px solid #DDD;
+    margin-bottom: 10px
+}
+.popupshowhideright{
+	width: 85px;
+    background-color: white;
+    border: 1px solid #DDD;
+    height: 30px;
+    margin-top: 6px;
+    margin-left: 14px;
+    margin-bottom: 10px
+}
+
+.popuphidecol{
+	width: 220px !important;
+	background-color: white;
+}
+.checkselect{
+	margin-top: 6px !important;
+    float: left !important;
+    margin-right: 3px !important;
+}
+.parapop{
+	margin-left: 20px !important;
+    padding: 0px;
+    margin: 0;
+    margin-top: 2px !important;
+}
+.pb7{
+	padding-bottom: 7px !important;
+}
+.searchheading{
+    float: right;
+    font-size: 30px !important;
+    color: white;
+    margin-top: 4px;
+    margin-right: 12px;
+}
+.userLogoheadng{
+    float: right;
+    font-size: 30px !important;
+    color: white;
+    margin-top: -23px;
+    margin-right: 12px;
+}
+.logoCB{
+    float: left;
+    width: 28px;
+    margin-left: 6px;
+    margin-top: 6px;
+}
+
+.checkStyle{
+    margin-left: -11px !important;
+}
+.plusrow{
+    float: left;
+    margin-left: 18px;
+}
+.tdplus{
+    padding-right: 0px !important;
+}
+.mlm11{
+    margin-left: -11px;
 }
