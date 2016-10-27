@@ -11,6 +11,7 @@ import EmailTd from './td/emailTdComponent'
 import ObjectTd from './td/objectTdComponent'
 import GeoTd from './td/geoTdComponent'
 import FileTd from './td/fileTdComponent'
+import ListTd from './td/listTdComponent'
 
 
 class GenericTdComponent extends React.Component {
@@ -18,6 +19,7 @@ class GenericTdComponent extends React.Component {
 		super()
 		this.state = {
 			elementData:null,
+			elementDataBackup:null,
 			componentToRender:TextTd
 		}
 	}
@@ -56,7 +58,7 @@ class GenericTdComponent extends React.Component {
 
 			case "Object":
 				this.state.componentToRender =  ObjectTd
-				this.state.elementData = JSON.stringify(props.columnData.document[props.columnType.name])
+				this.state.elementData = props.columnData.document[props.columnType.name]
 				break;
 
 			case "GeoPoint":
@@ -68,32 +70,38 @@ class GenericTdComponent extends React.Component {
 				this.state.componentToRender =  FileTd
 				this.state.elementData = props.columnData.document[props.columnType.name]
 				break;
+
+			case "List":
+				this.state.componentToRender =  ListTd
+				this.state.elementData = props.columnData.document[props.columnType.name]
+				break;
 			
 			default:
 				this.state.componentToRender =  TextTd
 				this.state.elementData = "a"
 				break;
 		}
+		this.state.elementDataBackup = this.state.elementData
 		this.setState(this.state)
 	}
 	updateObject(){
-		if(this.props.columnType.dataType === 'Object'){
-			this.state.elementData = JSON.parse(this.state.elementData)
-		}
 		this.props.columnData.set(this.props.columnType.name,this.state.elementData)
 		this.props.columnData.save().then((res)=>{
-			//console.log(res)
+			this.state.elementDataBackup = res.document[this.props.columnType.name]
+			this.setState(this.state)
 		},(err)=>{
 			console.log(err)
 			this.fetchObject()
 		})
 	}
 	fetchObject(){
-		this.props.columnData.fetch().then((data)=>{
-			this.props.tableStore.updateColumnsData(data.id,data)
-		},(err)=>{
-			console.log(err)
-		})
+		// this.props.columnData.fetch().then((data)=>{
+		// 	this.props.tableStore.updateColumnsData(data.id,data)
+		// },(err)=>{
+		// 	console.log(err)
+		// })
+		this.state.elementData = this.state.elementDataBackup
+		this.setState(this.state)
 	}
 	updateElement(data){
 		this.state.elementData = data
@@ -108,7 +116,8 @@ class GenericTdComponent extends React.Component {
 		       	updateElement:this.updateElement.bind(this),
 		       	fetchObject:this.fetchObject.bind(this),
 		       	columnName:this.props.columnType.name,
-		       	columnData:this.props.columnData
+		       	columnData:this.props.columnData,
+		       	columnType:this.props.columnType
            })
 		);
 	}

@@ -20,16 +20,16 @@ class ObjectTdComponent extends React.Component {
 		this.setState(this.state)
 	}
 	changeHandler(value,e){
-    	this.props.updateElement(value)
+		try{
+    		this.props.updateElement(JSON.parse(value))
+    	} catch(e){
+    		console.log(e)
+    	}
     }
 	jsonValidate(){
-		try {
-        	JSON.parse(this.props.elementData)
-        	this.props.updateObject()
-        	this.openCloseModal(false)
-	    } catch (e) {
-	        //this.cancelJsonUpdate(false)
-	    }		
+		//console.log(this.props.elementData)
+    	this.props.updateObject()
+    	this.openCloseModal(false)
 	}
 	cancelJsonUpdate(){
 		this.props.fetchObject()
@@ -48,7 +48,7 @@ class ObjectTdComponent extends React.Component {
 					    mode="json"
 					    theme="github"
 					    onChange={this.changeHandler.bind(this)}
-					    value={ this.props.elementData || '' }
+					    value={ JSON.stringify(this.props.elementData) || '' }
 					    name="json"
 					    className="jsonmodal"
 					/>
