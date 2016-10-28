@@ -246,3 +246,46 @@ td,th{
 .mlm11{
     margin-left: -11px;
 }
+.popupfilterrrow{
+    width: 600px !important;
+    background-color: white;
+    min-height: 150px;
+}
+.selectfilter{
+    float: left;
+    width: 110px;
+    height: 29px;
+    border-radius: 1px;
+    border: 1px solid #EEE;
+}
+.filterrow{
+        padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+    margin-top: 0px;
+    height: 31px;
+
+}
+.addfilter{
+        width: 400px;
+    height: 27px;
+    margin-left: 15%;
+    border: 1px solid #DDD;
+    line-height: 1px;
+}
+.inputfilter{
+    float: left;
+    width: 220px;
+    height: 29px;
+    border-radius: 1px;
+    border: 1px solid #EEE;
+}
+.filterclose{
+        font-size: 22px !important;
+    margin-left: 4px;
+    margin-top: 2px;
+    cursor: pointer;
+}
+.boolfilter{
+    height: 20px !important;
+}

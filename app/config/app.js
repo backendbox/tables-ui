@@ -86,6 +86,40 @@ var configObject = {
               visible: true
             }
 
+    ],
+
+    filterTypes:[
+      {
+        type:['Text','Email','URL','EncryptedText','Boolean'],
+        options:[
+          '','equalTo','notEqualTo','startsWith','exists','doesNotExists'
+        ]
+      },
+      {
+        type:['Number','DateTime'],
+        options:[
+          '','equalTo','notEqualTo','greaterThan','lessThan','greaterThanEqualTo','lessThanEqualTo','exists','doesNotExists'
+        ]
+      },
+      {
+        type:['File','Object','Relation'],
+        options:[
+          '','exists','doesNotExists'
+        ]
+      },
+      {
+        type:['GeoPoint'],
+        options:[
+          '','near','geoWithin'
+        ]
+      },
+      {
+        type:['List'],
+        options:[
+          '','containedIn','notContainedIn','containsAll'
+        ]
+      }
+
     ]
 }
 

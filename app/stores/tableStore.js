@@ -7,6 +7,17 @@ class TableStore {
 	@observable hiddenColumns = []
 	@observable rowsToDelete = []
 
+	@computed get getColumns(){
+		if(this.columns.document){
+			return this.columns.document.columns.map( x => x.document )
+		} else {
+			return []
+		}
+	}
+	@computed get getColumnsData(){
+		return this.columnsData.map( x => x.document )
+	}
+
 	setColumns(){
 		CB.CloudTable.get(this.TABLE).then((data)=>{
 			this.columns = data
@@ -67,17 +78,6 @@ class TableStore {
 			this.setColumnsData()
 			this.rowsToDelete = []
 		})
-	}
-
-	@computed get getColumns(){
-		if(this.columns.document){
-			return this.columns.document.columns.map( x => x.document )
-		} else {
-			return []
-		}
-	}
-	@computed get getColumnsData(){
-		return this.columnsData.map( x => x.document )
 	}
 
 }

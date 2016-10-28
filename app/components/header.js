@@ -2,6 +2,7 @@ import React from 'react'
 import { observer } from "mobx-react"
 //components
 import HideColumns from './headerComponents/hideColumnsComponent.js';
+import FilterRows from './headerComponents/filterRowsComponent.js';
 
 @observer
 class Header extends React.Component {
@@ -15,7 +16,7 @@ class Header extends React.Component {
 
 	}
 	refreshRows(){
-		this.props.tableStore.setColumnsData('User')
+		this.props.tableStore.setColumnsData()
 	}
 	deleteRows(){
 		this.props.tableStore.deleteRows()
@@ -35,9 +36,9 @@ class Header extends React.Component {
 				</div>
 				<div id="dataSubHeader">
 					<button className="btn subhbtn ml5" onClick={ this.refreshRows.bind(this) }><i className="fa fa-refresh mr2" aria-hidden="true"></i> Refresh rows</button>
-					<button className={this.props.tableStore.rowsToDelete.length > 0 ? 'btn subhbtn':'hide'} onClick={ this.deleteRows.bind(this) }><i className="{fa fa-trash mr2" aria-hidden="true"></i> Delete rows</button>
+					<button className={this.props.tableStore.rowsToDelete.length > 0 ? 'btn subhbtn':'hide'} onClick={ this.deleteRows.bind(this) }><i className="fa fa-trash mr2" aria-hidden="true"></i> Delete rows</button>
 					<HideColumns tableStore={ this.props.tableStore }/>
-					<button className="btn subhbtnpop"><i className="fa fa-filter mr2" aria-hidden="true"></i> Filters</button>
+					<FilterRows tableStore={ this.props.tableStore }/>
 					<i className="fa fa-search searchheading" aria-hidden="true"></i>
 				</div>
 			</div>
