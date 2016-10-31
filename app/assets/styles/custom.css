@@ -282,10 +282,111 @@ td,th{
 }
 .filterclose{
         font-size: 22px !important;
-    margin-left: 4px;
     margin-top: 2px;
     cursor: pointer;
+    margin-right: 14px;
+    float: left;
 }
 .boolfilter{
     height: 20px !important;
+}
+.listfilterrows{
+    float: left;
+    display: inline;
+    width: 222px !important;
+}
+.listfilteradd{
+    float: left;
+    font-size: 18px !important;
+    margin-left: 4px;
+    margin-top: 6px;
+    cursor: pointer;
+}
+.inputfilterlist{
+    float: left;
+    width: 200px;
+    height: 29px;
+    border-radius: 1px;
+    border: 1px solid #EEE;
+}
+.inputfilterlistValues{
+    margin-left: 3px;
+    margin-bottom: 0px;
+    width: 199px !important;
+    float: left;
+}
+.divadditionallist{
+
+}
+.minuslist{
+    float: left;
+    /* font-size: 14px !important; */
+    margin-top: 6px;
+    margin-left: 6px;
+    cursor: pointer;
+}
+.listtexttableinput{
+    width: 500px;
+    padding: 3px;
+    margin-top: 5px;
+}
+.addtextrecord{
+    width: 400px;
+    /* margin: auto; */
+    margin-left: 20%;
+    margin-bottom: 10px;
+    background-color: white;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+}
+.trashlistinputtext{
+    margin-left: 5px;
+    font-size: 20px !important;
+    cursor: pointer;
+}
+.fileListPreveiew{
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 40px;
+}
+.savecanclist{
+    float: right;
+    width: 100%;
+    margin-top: 20px;
+}
+.deletefilelist{
+    float: left;
+    margin-left: -21%;
+    width: 153px;
+    margin-top: 14px;
+    background-color: white;
+    border: 1px solid #DDD;
+}
+.dropFileList{
+    width: 150px;
+    height: 175px;
+    border: 2px dashed rgb(102, 102, 102);
+    border-radius: 5px;
+    float: left;
+    margin-top: 15px;
+    margin-right: 20px;
+}
+.datetimelist{
+    width: 500px;
+    padding: 3px;
+    margin-top: 5px;
+    border: 1px solid #EEE;
+}
+.datedeletebt{
+    float: right;
+    margin-top: -4%;
+    font-size: 20px !important;
+    margin-right: -25px;
+    cursor: pointer;
+}
+.dateml{
+    margin-left: 10px;
+    cursor: pointer;
 }

@@ -44,6 +44,7 @@ class Table extends React.Component {
 				}
 			}
 		}
+		//TODO - edge case for de-selcting all
 		this.props.tableStore.columnsData.map((x)=>{
 			if(data) this.props.tableStore.addToDeleteRows(x.id)
 				else this.props.tableStore.removeFromDeleteRows(x.id)

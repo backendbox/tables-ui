@@ -17,7 +17,9 @@ class FilterRow extends React.Component {
 		let types = configObject.filterTypes.filter((x)=>{
 			return x.type.indexOf(e.target.options[e.target.options.selectedIndex].getAttribute('type')) != -1
 		})
-		console.log(types)
+		if(e.target.options[e.target.options.selectedIndex].getAttribute('data-relatedTo')){
+			this.props.changeHandler('relatedTo',e.target.options[e.target.options.selectedIndex].getAttribute('data-relatedTo'),this.props.filterData.id)
+		}
 		this.props.changeHandler('columnType',e.target.options[e.target.options.selectedIndex].getAttribute('type'),this.props.filterData.id)
 		this.props.changeHandler('filterTypes',types[0].options,this.props.filterData.id)
 		this.props.changeHandler('filterType','',this.props.filterData.id)
@@ -32,6 +34,16 @@ class FilterRow extends React.Component {
 	setDataValue(e){
 		let value = e.target.value ? e.target.value : e.target.checked
 		this.props.changeHandler('dataValue',value,this.props.filterData.id)
+	}
+	setListDataValue(e){
+		let value = e.target.nextSibling.value
+		if(value){
+			this.props.changeHandler('listDataValue',value,this.props.filterData.id)
+		}
+		e.target.nextSibling.value = null
+	}
+	removeListDataValue(index){
+		this.props.removeListDataValue(index,this.props.filterData.id)
 	}
 	getInputType(props){
 		let inputType
@@ -60,13 +72,33 @@ class FilterRow extends React.Component {
 		let inputType
 		if(props.filterData.relatedTo){
 			if(['Text','Email','URL','EncryptedText','Number'].indexOf(props.filterData.relatedTo) != -1){
-				inputType = <input type="text" className="inputfilter" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this) }/>
+
+				inputType = <div className="listfilterrows">
+								<i className="fa fa-plus listfilteradd" aria-hidden="true" onClick={ this.setListDataValue.bind(this) }></i>
+								<input type="text" className="inputfilterlist"/>
+								{
+									this.props.filterData.listDataValue.map((x,i)=>{
+										return <div className="divadditionallist" key={ i }>
+													<i className="fa fa-minus minuslist" aria-hidden="true" onClick={ this.removeListDataValue.bind(this,i) }></i>
+													<input type="text" className="inputfilterlistValues" value={ x } disabled="true" />
+												</div>
+									})
+								}
+							</div>
 			} 
 			else if(['DateTime'].indexOf(props.filterData.relatedTo) != -1){
-				inputType = <input type="date" className="inputfilter" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this) }/>
-			} 
-			else if(['Boolean'].indexOf(props.filterData.relatedTo) != -1){
-				inputType = <input type="checkbox" className="inputfilter boolfilter" checked={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this) }/>
+				inputType = <div className="listfilterrows">
+								<i className="fa fa-plus listfilteradd" aria-hidden="true" onClick={ this.setListDataValue.bind(this) }></i>
+								<input type="date" className="inputfilterlist"/>
+								{
+									this.props.filterData.listDataValue.map((x,i)=>{
+										return <div className="divadditionallist" key={ i }>
+													<i className="fa fa-minus minuslist" aria-hidden="true" onClick={ this.removeListDataValue.bind(this,i) }></i>
+													<input type="date" className="inputfilterlistValues" value={ x } disabled="true" />
+												</div>
+									})
+								}
+							</div>
 			}
 			else {
 				inputType = <input type="text" className="inputfilter" disabled="true" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this) }/>
@@ -83,7 +115,11 @@ class FilterRow extends React.Component {
 							return !(x.dataType == 'Id' || x.dataType == 'ACL') 
 						})
 						.map((data,i)=>{
-							return <option key={ i } value={ data.name } type={ data.dataType }>{ data.name }</option>
+							if(data.dataType == 'List'){
+								return <option key={ i } value={ data.name } type={ data.dataType } data-relatedTo={ data.relatedTo }>{ data.name }</option>
+							} else {
+								return <option key={ i } value={ data.name } type={ data.dataType }>{ data.name }</option>
+							}
 						})
 		let type = this.props.filterData.type.map((x,i)=>{
 			return <option key={ i } value={ x }>{ x }</option>

@@ -28,7 +28,9 @@ class FilterRows extends React.Component {
 			filterType:'',
 			dataValue:'',
 			filterTypes:[],
-			columnType:''
+			columnType:'',
+			relatedTo:'',
+			listDataValue:[]
 		})
 		this.setState(this.state)
 		this.runQuery()
@@ -88,7 +90,21 @@ class FilterRows extends React.Component {
 	changeHandler(type,value,id,e){
 		this.state.filters = this.state.filters.map((x)=>{
 			if(x.id == id){
-				x[type] = value
+				if(type == 'listDataValue'){
+					x[type].push(value)
+				} else {
+					x[type] = value
+				}
+			}
+			return x
+		})
+		this.setState(this.state)
+		this.runQuery()
+	}
+	removeListDataValue(index,id){
+		this.state.filters = this.state.filters.map((x)=>{
+			if(x.id == id){
+				x['listDataValue'].splice(index,1)
 			}
 			return x
 		})
@@ -104,6 +120,7 @@ class FilterRows extends React.Component {
 					 deleteFilter={ this.deleteFilter.bind(this) } 
 					 runQuery={ this.runQuery.bind(this) }
 					 changeHandler={ this.changeHandler.bind(this) }
+					 removeListDataValue={ this.removeListDataValue.bind(this) }
 				 />
 			})
 		return (

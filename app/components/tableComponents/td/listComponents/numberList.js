@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class TextListComponent extends React.Component {
+class NumberListComponent extends React.Component {
 	constructor(){
 		super()
 		this.state = {
@@ -9,7 +9,7 @@ class TextListComponent extends React.Component {
 		}
 	}
 	updateValue(e){
-		this.props.updateElementData(e.target.value,this.props.index)
+		this.props.updateElementData(parseInt(e.target.value),this.props.index)
 	}
 	deleteValue(){
 		this.props.removeFromElementData(this.props.index)
@@ -21,11 +21,11 @@ class TextListComponent extends React.Component {
 		let data = this.props.data
 		return (
 			<div>
-				<input type="text" className="listtexttableinput" value={ this.props.data } onChange={ this.updateValue.bind(this) }/>
+				<input type="number" className="listtexttableinput" value={ this.props.data } onChange={ this.updateValue.bind(this) }/>
 				<i className="fa fa-trash trashlistinputtext" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
 			</div>
 		);
 	}
 }
 
-export default TextListComponent;
+export default NumberListComponent;
