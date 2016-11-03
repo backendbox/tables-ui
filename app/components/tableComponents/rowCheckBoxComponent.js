@@ -20,8 +20,8 @@ class RowCheckBoxComponent extends React.Component {
 	}
 	render() {
 		return (
-           	<td onMouseEnter={this.hover.bind(this,false)} onMouseLeave={this.hover.bind(this,true)}> 
-           		<span className={this.state.checkHidden &&  this.props.tableStore.rowsToDelete.indexOf(this.props.rowObject.id) == -1 ? 'checkStyle':'hide'}>{this.props.indexValue+1}</span>
+           	<td onMouseEnter={this.hover.bind(this,false)} onMouseLeave={this.hover.bind(this,true)} className="tdtrcheck"> 
+           		<span className={this.state.checkHidden &&  this.props.tableStore.rowsToDelete.indexOf(this.props.rowObject.id) == -1 ? 'mr12':'hide'}>{this.props.indexValue+1}</span>
            		<Checkbox onCheck={this.props.checkHandler.bind(this,this.props.indexValue,this.props.rowObject.id)} className={!this.state.checkHidden ||  this.props.tableStore.rowsToDelete.indexOf(this.props.rowObject.id) !=- 1 ? 'checkStyle':'hide'} checked={this.props.tableStore.rowsToDelete.indexOf(this.props.rowObject.id) !=- 1}/> 
            	</td>
 		);

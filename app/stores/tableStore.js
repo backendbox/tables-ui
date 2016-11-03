@@ -2,6 +2,7 @@ import { observable,computed } from 'mobx'
 
 class TableStore {
 	@observable TABLE = {}
+	@observable tables = []
 	@observable columns = []
 	@observable columnsData = []
 	@observable hiddenColumns = []
@@ -17,16 +18,73 @@ class TableStore {
 	@computed get getColumnsData(){
 		return this.columnsData.map( x => x.document )
 	}
+	@computed get getTables(){
+		return this.tables.map( x => x.document )
+	}
 
+	initialize(tableName){
+		CB.CloudTable.getAll().then((data)=>{
+			if(data[0]){
+				this.TABLE = data[0].document.name
+			}
+			if(tableName){
+				this.TABLE = tableName
+			}
+			this.tables = data
+			this.setColumns()
+			this.setColumnsData()
+		})
+	}
+	changeTable(tableName){
+		this.TABLE = tableName
+		this.setColumns()
+		this.setColumnsData()
+	}
+	createTable(tableName){
+		let table = new CB.CloudTable(tableName)
+		table.save().then((res)=>{
+			this.initialize(tableName)
+		},(err)=>{
+			console.log(err)			
+		})
+	}
+	deleteTable(tableName){
+		let table = this.tables.filter(x=> x.document.name == tableName)[0]
+		table.delete().then((res)=>{
+			this.initialize()
+		},(err)=>{
+			console.log(err)
+		})
+	}
+	addColumn(column){
+		let table = this.tables.filter(x=> x.document.name == this.TABLE)[0]
+		table.addColumn(column);
+		table.save().then((res)=>{
+			this.setColumns()
+			this.setColumnsData()
+		},(err)=>{
+			console.log(err)
+		})
+	}
 	setColumns(){
 		CB.CloudTable.get(this.TABLE).then((data)=>{
 			this.columns = data
 		})
 	}
 	setColumnsData(){
-		var query = new CB.CloudQuery(this.TABLE);
+		let query = new CB.CloudQuery(this.TABLE)
 		query.find().then((list)=>{
 			this.columnsData = list
+		})
+	}
+
+	search(searchString){
+		let query = new CB.CloudQuery(this.TABLE)
+		query.search('username',searchString)
+		query.find().then((list)=>{
+			console.log(list)
+		},(err)=>{
+			console.log(err)
 		})
 	}
 

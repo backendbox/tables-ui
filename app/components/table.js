@@ -3,6 +3,7 @@ import { observer } from "mobx-react"
 //components
 import GenericTd from './tableComponents/genericTdComponent'
 import RowCheckBoxComponent from './tableComponents/rowCheckBoxComponent';
+import AddColumnComponent from './tableComponents/addColumnComponent';
 import Checkbox from 'material-ui/Checkbox';
 
 @observer
@@ -14,13 +15,11 @@ class Table extends React.Component {
 		}
 	}
 	componentWillMount(){
-		this.props.tableStore.TABLE = 'User'
-		this.props.tableStore.setColumns()
-		this.props.tableStore.setColumnsData()
+		
 	}
 
 	addRow(){
-		var row = new CB.CloudObject('User')
+		var row = new CB.CloudObject(this.props.tableStore.TABLE)
 		row.set('updatedAt',new Date().toISOString())
 		row.set('createdAt',new Date().toISOString())
 		this.props.tableStore.addRow(row)
@@ -80,8 +79,9 @@ class Table extends React.Component {
 				<table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp margintop10">
 			        <thead>
 			          <tr>
-				          <th> <Checkbox className="mlm11" onCheck={ this.selectDeselectAllRows.bind(this) }/> </th>
-			            	{ columnsHeadings }
+							<th className="tdtrcheck"> <Checkbox className="mlm11" onCheck={ this.selectDeselectAllRows.bind(this) }/> </th>
+								{ columnsHeadings }
+							<AddColumnComponent tableStore={ this.props.tableStore } />
 			          </tr>
 			        </thead>
 			        <tbody>

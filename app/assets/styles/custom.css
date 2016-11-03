@@ -135,8 +135,10 @@ td,th{
 }
 
 #dataSubHeader{
-	height: 45px;
+	height: 50px;
     background-color: #5BAEED;
+    /* padding: 0px; */
+    padding-top: 3px;
 }
 
 #datatable{
@@ -214,9 +216,9 @@ td,th{
 }
 .searchheading{
     float: right;
-    font-size: 30px !important;
+    font-size: 23px !important;
     color: white;
-    margin-top: 4px;
+    margin-top: 9px;
     margin-right: 12px;
 }
 .userLogoheadng{
@@ -224,6 +226,13 @@ td,th{
     font-size: 30px !important;
     color: white;
     margin-top: -23px;
+    margin-right: 12px;
+}
+.userHelpheadng{
+    float: right;
+    font-size: 20px !important;
+    color: white;
+    margin-top: -17px;
     margin-right: 12px;
 }
 .logoCB{
@@ -234,6 +243,7 @@ td,th{
 }
 
 .checkStyle{
+    float: left !important;
     margin-left: -11px !important;
 }
 .plusrow{
@@ -245,6 +255,7 @@ td,th{
 }
 .mlm11{
     margin-left: -11px;
+        margin-bottom: 6px;
 }
 .popupfilterrrow{
     width: 600px !important;
@@ -389,4 +400,182 @@ td,th{
 .dateml{
     margin-left: 10px;
     cursor: pointer;
+}
+.cp{
+    cursor: pointer;
+}
+.popupsearchcol{
+    width: 240px !important;
+    background-color: white;
+    height: 42px;
+}
+.searchinputpop{
+    width: 200px;
+    height: 38px;
+    margin-top: 2px;
+    margin-left: 3px;
+    border: 1px solid #DDD;
+}
+.searchclose{
+    font-size: 22px !important;
+    margin-left: 10px;
+}
+.headertablecrud{
+    height: 25px;
+    background-color: #5BAEED;
+    margin-top: 13px;
+    position: absolute;
+}
+.tableselected{
+    height: 100%;
+    min-width: 110px;
+    max-width: 200px;
+    float: left;
+}
+.tablenotselected{
+    height: 100%;
+    min-width: 110px;
+    max-width: 200px;
+    background-color: #C4E2F9;
+    float: left;
+    margin-left: 1px;
+}
+.white{
+    color: white
+}
+.tableadd{
+    height: 100%;
+    width: 30px;
+    background-color: #C4E2F9;
+    float: left;
+    margin-left: 1px;
+}
+.addicoontable{
+    margin-left: 9px;
+    margin-top: 5px;
+}
+.popupaddtable{
+    width: 150px !important;
+    background-color: white;
+    height: 60px;
+}
+.inputaddtable{
+    width: 146px;
+    height: 28px;
+    margin-top: 2px;
+    margin-left: 2px;
+    border: 1px solid #DDD;
+}
+.addtablebutton{
+    width: 146px;
+    height: 28px;
+    margin-left: 2px;
+    border: 0;
+    color:white;
+    background-color: #5BAEED;
+}
+.popupdeletetable{
+    width: 150px !important;
+    background-color: white;
+    height: 30px;
+}
+.deletetablebtn{
+    width: 146px;
+    height: 28px;
+    margin-left: 2px;
+    border: 0;
+    color: white;
+    background-color: #DE5163;
+    margin-top: 1px;
+}
+.addcolumns{
+    font-size: 15px !important;
+    min-width: 205px;
+    max-width: 225px;
+}
+.mdl-data-table th {
+   min-width: 205px;
+    max-width: 225px;
+}
+
+.tdtrcheck{
+    min-width: 50px !important;
+}
+.mr12{
+    margin-right: 12px
+}
+.tdtrcheck:hover{
+    background-color: #EEE;
+    cursor: pointer;
+}
+.popupaddcolumns{
+    width: 225px !important;
+    background-color: white;
+    min-height: 200px;
+    background-color: #F9F7F7 !important;
+}
+.addcoldiv{
+    width: 100%;
+    /* min-height: 80%; */
+    min-height: 170px;
+    float: left;
+}
+.addcolinput{
+        width: 99%;
+    height: 35px;
+    border: 3px solid #DDD;
+    margin-left: 1px;
+    border-radius: 4px;
+}
+.addcol{
+    width: 50%;
+    /* margin-top: 3px; */
+    border: 0;
+    height: 29px;
+    background-color: #5BAEED;
+    color: white;
+}
+.delcol{
+     width: 50%;
+    /* margin-top: 3px; */
+    border: 0;
+    height: 29px;
+    background-color: #DE5163;
+    color: white;
+}
+.addcolselect{
+    width: 85%;
+    height: 30px;
+    border: 1px solid #DDD;
+    margin-left: 16px;
+    border-radius: 1px;
+}
+.paddcolumns{
+    text-align: center;
+    height: 5px;
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.paddcolumnsfl{
+        float: left;
+    margin-left: 22px;
+    margin-top: 10px;
+}
+.paddcolumnsfr{
+    float: left;
+    margin-right: 18px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.checkStyleaddcolfl{
+    float: left;
+    width: 18% !important;
+    margin-top: 10px;
+}
+.checkStyleaddcolfr{
+    float: left;
+    width: 18% !important;
+    margin-left: -14px;
+    margin-top: 10px;
 }

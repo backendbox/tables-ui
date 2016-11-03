@@ -5,55 +5,64 @@ var configObject = {
               name : 'Text',
               text : 'Text',
               type:'static',
-              visible: true
+              visible: true,
+              unique:true
             },
             {
               name : 'Email',
               text : 'Email',
               type:'static',
-              visible: true
+              visible: true,
+              unique:true
             },
             {
               name : 'URL',
               text : 'URL',
               type:'static',
-              visible: true
+              visible: true,
+              unique:true
             },
             {
               name : 'Number',
               text : 'Number',
                type: 'static',
-               visible: true
+               visible: true,
+               unique:true
             },
             {
               name : 'EncryptedText',
               text : 'Encrypted Text',
               type: 'static',
-              visible: true
+              visible: true,
+              unique:true
             },
             {
               name : 'Boolean',
               text : 'Boolean',
               type: 'static',
-              visible: true
+              visible: true,
+              unique:false
             },
             {
               name : 'DateTime',
               text : 'Date Time',
               type: 'static',
-              visible: true
+              visible: true,
+              unique:true
             },
             {
               name : 'GeoPoint',
               text : 'Geo Point',
               type: 'static',
-              visible: true
+              visible: true,
+              unique:false
             },
             {
               name : 'File',
               text : 'File',
               type: 'static',
-              visible: true
+              visible: true,
+              unique:false
             },
             {
               name : 'Id',
@@ -71,19 +80,22 @@ var configObject = {
               name : 'List',
               text : 'List',
               type: 'List',
-              visible: true
+              visible: true,
+              unique:false
             },
             {
               name : 'Relation',
               text : 'Relation',
               type: 'Relation',
-              visible: true
+              visible: true,
+              unique:true
             },
             {
               name : 'Object',
               text : 'Object',
               type: 'static',
-              visible: true
+              visible: true,
+              unique:false
             }
 
     ],
