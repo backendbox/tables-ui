@@ -12,6 +12,7 @@ import ObjectTd from './td/objectTdComponent'
 import GeoTd from './td/geoTdComponent'
 import FileTd from './td/fileTdComponent'
 import ListTd from './td/listTdComponent'
+import RelationTd from './td/relationTdComponent'
 
 
 class GenericTdComponent extends React.Component {
@@ -73,6 +74,11 @@ class GenericTdComponent extends React.Component {
 
 			case "List":
 				this.state.componentToRender =  ListTd
+				this.state.elementData = props.columnData.document[props.columnType.name]
+				break;
+
+			case "Relation":
+				this.state.componentToRender =  RelationTd
 				this.state.elementData = props.columnData.document[props.columnType.name]
 				break;
 			
