@@ -642,3 +642,52 @@ td,th{
     height: 30px;
     padding: 5px;
 }
+.aclrow{
+    width: 100%;
+    float: left;
+    height: 45px;
+    border-bottom: 1px solid #CCC;
+    padding: 10px;
+    background-color: #E2E7EC;
+}
+.logoaclrow{
+    font-size: 20px !important;
+    margin-top: 2px;
+    float: left;
+}
+.textaclrow{
+    float: left;
+    font-size: 15px;
+    margin-left: 20px;
+}
+.aclrowcheckbox{
+    float: right;
+    width: 40px !important;
+}
+.readwitetext{
+    float: right;
+    margin-left: 0px;
+    margin-right: 10px;
+}
+.cancelaclrow{
+    float: right;
+    font-size: 20px !important;
+    margin-top: 1px;
+    margin-left: 10%;
+    cursor: pointer;
+}
+.selectautoacl{
+
+}
+.aclrowpublic{
+    margin-bottom: 5px;
+    border: 2px solid #6091EF;
+    width: 100%;
+    float: left;
+    height: 45px;
+    padding: 10px;
+    background-color: #D4E5F7;
+}
+.mr92{
+        margin-right: 92px;
+}
