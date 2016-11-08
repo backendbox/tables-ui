@@ -1,20 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Dialog from 'material-ui/Dialog';
 
-import TextList from './listComponents/textList.js'
-import ObjectList from './listComponents/objectList.js'
-import GeoList from './listComponents/geoList.js'
-import FileList from './listComponents/fileList.js'
-import NumberList from './listComponents/numberList.js'
-import DateTimeList from './listComponents/dateTimeList.js'
-import GenericAddToList from './listComponents/genericAddToList.js'
+import TextList from '../listComponents/textList.js'
+import ObjectList from '../listComponents/objectList.js'
+import GeoList from '../listComponents/geoList.js'
+import FileList from '../listComponents/fileList.js'
+import NumberList from '../listComponents/numberList.js'
+import DateTimeList from '../listComponents/dateTimeList.js'
+import GenericAddToList from '../listComponents/genericAddToList.js'
 
 class ListTdComponent extends React.Component {
 	constructor(){
 		super()
 		this.state = {
-			isModalOpen:false,
 			elementData:[],
 			elementToRender:TextList
 		}
@@ -26,7 +24,7 @@ class ListTdComponent extends React.Component {
 		this.generaliseList(props)
 	}
 	generaliseList(props){
-		switch (props.columnType.relatedTo) {
+		switch (props.columnData.relatedTo) {
 			case "Text":
 				this.state.elementToRender =  TextList
 				break;
@@ -59,19 +57,10 @@ class ListTdComponent extends React.Component {
 		this.state.elementData = props.elementData
 		this.setState(this.state)
 	}
-	openCloseModal(what,save){
-		if(save){
-			this.props.updateElement(this.state.elementData)
-			this.props.updateObject()			
-		} else {
-			this.props.fetchObject()
-		}
-		this.state.isModalOpen = what
-		this.setState(this.state)
-	}
 	updateElementData(data,index){
 		this.state.elementData[index] = data
 		this.setState(this.state)
+		this.props.updateElementData(this.state.elementData,this.props.columnData.name)
 	}
 	addToElementData(data){
 		if(!this.state.elementData){
@@ -79,14 +68,13 @@ class ListTdComponent extends React.Component {
 		}
 		this.state.elementData.push(data)
 		this.setState(this.state)
+		this.props.updateElementData(this.state.elementData,this.props.columnData.name)
 	}
 	removeFromElementData(index){
 		this.state.elementData.splice(index,1)
 		this.setState(this.state)
+		this.props.updateElementData(this.state.elementData,this.props.columnData.name)
 	}
-	changeHandler(value,e){
-    	this.props.updateElement(value)
-    }
 	handleClose(){
 
 	}
@@ -105,21 +93,17 @@ class ListTdComponent extends React.Component {
 			})
 		}
 		return (
-            <td className='mdl-data-table__cell--non-numeric pointer'>
-            	<span className="color888">List</span>
-            	<i className="fa fa-expand fr" aria-hidden="true" onClick={this.openCloseModal.bind(this,true,false)}></i>
-            	<Dialog title="LIST EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)}>
+            <div className="listrelationdiv">
+            	<span className="textnamerlation"> { this.props.columnData.name } </span>
+            	<div className="listdivrel">
             		<GenericAddToList
             			addToElementData={ this.addToElementData.bind(this) }
-            			columnType={ this.props.columnType.relatedTo }
+            			columnType={ this.props.columnData.relatedTo }
             		/>
 	          		{ elements }
-	          		<div className="savecanclist">
-	          			<button className="btn btn-danger fr ml5" onClick={this.openCloseModal.bind(this,false,false)}>CLOSE</button>
-	          			<button className="btn btn-primary fr" onClick={this.openCloseModal.bind(this,false,true)}>SAVE</button>
-	          		</div>
-        		</Dialog>
-            </td>
+	          		
+        		</div>
+           	</div>
 		);
 	}
 }

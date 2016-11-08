@@ -9,6 +9,13 @@ import Password from './password.js'
 import NumberC from './number.js'
 import Id from './id.js'
 import DateC from './date.js'
+import ObjectC from './object.js'
+import BooleanC from './boolean.js'
+import File from './file.js'
+import GeoPoint from './geopoint.js'
+import List from './list.js'
+import ACL from './acl.js'
+import Relation from './relation.js'
 
 class ViewRelation extends React.Component {
 	constructor(){
@@ -22,6 +29,7 @@ class ViewRelation extends React.Component {
 	componentDidMount(){
 		if(this.props.elementData){
 			this.props.elementData.fetch().then((data)=>{
+				console.log(data)
 				this.state.elementData = data
 				this.setState(this.state)
 			},(err)=>{
@@ -60,6 +68,34 @@ class ViewRelation extends React.Component {
 				returnObj.componentToRender =  DateC
 				returnObj.elementData = this.state.elementData.document[data.name]
 				break;
+			case "Object":
+				returnObj.componentToRender =  ObjectC
+				returnObj.elementData = this.state.elementData.document[data.name]
+				break;
+			case "Boolean":
+				returnObj.componentToRender =  BooleanC
+				returnObj.elementData = this.state.elementData.document[data.name]
+				break;
+			case "File":
+				returnObj.componentToRender =  File
+				returnObj.elementData = this.state.elementData.document[data.name]
+				break;
+			case "GeoPoint":
+				returnObj.componentToRender =  GeoPoint
+				returnObj.elementData = this.state.elementData.document[data.name]
+				break;
+			case "List":
+				returnObj.componentToRender =  List
+				returnObj.elementData = this.state.elementData.document[data.name]
+				break;
+			case "ACL":
+				returnObj.componentToRender =  ACL
+				returnObj.elementData = this.state.elementData.document[data.name]
+				break;
+			case "Relation":
+				returnObj.componentToRender =  Relation
+				returnObj.elementData = this.state.elementData.document[data.name]
+				break;
 			
 			default:
 				returnObj.componentToRender =  Text
@@ -74,6 +110,13 @@ class ViewRelation extends React.Component {
 	}
 	openCloseModal(){
 		this.props.openCloseModal(false,'isOpenView')
+	}
+	saveElementData(){
+		this.state.elementData.save().then((res)=>{
+			console.log(res)
+		},(err)=>{
+			console.log(err)
+		})
 	}
 	handleClose(){
 
@@ -94,12 +137,17 @@ class ViewRelation extends React.Component {
 		return (
 			<div className="fr">
 	            
-	        	<Dialog title="Relation Object" modal={false} open={this.props.open} onRequestClose={this.handleClose.bind(this)}>
+	        	<Dialog title="Relation Object" modal={false} open={this.props.open} onRequestClose={this.handleClose.bind(this)} overlayClassName={this.props.overlay ? "overlayrelation" : ''} contentClassName={this.props.overlay ? "tsnnone" : ''}>
 	        		<div className="relationselectordiv">
 		        		{ tableColumns }
 	          		</div>
 	        		<div className="cancelselctrela">
-		          			<button className="btn btn-danger fr ml5" onClick={this.openCloseModal.bind(this)}>CLOSE</button>
+	        				<button className="btn btn-primary fr ml5" onClick={this.saveElementData.bind(this)}>SAVE</button>
+	        				{ this.props.overlay ? 
+	        					<button className="btn btn-success fl ml5" onClick={this.openCloseModal.bind(this)}>BACK</button>
+	        					:
+		          				<button className="btn btn-danger fr ml5" onClick={this.openCloseModal.bind(this)}>CLOSE</button>
+		          			}
 		          	</div>
 	    		</Dialog>
     		</div>

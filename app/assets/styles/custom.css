@@ -342,13 +342,15 @@ td,th{
     margin-top: 5px;
 }
 .addtextrecord{
-    width: 400px;
+    width: 480px;
     /* margin: auto; */
-    margin-left: 20%;
+    margin-left: 14%;
     margin-bottom: 10px;
     background-color: white;
     border: 1px solid #CCC;
-    border-radius: 5px;
+    border-radius: 2px;
+    height: 30px;
+    background: #E6EAF9;
 }
 .trashlistinputtext{
     margin-left: 5px;
@@ -383,6 +385,7 @@ td,th{
     float: left;
     margin-top: 15px;
     margin-right: 20px;
+    padding: 16px;
 }
 .datetimelist{
     width: 500px;
@@ -402,7 +405,7 @@ td,th{
     cursor: pointer;
 }
 .cp{
-    cursor: pointer;
+    cursor: pointer !important;
 }
 .popupsearchcol{
     width: 240px !important;
@@ -690,4 +693,103 @@ td,th{
 }
 .mr92{
         margin-right: 92px;
+}
+.halfreldiv{
+    width: 44%;
+    height: 30px;
+    float: left;
+    border: 1px solid #DDD;
+    margin-top: 25px;
+    margin-right: 5%;
+}
+.relationrowcheckbox{
+    float: left;
+    width: 31px !important;
+    margin-left: 43%;
+    margin-top: 1px;
+}
+.filerle{
+        margin-right: 20px;
+    margin-top: 5px;
+}
+.listrelationdiv{
+    width: 93%;
+    min-height: 60px;
+    float: left;
+    border: 1px solid #DDD;
+    margin-top: 25px;
+    margin-right: 5%;
+}
+.buttonlstrelation{
+    width: 86%;
+    margin-left: 7%;
+    height: 69%;
+    margin-top: 9px;
+    color: black;
+    background-color: #E0E6EA;
+    border: 0;
+    font-size: 20px;
+}
+.buttonlstrelationacl{
+       width: 69%;
+    margin-left: 28%;
+    /* height: 62%; */
+    margin-top: -5px;
+    color: black;
+    background-color: #E0E6EA;
+    border: 1px solid #AAA;
+    font-size: 20px;
+    height: 31px;
+}
+.listdivrel{
+    max-height: 300px;
+    overflow-y: scroll;
+    padding-bottom: 10px;
+    padding-left: 3px;
+}
+.halfreldivfile{
+    width: 93%;
+    min-height: 100px;
+    float: left;
+    border: 1px solid #DDD;
+    margin-top: 25px;
+    margin-right: 5%;
+}
+.previewSmallImagerelation{
+        width: 280px;
+    height: 160px;
+    margin-left: 28%;
+    margin-bottom: 10px;
+}
+.spanrelcustom{
+        color: #888;
+    padding: 12px;
+    /* padding-top: 10px; */
+    /* margin-bottom: -7px; */
+    font-size: 17px;
+    color: black;
+    /* margin-top: 4px; */
+}
+.overlayrelation{
+    opacity: 0 !important;
+    transition: none !important;
+}
+.tsnnone{
+    transition: none !important;
+}
+.relationtextrlation{
+    color: #888;
+    font-size: 20px;
+}
+.relationchangerelaion{
+    width: 26%;
+    /* margin-left: 28%; */
+    /* height: 62%; */
+    margin-top: 13px;
+    color: black;
+    background-color: #E0E6EA;
+    border: 1px solid #AAA;
+    font-size: 20px;
+    height: 31px;
+    margin-right: 10px;
 }
