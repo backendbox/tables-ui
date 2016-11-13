@@ -137,7 +137,7 @@ class ViewRelation extends React.Component {
 		return (
 			<div className="fr">
 	            
-	        	<Dialog title="Relation Object" modal={false} open={this.props.open} onRequestClose={this.handleClose.bind(this)} overlayClassName={this.props.overlay ? "overlayrelation" : ''} contentClassName={this.props.overlay ? "tsnnone" : ''}>
+	        	<Dialog title="Relation Object" modal={false} open={this.props.open} onRequestClose={this.handleClose.bind(this)} overlayClassName={this.props.overlay ? "overlayrelation" : ''} contentClassName={this.props.overlay ? "tsnnone" : ''} titleClassName="modaltitle">
 	        		<div className="relationselectordiv">
 		        		{ tableColumns }
 	          		</div>

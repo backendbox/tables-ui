@@ -48,7 +48,7 @@ class GeoPoint extends React.Component {
             	<span className="textnamerlation"> { this.props.columnData.name } </span>
             	<span className="color888 spanrelcustom">{ JSON.stringify(data) }</span>
             	<i className="fa fa-expand fr filerle cp" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
-            	<Dialog title="Geo Location EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)}>
+            	<Dialog title="Geo Location EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 	          		<TextField
 				      hintText="Latitude"
 				      floatingLabelText="Enter a Latitude"

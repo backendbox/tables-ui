@@ -36,7 +36,7 @@ class ObjectListComponent extends React.Component {
 		let data = this.props.data
 		return (
 			<div>
-				<Dialog title="JSON EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)}>
+				<Dialog title="JSON EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 	          		<AceEditor
 					    mode="json"
 					    theme="github"

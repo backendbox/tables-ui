@@ -17,8 +17,8 @@ import ACLTd from './td/aclTdComponent'
 
 
 class GenericTdComponent extends React.Component {
-	constructor(){
-		super()
+	constructor(props){
+		super(props)
 		this.state = {
 			elementData:null,
 			elementDataBackup:null,

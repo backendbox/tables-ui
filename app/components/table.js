@@ -2,14 +2,14 @@ import React from 'react';
 import { observer } from "mobx-react"
 //components
 import GenericTd from './tableComponents/genericTdComponent'
+import GenericTh from './tableComponents/genericThTrComponent'
 import RowCheckBoxComponent from './tableComponents/rowCheckBoxComponent';
-import AddColumnComponent from './tableComponents/addColumnComponent';
 import Checkbox from 'material-ui/Checkbox';
 
 @observer
 class Table extends React.Component {
-	constructor(){
-		super()
+	constructor(props){
+		super(props)
 		this.state = {
 
 		}
@@ -28,9 +28,11 @@ class Table extends React.Component {
 		if(data) {
 			this.props.tableStore.addToDeleteRows(id)
 			this.refs['row'+index].className = 'lgrey'
+			this.refs['rowoverlap'+index].className = 'lgrey'
 		} else {
 			this.props.tableStore.removeFromDeleteRows(id)
 			this.refs['row'+index].className = ''
+			this.refs['rowoverlap'+index].className = ''
 		}
 	}
 	selectDeselectAllRows(e,data){
@@ -57,11 +59,6 @@ class Table extends React.Component {
 
 		let { getColumns,columnsData,hiddenColumns } = this.props.tableStore
 
-		let columnsHeadings = getColumns.map((x,index) => {
-			let hidden = hiddenColumns.indexOf(x.name) != -1
-			return <th key={index} className={ hidden ? 'hide':'tacenter pb7'}><span> { x.name } </span></th>
-		})
-
 		let clomunTr = columnsData.map((i,index)=>{
 			return  <tr key={index} ref={'row'+index}> 
 						<RowCheckBoxComponent key={index} indexValue = { index } checkHandler={ this.rowCheckHandler.bind(this) } rowObject={ i } tableStore={ this.props.tableStore }/>
@@ -73,24 +70,50 @@ class Table extends React.Component {
 						} 
 					</tr>
 		})
+		let clomunTrOverlap = columnsData.map((i,index)=>{
+			return  <tr key={index} ref={'rowoverlap'+index}> 
+						<RowCheckBoxComponent key={index} indexValue = { index } checkHandler={ this.rowCheckHandler.bind(this) } rowObject={ i } tableStore={ this.props.tableStore }/>
+						{ 	getColumns
+							.filter(x => x.dataType == "Id")
+							.map((x,index) => {
+								return <GenericTd key={index} columnType={ x } columnData={ i } tableStore={ this.props.tableStore }></GenericTd> 
+							})
+						} 
+					</tr>
+		})
 
 		return (
 			<div id="datatable">
 				<table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp margintop10">
 			        <thead>
-			          <tr>
-							<th className="tdtrcheck"> <Checkbox className="mlm11" onCheck={ this.selectDeselectAllRows.bind(this) }/> </th>
-								{ columnsHeadings }
-							<AddColumnComponent tableStore={ this.props.tableStore } />
-			          </tr>
+			         	<GenericTh tableStore={ this.props.tableStore } selectDeselectAllRows={ this.selectDeselectAllRows.bind(this) }/>
 			        </thead>
 			        <tbody>
 			          { clomunTr }
-			          	<tr> 
+			          	<tr className="addnewrow"> 
 							<td className="pointer tdplus" onClick={this.addRow.bind(this)}><i className="fa fa-plus plusrow" aria-hidden="true"></i></td>
 						</tr>
 			        </tbody>
 			    </table>
+
+			    <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp margintop10 secondayoverlap">
+			    	<thead>
+			         	<tr>
+							<th className="tdtrcheck"> <Checkbox className="mlm11" onCheck={ this.selectDeselectAllRows.bind(this) }/> </th>
+							<th className='taleft pb7'>
+								<i className='icon ion-pound colicon'></i>
+								<span className="colname">id</span>
+							</th>
+						</tr>
+			        </thead>
+			        <tbody>
+			          { clomunTrOverlap }
+			          <tr className="addnewrow"> 
+							<td className="pointer tdplus" onClick={this.addRow.bind(this)}><i className="fa fa-plus plusrow" aria-hidden="true"></i></td>
+						</tr>
+			        </tbody>
+			    </table>
+
 		    </div>
 		);
 	}

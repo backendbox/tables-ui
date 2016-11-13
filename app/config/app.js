@@ -6,96 +6,124 @@ var configObject = {
               text : 'Text',
               type:'static',
               visible: true,
-              unique:true
+              columnsOption:['hide','sortString'],
+              unique:true,
+              icon:'fa fa-text-height'
             },
             {
               name : 'Email',
               text : 'Email',
               type:'static',
               visible: true,
-              unique:true
+              columnsOption:['hide','sortString'],
+              unique:true,
+              icon:'fa fa-envelope-o'
             },
             {
               name : 'URL',
               text : 'URL',
               type:'static',
               visible: true,
-              unique:true
+              columnsOption:['hide','sortString'],
+              unique:true,
+              icon:'fa fa-globe'
             },
             {
               name : 'Number',
               text : 'Number',
                type: 'static',
                visible: true,
-               unique:true
+               columnsOption:['hide','sortString'],
+               unique:true,
+               icon:'fa fa-th'
             },
             {
               name : 'EncryptedText',
               text : 'Encrypted Text',
               type: 'static',
               visible: true,
-              unique:true
+              columnsOption:['hide'],
+              unique:true,
+              icon:'fa fa-asterisk'
             },
             {
               name : 'Boolean',
               text : 'Boolean',
               type: 'static',
               visible: true,
-              unique:false
+              columnsOption:['hide'],
+              unique:false,
+              icon:'fa fa-check'
             },
             {
               name : 'DateTime',
               text : 'Date Time',
               type: 'static',
               visible: true,
-              unique:true
+              columnsOption:['hide','sortDate'],
+              unique:true,
+              icon:'fa fa-calendar-o'
             },
             {
               name : 'GeoPoint',
               text : 'Geo Point',
               type: 'static',
               visible: true,
-              unique:false
+              columnsOption:['hide'],
+              unique:false,
+              icon:'fa fa-map-marker'
             },
             {
               name : 'File',
               text : 'File',
               type: 'static',
               visible: true,
-              unique:false
+              columnsOption:['hide'],
+              unique:false,
+              icon:'fa fa-paperclip'
             },
             {
               name : 'Id',
               text : 'ID',
               type: 'static',
-              visible: false
+              visible: false,
+              columnsOption:['hide'],
+              icon:'icon ion-pound'
             },
             {
               name : 'ACL',
               text : 'ACL',
               type: 'static',
-              visible: false
+              visible: false,
+              columnsOption:['hide'],
+              icon:'fa fa-lock'
             },
             {
               name : 'List',
               text : 'List',
               type: 'List',
               visible: true,
-              unique:false
+              columnsOption:['hide'],
+              unique:false,
+              icon:'fa fa-bars'
             },
             {
               name : 'Relation',
               text : 'Relation',
               type: 'Relation',
               visible: true,
-              unique:true
+              columnsOption:['hide'],
+              unique:true,
+              icon:'fa fa-external-link'
             },
             {
               name : 'Object',
               text : 'Object',
               type: 'static',
               visible: true,
-              unique:false
+              columnsOption:['hide'],
+              unique:false,
+              icon:'fa'
             }
 
     ],
@@ -129,6 +157,10 @@ var configObject = {
         type:['List'],
         options:[
           '','containedIn','notContainedIn','containsAll'
+        ],
+        notContains:['File','Object','Relation'],
+        optionsNotContains:[
+          '','exists','doesNotExists'
         ]
       }
 

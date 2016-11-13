@@ -17,11 +17,14 @@ class FilterRow extends React.Component {
 		let types = configObject.filterTypes.filter((x)=>{
 			return x.type.indexOf(e.target.options[e.target.options.selectedIndex].getAttribute('type')) != -1
 		})
+		this.props.changeHandler('filterTypes',types[0].options,this.props.filterData.id)
 		if(e.target.options[e.target.options.selectedIndex].getAttribute('data-relatedTo')){
 			this.props.changeHandler('relatedTo',e.target.options[e.target.options.selectedIndex].getAttribute('data-relatedTo'),this.props.filterData.id)
+			if(types[0].notContains.indexOf(e.target.options[e.target.options.selectedIndex].getAttribute('data-relatedTo')) != -1){
+				this.props.changeHandler('filterTypes',types[0].optionsNotContains,this.props.filterData.id)
+			} 
 		}
 		this.props.changeHandler('columnType',e.target.options[e.target.options.selectedIndex].getAttribute('type'),this.props.filterData.id)
-		this.props.changeHandler('filterTypes',types[0].options,this.props.filterData.id)
 		this.props.changeHandler('filterType','',this.props.filterData.id)
 		this.props.changeHandler('dataType',e.target.value,this.props.filterData.id)
 	}
@@ -31,8 +34,9 @@ class FilterRow extends React.Component {
 	setFilterType(e){
 		this.props.changeHandler('filterType',e.target.value,this.props.filterData.id)
 	}
-	setDataValue(e){
-		let value = e.target.value ? e.target.value : e.target.checked
+	setDataValue(ischeckbox,e){
+		let value = e.target.value
+		if(ischeckbox) value = e.target.checked
 		this.props.changeHandler('dataValue',value,this.props.filterData.id)
 	}
 	setListDataValue(e){
@@ -49,22 +53,22 @@ class FilterRow extends React.Component {
 		let inputType
 		if(props.filterData.columnType){
 			if(['Text','Email','URL','EncryptedText','Number'].indexOf(props.filterData.columnType) != -1){
-				inputType = <input type="text" className="inputfilter" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this) }/>
+				inputType = <input type="text" className="inputfilter" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this,false) }/>
 			} 
 			else if(['DateTime'].indexOf(props.filterData.columnType) != -1){
-				inputType = <input type="date" className="inputfilter" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this) }/>
+				inputType = <input type="date" className="inputfilter" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this,false) }/>
 			} 
 			else if(['Boolean'].indexOf(props.filterData.columnType) != -1){
-				inputType = <input type="checkbox" className="inputfilter boolfilter" checked={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this) }/>
+				inputType = <input type="checkbox" className="inputfilter boolfilter" checked={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this,true) }/>
 			}
 			else if(['List'].indexOf(props.filterData.columnType) != -1){
 				inputType = this.getListInput(props)
 			}
 			else {
-				inputType = <input type="text" className="inputfilter" disabled="true" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this) }/>
+				inputType = <input type="text" className="inputfilter" disabled="true" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this,false) }/>
 			}
 		} else {
-			inputType = <input type="text" className="inputfilter" disabled="true" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this) }/>
+			inputType = <input type="text" className="inputfilter" disabled="true" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this,false) }/>
 		}
 		return inputType
 	}
@@ -101,10 +105,10 @@ class FilterRow extends React.Component {
 							</div>
 			}
 			else {
-				inputType = <input type="text" className="inputfilter" disabled="true" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this) }/>
+				inputType = <input type="text" className="inputfilter" disabled="true" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this,false) }/>
 			}
 		} else {
-			inputType = <input type="text" className="inputfilter" disabled="true" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this) }/>
+			inputType = <input type="text" className="inputfilter" disabled="true" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this,false) }/>
 		}
 		return inputType
 	}

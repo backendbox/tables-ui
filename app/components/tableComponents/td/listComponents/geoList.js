@@ -46,7 +46,7 @@ class GeoListComponent extends React.Component {
 		data.long = this.props.data.longitude || 0
 		return (
 			<div>
-        		<Dialog title="Geo Location EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)}>
+        		<Dialog title="Geo Location EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 	          		<TextField
 				      hintText="Latitude"
 				      floatingLabelText="Enter a Latitude"

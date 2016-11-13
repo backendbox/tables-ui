@@ -55,17 +55,23 @@ class FilterRows extends React.Component {
 			}
 		}
 
-		//console.log(this.state.finalQuery)
+		if(this.state.finalQuery){
+			this.state.finalQuery.find().then((res)=>{
+				console.log(res)
+			},(err)=>{
+				console.log(err)
+			})
+		}
 	}
 	buildQuery(queryData){
 		if(this.state.andQuery == null){
 			this.state.andQuery = new CB.CloudQuery(this.props.tableStore.TABLE)
 		}
 		if(queryData.selectedType == '' || queryData.selectedType == 'and'){
-			this.state.andQuery[queryData.filterType](queryData.dataType,'')
+			this.state.andQuery[queryData.filterType](queryData.dataType,queryData.dataValue)
 		} else {
 			let query = new CB.CloudQuery(this.props.tableStore.TABLE)
-			this.state.orQueries.push(query[queryData.filterType](queryData.dataType,''))
+			this.state.orQueries.push(query[queryData.filterType](queryData.dataType,queryData.dataValue))
 		}
 		if(this.state.orQueries.length){
 			this.state.finalQuery = new CB.CloudQuery.or(this.state.orQueries,this.state.andQuery)

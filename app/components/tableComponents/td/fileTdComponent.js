@@ -70,7 +70,7 @@ class FileTdComponent extends React.Component {
             	<span className="color888">Uploaded File</span>
             	<img className={this.state.filePreview.document ? 'previewSmallImage' : 'hide'} src={ this.state.filePreview.document ?  this.state.filePreview.document.url : ''} />
             	<i className={this.state.filePreview.document ? 'mt10 fa fa-expand fr' : 'fa fa-expand fr'} aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
-            	<Dialog title="Upload File" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)}>
+            	<Dialog title="Upload File" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 	          		<Dropzone className="dropFile" onDrop={this.changeHandler.bind(this)}>
 		              <div>Try dropping some files here, or click to select files to upload.</div>
 		            </Dropzone>

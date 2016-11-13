@@ -53,7 +53,7 @@ class GeoTdComponent extends React.Component {
             <td className='mdl-data-table__cell--non-numeric pointer'>
             	<span className="color888">Geo Object</span>
             	<i className="fa fa-expand fr" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
-            	<Dialog title="Geo Location EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)}>
+            	<Dialog title="Geo Location EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 	          		<TextField
 				      hintText="Latitude"
 				      floatingLabelText="Enter a Latitude"

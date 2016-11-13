@@ -142,9 +142,9 @@ td,th{
 }
 
 #datatable{
-	height: 80%;
-	width: 100%;
-	overflow-x: scroll;
+	    min-height: 80%;
+    width: 100%;
+    overflow-x: scroll;
 }
 #reactmain{
 	height: 100%
@@ -792,4 +792,91 @@ td,th{
     font-size: 20px;
     height: 31px;
     margin-right: 10px;
+}
+.modaltitle{
+        background-color: #158AE5;
+    color: white !important;
+    /* padding-bottom: 18px !important; */
+    margin-bottom: 4px !important;
+}
+.btn-danger,.btn-danger:hover,.btn-danger:active,.btn-danger::selection {
+    color: #fff;
+    /* background-color: #E28784; */
+    /* border-color: #DA9390; */
+    border: 1px solid #C1BDBD !important;
+    color: #4A4747 !important;
+    background-color: white !important;
+    width: 100px;
+}
+
+.btn-primary,.btn-primary:hover,.btn-primary:active,.btn-primary::selection{
+    color: #fff !important;
+    background-color: #158AE5 !important;
+    border-color: #2e6da4 !important;
+    width: 100px;
+}
+.btn-success,.btn-success:hover,.btn-success:active,.btn-success::selection{
+    width: 100px;
+}
+.taleft{
+    text-align: left !important;
+}
+.colicon{
+    font-size: 15px !important;
+    margin-right: 5px;
+}
+.colname{
+    font-size: 12px;
+
+}
+.addnewrow:hover{
+    background-color: black;
+    cursor: pointer;
+}
+.secondayoverlap{
+    position: absolute;
+    top: 120px;
+    left: 0;
+     box-shadow: none !important; 
+    /*box-shadow: 0 0px 0px 0 rgba(0,0,0,.14),0 0px 0px -2px rgba(0,0,0,.2),0 0px 0px 0 rgba(0,0,0,.12);*/
+    border-right: 2px solid #5BAEED;
+}
+.addcolthbtn{
+    position: absolute !important;
+    padding: 8px !important;
+    -webkit-box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
+-moz-box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
+box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
+    margin-top: -2px !important;
+    margin-left: 0px !important;
+    border-left: 0 !important;
+}
+.tdselected{
+    border: 2px solid #5BAEED !important;
+    background-color: #EBF7FF;
+}
+.columnpop{
+    width: 200px !important;
+    min-height: 100px !important;
+    background-color: white;
+}
+.coloptbtn{
+        width: 100%;
+    border: 1px solid #EEE;
+    height: 35px;
+    background-color: #FFFFFF;
+    color: #3E3838;
+    margin-top: 1px;
+}
+.savebtneditablecol{
+    width: 100%;
+    height: 32px;
+    margin-top: 8px;
+    border: 0;
+    color: white;
+    background-color: #5BAEED;
+}
+.checkeditcol{
+    padding: 1px;
+    margin-top: 0px;
 }

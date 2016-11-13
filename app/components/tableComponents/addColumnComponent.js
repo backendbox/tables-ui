@@ -89,7 +89,7 @@ class AddColumnComponent extends React.Component {
 			return <option key={ i } value={ x.name }>{ x.name }</option>
 		})
 		return (
-	           	<th className='tacenter pb7 tdtrcheck' onTouchTap={this.handleTouchTap.bind(this)}>
+	           	<th className='tacenter pb7 tdtrcheck addcolthbtn' onTouchTap={this.handleTouchTap.bind(this)}>
 	           		<i className="fa fa-plus addcolumns" aria-hidden="true"></i>
 	           		<Popover
 			          open={this.state.open}

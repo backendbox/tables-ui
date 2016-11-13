@@ -38,7 +38,7 @@ class ObjectC extends React.Component {
 				<span className="textnamerlation"> { this.props.columnData.name } </span>
 				<span className="color888 spanrelcustom">JSON Object</span>
 				<i className="fa fa-expand fr filerle cp" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
-            	<Dialog title="JSON EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)}>
+            	<Dialog title="JSON EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 	          		<AceEditor
 					    mode="json"
 					    theme="github"

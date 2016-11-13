@@ -1,8 +1,6 @@
 import React from 'react'
 import { observer } from "mobx-react"
-import {Popover, PopoverAnimationVertical} from 'material-ui/Popover';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
+import {Popover, PopoverAnimationVertical} from 'material-ui/Popover'
 
 @observer
 class HideColumns extends React.Component {

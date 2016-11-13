@@ -66,6 +66,29 @@ class TableStore {
 			console.log(err)
 		})
 	}
+	deleteColumn(column){
+		let table = this.tables.filter(x=> x.document.name == this.TABLE)[0]
+		table.deleteColumn(column);
+		table.save().then((res)=>{
+			this.setColumns()
+			this.setColumnsData()
+		},(err)=>{
+			console.log(err)
+		})
+	}
+	editColumn(columnName,uniqueValue,requiredValue){
+		let table = this.tables.filter(x=> x.document.name == this.TABLE)[0]
+		let column = table.getColumn(columnName)
+		column['required'] = requiredValue
+		column['unique'] = uniqueValue
+		table.updateColumn(column);
+		table.save().then((res)=>{
+			this.setColumns()
+			this.setColumnsData()
+		},(err)=>{
+			console.log(err)
+		})
+	}
 	setColumns(){
 		CB.CloudTable.get(this.TABLE).then((data)=>{
 			this.columns = data
@@ -73,6 +96,15 @@ class TableStore {
 	}
 	setColumnsData(){
 		let query = new CB.CloudQuery(this.TABLE)
+		query.setLimit(20);
+		query.find().then((list)=>{
+			this.columnsData = list
+		})
+	}
+	sortColumnsData(what,columnName){
+		let query = new CB.CloudQuery(this.TABLE)
+		query.setLimit(20);
+		query[what](columnName);
 		query.find().then((list)=>{
 			this.columnsData = list
 		})

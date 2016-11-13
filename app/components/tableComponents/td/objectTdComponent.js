@@ -43,7 +43,7 @@ class ObjectTdComponent extends React.Component {
             <td className='mdl-data-table__cell--non-numeric pointer'>
             	<span className="color888">Json Object</span>
             	<i className="fa fa-expand fr" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
-            	<Dialog title="JSON EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)}>
+            	<Dialog title="JSON EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 	          		<AceEditor
 					    mode="json"
 					    theme="github"

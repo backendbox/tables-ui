@@ -70,7 +70,7 @@ class File extends React.Component {
             	<span className="textnamerlation"> { this.props.columnData.name } </span>
             	<button className="addtextrecord" onClick={this.openCloseModal.bind(this,true)}>Change File</button>
             	<img className={this.state.filePreview.document ? 'previewSmallImagerelation' : 'hide'} src={ this.state.filePreview.document ?  this.state.filePreview.document.url : ''} />
-            	<Dialog title="Upload File" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)}>
+            	<Dialog title="Upload File" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 	          		<Dropzone className="dropFile" onDrop={this.changeHandler.bind(this)}>
 		              <div>Try dropping some files here, or click to select files to upload.</div>
 		            </Dropzone>
