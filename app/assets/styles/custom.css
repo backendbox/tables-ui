@@ -81,18 +81,22 @@ td,th{
 }
 
 .paperError{
-	width: 87%;
+	width: 178px;
     height: 50px;
     position: absolute;
-    left: 14px;
+    left: 10px;
     z-index: 1;
     top: 40px;
-    border-radius: 8px !important;
-    color:red;
+    border-radius: 2px !important;
+    word-wrap: break-word;
+    white-space: initial;
+    text-align: center;
+    border: 1px solid red;
 }
 
 .abstext {
-    position: relative;
+       color: #EA4747;
+    font-size: 14px;
 }
 
 .jsonmodal{
@@ -879,4 +883,43 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
 .checkeditcol{
     padding: 1px;
     margin-top: 0px;
+}
+
+.mdl-data-table__cell--non-numeric.mdl-data-table__cell--non-numeric:hover{
+    border: 2px solid #5BAEED !important;
+    background-color: #EBF7FF;
+}
+.booleanlistval{
+    float: left;
+    width: 80% !important;
+}
+.boollistel{
+    margin-top: 1%;
+}
+.listdivscontent{
+    min-height: 200px;
+    max-height: 350px;
+    overflow-y: scroll;
+}
+.badgelistcount{
+    position: relative;
+    /* display: inline-block; */
+    padding: 0px !important;
+    float: left !important;
+    margin-left: 25px !important;
+    margin-top: -6px !important;
+}
+.entriesbadgeright{
+    margin-left: 38px;
+    float: left;
+    margin-top: -1px;
+}
+.errorsigntd{
+    font-size: 15px;
+    /* margin-left: -7px; */
+    margin-right: 9px;
+    color: #FB5050;
+}
+.zi10{
+        z-index: 10;
 }

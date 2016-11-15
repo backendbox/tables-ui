@@ -133,7 +133,8 @@ class TableStore {
 		data.save().then((res)=>{
 			this.columnsData.push(data)
 		},(err)=>{
-			console.log(err)
+			data.error = err
+			this.columnsData.push(data)
 		})
 	}
 

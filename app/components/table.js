@@ -3,8 +3,11 @@ import { observer } from "mobx-react"
 //components
 import GenericTd from './tableComponents/genericTdComponent'
 import GenericTh from './tableComponents/genericThTrComponent'
-import RowCheckBoxComponent from './tableComponents/rowCheckBoxComponent';
-import Checkbox from 'material-ui/Checkbox';
+import GenericNewTd from './tableComponents/genericNewTdComponent'
+import RowCheckBoxComponent from './tableComponents/rowCheckBoxComponent'
+import RowErrorComponent from './tableComponents/rowErrorComponents'
+import NewRowComponent from './tableComponents/newRowComponent'
+import Checkbox from 'material-ui/Checkbox'
 
 @observer
 class Table extends React.Component {
@@ -17,7 +20,6 @@ class Table extends React.Component {
 	componentWillMount(){
 		
 	}
-
 	addRow(){
 		var row = new CB.CloudObject(this.props.tableStore.TABLE)
 		row.set('updatedAt',new Date().toISOString())
@@ -60,7 +62,10 @@ class Table extends React.Component {
 		let { getColumns,columnsData,hiddenColumns } = this.props.tableStore
 
 		let clomunTr = columnsData.map((i,index)=>{
-			return  <tr key={index} ref={'row'+index}> 
+			return  i.error ?
+					<NewRowComponent key={index} rowObject={ i } tableStore={ this.props.tableStore } overlap={false}/>
+					:
+					<tr key={index} ref={'row'+index}> 
 						<RowCheckBoxComponent key={index} indexValue = { index } checkHandler={ this.rowCheckHandler.bind(this) } rowObject={ i } tableStore={ this.props.tableStore }/>
 						{ 	getColumns
 							.filter(x => hiddenColumns.indexOf(x.name) == -1)
@@ -71,7 +76,10 @@ class Table extends React.Component {
 					</tr>
 		})
 		let clomunTrOverlap = columnsData.map((i,index)=>{
-			return  <tr key={index} ref={'rowoverlap'+index}> 
+			return  i.error ?
+					<NewRowComponent key={index} rowObject={ i } tableStore={ this.props.tableStore } overlap={true}/>
+					:
+					<tr key={index} ref={'rowoverlap'+index}> 
 						<RowCheckBoxComponent key={index} indexValue = { index } checkHandler={ this.rowCheckHandler.bind(this) } rowObject={ i } tableStore={ this.props.tableStore }/>
 						{ 	getColumns
 							.filter(x => x.dataType == "Id")
@@ -89,8 +97,8 @@ class Table extends React.Component {
 			         	<GenericTh tableStore={ this.props.tableStore } selectDeselectAllRows={ this.selectDeselectAllRows.bind(this) }/>
 			        </thead>
 			        <tbody>
-			          { clomunTr }
-			          	<tr className="addnewrow"> 
+			        	{ clomunTr }
+			        	<tr className="addnewrow"> 
 							<td className="pointer tdplus" onClick={this.addRow.bind(this)}><i className="fa fa-plus plusrow" aria-hidden="true"></i></td>
 						</tr>
 			        </tbody>
@@ -108,7 +116,7 @@ class Table extends React.Component {
 			        </thead>
 			        <tbody>
 			          { clomunTrOverlap }
-			          <tr className="addnewrow"> 
+			          	<tr className="addnewrow"> 
 							<td className="pointer tdplus" onClick={this.addRow.bind(this)}><i className="fa fa-plus plusrow" aria-hidden="true"></i></td>
 						</tr>
 			        </tbody>
