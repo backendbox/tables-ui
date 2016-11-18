@@ -16,9 +16,6 @@ class Header extends React.Component {
 			searchErrorOpen: false,
 		}
 	}
-	componentWillMount(){
-		this.props.tableStore.initialize()
-	}
 	search(searchString){
 		this.state.searchString = searchString
 		this.setState(this.state)

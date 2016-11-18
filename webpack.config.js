@@ -1,9 +1,9 @@
 var webpack = require('webpack')
 var config = {
-   entry: './app/main.js',
+   entry: './public/app/main.js',
 	
    output: {
-      path:'./',
+      path:'./public',
       filename: 'index.min.js',
    },
    module: {
