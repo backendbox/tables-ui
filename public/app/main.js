@@ -15,11 +15,15 @@ import TableStore from './stores/tableStore.js';
 class Layout extends React.Component {
 	componentDidMount() {
 		let appId = window.location.hash.split('/')[1]
-		axios.get('http://localhost:3000/app/'+appId).then((data)=>{
-			if(data.data){
-				CB.CloudApp.init('http://localhost:4730',appId,data.data.keys.master)
+		axios.get('https://service.cloudboost.io/app/'+appId).then((data)=>{
+			if(data.data && appId){
+				CB.CloudApp.init(appId,data.data.keys.master)
 				TableStore.initialize()
+			} else {
+				window.location.href = "https://dashboard.cloudboost.io/"
 			}
+		},(err)=>{
+			window.location.href = "https://accounts.cloudboost.io"
 		})
 	}
 	render() {
