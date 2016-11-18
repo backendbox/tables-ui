@@ -30,7 +30,7 @@ class NumberTdComponent extends React.Component {
 	render() {
 		return (
             <td className='mdl-data-table__cell--non-numeric pointer' onDoubleClick={this.toggleInput.bind(this,false)}>
-            	<span className={!this.state.inputHidden ? 'hide':''}>{this.props.elementData}</span>
+            	<span className={!this.state.inputHidden ? 'hide':''}>{this.props.elementData ? this.props.elementData.toString().slice(0,20):''}</span>
             	<input ref="Input" value={this.props.elementData || 0 } onChange={this.changeHandler.bind(this)} className={this.state.inputHidden ? 'hide':'form-control'} onBlur={this.toggleInput.bind(this,true)} type="number" />
             </td>
 		);

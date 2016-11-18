@@ -137,15 +137,12 @@ class GenericTdComponent extends React.Component {
 		})
 	}
 	fetchObject(){
-		// this.props.columnData.fetch().then((data)=>{
-		// 	this.props.tableStore.updateColumnsData(data.id,data)
-		// },(err)=>{
-		// 	console.log(err)
-		// })
-		this.setState({elementData:this.state.elementDataBackup})
+		this.state.elementData = this.state.elementDataBackup
+		this.setState(this.state)
 	}
 	updateElement(data){
-		this.setState({elementData:data})
+		this.state.elementData = data
+		this.setState(this.state)
 	}
 	render() {
 		return (

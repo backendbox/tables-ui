@@ -1,5 +1,6 @@
 import React from 'react'
 import { observer } from "mobx-react"
+import Snackbar from 'material-ui/Snackbar'
 //components
 import HideColumns from './headerComponents/hideColumnsComponent.js';
 import FilterRows from './headerComponents/filterRowsComponent.js';
@@ -11,7 +12,8 @@ class Header extends React.Component {
 	constructor(){
 		super()
 		this.state = {
-			searchString:''
+			searchString:'',
+			searchErrorOpen: false,
 		}
 	}
 	componentWillMount(){
@@ -20,10 +22,25 @@ class Header extends React.Component {
 	search(searchString){
 		this.state.searchString = searchString
 		this.setState(this.state)
-		this.props.tableStore.search(searchString)
+		this.props.tableStore.search(searchString).then((res)=>{
+			if(res.length){
+				this.props.tableStore.updateColumnsData(res)
+				this.props.tableStore.showLoader()
+			}
+		},(err)=>{
+			this.setState({
+				searchErrorOpen: true
+			})
+		})
+	}
+	handleRequestClose(){
+		this.setState({
+			searchErrorOpen: false
+		})
 	}
 	refreshRows(){
 		this.props.tableStore.setColumnsData()
+		this.props.tableStore.showLoader()
 	}
 	deleteRows(){
 		this.props.tableStore.deleteRows()
@@ -49,6 +66,12 @@ class Header extends React.Component {
 					<FilterRows tableStore={ this.props.tableStore }/>
 					<Search tableStore={ this.props.tableStore } searchString={ this.state.searchString } search={ this.search.bind(this) }/>
 				</div>
+				<Snackbar
+		          open={this.state.searchErrorOpen}
+		          message="Cannot Search, Table does not have a text datatype column."
+		          autoHideDuration={4000}
+		          onRequestClose={this.handleRequestClose.bind(this)}
+		        />
 			</div>
 		);
 	}

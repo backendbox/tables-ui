@@ -10,7 +10,9 @@ class FileTdComponent extends React.Component {
 		this.state = {
 			isModalOpen:false,
 			file:{},
-			filePreview:{}
+			filePreview:{},
+			completed: 0,
+			progress:false
 		}
 	}
 	componentDidMount(){
@@ -31,16 +33,21 @@ class FileTdComponent extends React.Component {
 		this.setState(this.state)
     }
     fileSave(){
-    	let cloudFile = new CB.CloudFile(this.state.file);
-		this.props.columnData.set(this.props.columnName,cloudFile)
-		this.props.columnData.save({
+    	let cloudFile = new CB.CloudFile(this.state.file)
+    	this.setState({progress:true})
+    	cloudFile.save({
 			success: function(res) {
-			 	this.props.fetchObject()
-				this.openCloseModal(false)
+				this.setState({progress:false})
+				this.setState({completed:0})
+		    	this.props.updateElement(cloudFile)
+		 		this.props.updateObject()
+		 		this.openCloseModal(false)
 			}.bind(this), error: function(err) {
-				this.cancelFileSave()
+				console.log(err)
+				this.props.fetchObject()
+				this.openCloseModal(false)
 			}.bind(this), uploadProgress : function(percentComplete){
-			    console.log(percentComplete)
+			    this.setState({completed:(percentComplete*100)})
 			}.bind(this)
 		})
 	}
@@ -71,12 +78,16 @@ class FileTdComponent extends React.Component {
             	<img className={this.state.filePreview.document ? 'previewSmallImage' : 'hide'} src={ this.state.filePreview.document ?  this.state.filePreview.document.url : ''} />
             	<i className={this.state.filePreview.document ? 'mt10 fa fa-expand fr' : 'fa fa-expand fr'} aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
             	<Dialog title="Upload File" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
-	          		<Dropzone className="dropFile" onDrop={this.changeHandler.bind(this)}>
+	          		<Dropzone className={ this.state.progress ? "hide" : "dropFile"} onDrop={this.changeHandler.bind(this)}>
 		              <div>Try dropping some files here, or click to select files to upload.</div>
+		              <button className="Choosefilebtn">Choose File</button>
 		            </Dropzone>
-		            <img className="previewImage" src={this.state.file.preview || ''} />
-		            <button className="btn btn-primary fr ml5 clearboth mt10" onClick={this.fileSave.bind(this)}>SUBMIT</button>
-	          		<button className="btn btn-danger fr mt10" onClick={this.cancelFileSave.bind(this)}>CLOSE</button>
+		            <img className={ this.state.progress ? "hide" : "previewImage"} src={this.state.file.preview || ''} />
+		            <p className={ !this.state.progress ? "hide" : "pprogresslineaer"}>Please wait while we upload your file.</p>
+		            <p className={ !this.state.progress ? "hide" : "pprogresslineaer99"}>( { this.state.completed == 100 ? 99 : Math.floor(this.state.completed) }% )</p>
+		            <LinearProgress mode="determinate" value={this.state.completed} className={ !this.state.progress ? "hide" : "linaerprogfile"}/>
+		            <button className="btn btn-primary fr ml5 clearboth mt10" onClick={this.fileSave.bind(this)} disabled={ this.state.progress || !this.state.file.name }>SUBMIT</button>
+	          		<button className="btn btn-danger fr mt10" onClick={this.cancelFileSave.bind(this)} disabled={ this.state.progress }>CLOSE</button>
         		</Dialog>
             </td>
 		);

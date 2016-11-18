@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import TextList from '../listComponents/textList.js'
+import BooleanList from '../listComponents/booleanList.js'
+import PasswordList from '../listComponents/passwordList.js'
 import ObjectList from '../listComponents/objectList.js'
 import GeoList from '../listComponents/geoList.js'
 import FileList from '../listComponents/fileList.js'
 import NumberList from '../listComponents/numberList.js'
 import DateTimeList from '../listComponents/dateTimeList.js'
+import RelationList from '../listComponents/relationList.js'
 import GenericAddToList from '../listComponents/genericAddToList.js'
 
 class ListTdComponent extends React.Component {
@@ -27,6 +30,12 @@ class ListTdComponent extends React.Component {
 		switch (props.columnData.relatedTo) {
 			case "Text":
 				this.state.elementToRender =  TextList
+				break;
+			case "EncryptedText":
+				this.state.elementToRender =  PasswordList
+				break;
+			case "Boolean":
+				this.state.elementToRender =  BooleanList
 				break;
 			case "Email":
 				this.state.elementToRender =  TextList
@@ -49,9 +58,8 @@ class ListTdComponent extends React.Component {
 			case "GeoPoint":
 				this.state.elementToRender =  GeoList
 				break;
-
 			default:
-				this.state.elementToRender =  TextList
+				this.state.elementToRender =  RelationList
 				break;
 		}
 		this.state.elementData = props.elementData

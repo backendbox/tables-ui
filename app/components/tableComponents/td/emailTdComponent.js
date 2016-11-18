@@ -49,7 +49,7 @@ class EmailTdComponent extends React.Component {
 		return (
             <td className='mdl-data-table__cell--non-numeric pointer' onDoubleClick={this.toggleInput.bind(this,false)}>
             	<form onSubmit={this.toggleInput.bind(this,true)}>
-	            	<span className={!this.state.inputHidden ? 'hide':''}>{this.props.elementData}</span>
+	            	<span className={!this.state.inputHidden ? 'hide':''}>{this.props.elementData ? this.props.elementData.slice(0,20):''}</span>
             		<input ref="Input" value={this.props.elementData || ''} onChange={this.changeHandler.bind(this)} className={this.state.inputHidden ? 'hide':'form-control'} onBlur={this.blurHandler.bind(this,true)} type="email" />
             		<Paper className={!this.state.errorShow ? 'hide':'paperError'} zDepth={1}> <p className="abstext">Please enter a valid email address.</p> </Paper>
 	            	<button ref="FormSubmitButton" type="submit" className="hide"></button>

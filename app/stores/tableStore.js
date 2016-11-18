@@ -7,6 +7,7 @@ class TableStore {
 	@observable columnsData = []
 	@observable hiddenColumns = []
 	@observable rowsToDelete = []
+	@observable recordsToShow = 20
 
 	@computed get getColumns(){
 		if(this.columns.document){
@@ -31,12 +32,14 @@ class TableStore {
 				this.TABLE = tableName
 			}
 			this.tables = data
+			this.recordsToShow = 20
 			this.setColumns()
 			this.setColumnsData()
 		})
 	}
 	changeTable(tableName){
 		this.TABLE = tableName
+		this.recordsToShow = 20
 		this.setColumns()
 		this.setColumnsData()
 	}
@@ -96,9 +99,17 @@ class TableStore {
 	}
 	setColumnsData(){
 		let query = new CB.CloudQuery(this.TABLE)
-		query.setLimit(20);
+		query.setLimit(this.recordsToShow)
 		query.find().then((list)=>{
 			this.columnsData = list
+		})
+	}
+	showNextRecords(limit){
+		this.recordsToShow += limit
+		let query = new CB.CloudQuery(this.TABLE)
+		query.setLimit(this.recordsToShow)
+		query.find().then((list)=>{
+			if(this.columnsData.length != list.length) this.columnsData = list
 		})
 	}
 	sortColumnsData(what,columnName){
@@ -112,21 +123,12 @@ class TableStore {
 
 	search(searchString){
 		let query = new CB.CloudQuery(this.TABLE)
-		query.search('username',searchString)
-		query.find().then((list)=>{
-			console.log(list)
-		},(err)=>{
-			console.log(err)
-		})
+		if (searchString) query.search(searchString)
+		return query.find()
 	}
 
-	updateColumnsData(id,data){
-		this.columnsData = this.columnsData.map((x)=>{
-			if(x.id == id){
-				x = data
-			}
-			return x
-		})
+	updateColumnsData(data){
+		this.columnsData = data
 	}
 
 	addRow(data){
@@ -169,6 +171,16 @@ class TableStore {
 			this.setColumnsData()
 			this.rowsToDelete = []
 		})
+	}
+	showLoader(){
+		$('#table').addClass('hide')
+		$('#tableoverlap').addClass('hide')
+		$('#loader').removeClass('hide')
+	}
+	hideLoader(){
+		$('#table').removeClass('hide')
+		$('#tableoverlap').removeClass('hide')
+		$('#loader').addClass('hide')
 	}
 
 }

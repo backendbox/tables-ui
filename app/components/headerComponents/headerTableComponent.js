@@ -17,6 +17,7 @@ class HeaderTable extends React.Component {
 	}
 	changeTable(name){
 		this.props.tableStore.changeTable(name)
+		this.props.tableStore.showLoader()
 	}
 	deleteTable(){
 		this.props.tableStore.deleteTable(this.state.tableTodelete)

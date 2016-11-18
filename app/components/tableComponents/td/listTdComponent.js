@@ -120,7 +120,6 @@ class ListTdComponent extends React.Component {
 	            	<Badge
 				      badgeContent={ this.state.elementData ? this.state.elementData.length : 0 }
 				      primary={ this.state.elementData ? !!this.state.elementData.length : false }
-				      secondary={ this.state.elementData ? ( this.state.elementData.length == 0 ) : true }
 				      className={ 'badgelistcount' }
 				    ></Badge>
 				    <span className="entriesbadgeright"> - Entries </span>

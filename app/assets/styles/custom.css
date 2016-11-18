@@ -108,17 +108,23 @@ td,th{
 }
 .previewImage{
 	width: 100px;
-	height: 100px;
-	width: 400px;
+    height: 100px;
+    width: 400px;
     height: 223px;
     margin-left: 15px;
+    margin-top: 10px;
+    border: 2px solid #DEDEDE;
+    border-radius: 3px;
 }
 .dropFile{
-	width: 200px;
-    height: 223px;
+	    width: 200px;
+    height: 225px;
     border: 2px dashed rgb(102, 102, 102);
     border-radius: 5px;
-	float: left;
+    float: left;
+    padding: 30px;
+    margin-top: 10px;
+    margin-left: 6%;
 }
 
 .clearboth{
@@ -341,20 +347,25 @@ td,th{
     cursor: pointer;
 }
 .listtexttableinput{
-    width: 500px;
-    padding: 3px;
+        width: 90%;
+    padding: 4px;
     margin-top: 5px;
+    margin-left: 2%;
+    border: 2px solid #D4D4D4;
+    border-radius: 4px;
+    background-color: white;
 }
 .addtextrecord{
-    width: 480px;
+    width: 100%;
     /* margin: auto; */
-    margin-left: 14%;
+    /* margin-left: 14%; */
     margin-bottom: 10px;
     background-color: white;
     border: 1px solid #CCC;
     border-radius: 2px;
     height: 30px;
-    background: #E6EAF9;
+    background: #ECF3F9;
+    color: #1D1C1C;
 }
 .trashlistinputtext{
     margin-left: 5px;
@@ -366,7 +377,8 @@ td,th{
     height: 150px;
     float: left;
     margin-left: 10px;
-    margin-top: 40px;
+    margin-top: 25px;
+    margin-bottom: 5px;
 }
 .savecanclist{
     float: right;
@@ -375,11 +387,16 @@ td,th{
 }
 .deletefilelist{
     float: left;
-    margin-left: -21%;
-    width: 153px;
-    margin-top: 14px;
+    margin-left: -150px;
+    width: 150px;
+    /* margin-top: 14px; */
     background-color: white;
     border: 1px solid #DDD;
+    /* position: relative; */
+    /* left: 0; */
+    /* top: 0; */
+    background-color: rgba(247, 58, 58, 0.84);
+    color: white;
 }
 .dropFileList{
     width: 150px;
@@ -392,14 +409,17 @@ td,th{
     padding: 16px;
 }
 .datetimelist{
-    width: 500px;
-    padding: 3px;
+    width: 90%;
+    padding: 4px;
     margin-top: 5px;
-    border: 1px solid #EEE;
+    margin-left: 2%;
+    border: 2px solid #D4D4D4;
+    border-radius: 4px;
+    background-color: white;
 }
 .datedeletebt{
     float: right;
-    margin-top: -4%;
+    margin-top: -20px;
     font-size: 20px !important;
     margin-right: -25px;
     cursor: pointer;
@@ -590,16 +610,20 @@ td,th{
     margin-right: 10px;
 }
 .relationselectordiv{
-        height: 390px;
+    min-height: 250px;
+    max-height: 390px;
     /* overflow-y: scroll; */
     /* width: 100%; */
     overflow-y: scroll;
 }
 .searchrelation{
-        width: 100%;
+    width: 100%;
     height: 35px;
     border: 1px solid #CCC;
     border-radius: 3px;
+    padding: 20px;
+    /* padding-left: 20px; */
+    margin-bottom: 5px;
 }
 .tabledatadiv{
         margin-top: 3px;
@@ -609,7 +633,7 @@ td,th{
     float: left;
     border-radius: 6px;
     width: 100%;
-    padding: 0;
+    padding: 0px;
     padding-left: 10px;
 }
 .idrelationslector{
@@ -631,7 +655,7 @@ td,th{
 }
 .textRaltion{
     float: left;
-    width: 49%;
+    width: 50%;
     height: 38px;
     margin-top: 26px;
 }
@@ -644,10 +668,11 @@ td,th{
 }
 .textinputrltion{
     float: left;
-    border: 1px solid #DDD;
+    border: 2px solid #D8D8D8;
     width: 90%;
     height: 30px;
-    padding: 5px;
+    padding: 4px;
+    border-radius: 4px;
 }
 .aclrow{
     width: 100%;
@@ -655,7 +680,7 @@ td,th{
     height: 45px;
     border-bottom: 1px solid #CCC;
     padding: 10px;
-    background-color: #E2E7EC;
+    background-color: #F9F9F9;
 }
 .logoaclrow{
     font-size: 20px !important;
@@ -680,15 +705,16 @@ td,th{
     float: right;
     font-size: 20px !important;
     margin-top: 1px;
-    margin-left: 10%;
+    margin-left: 9%;
     cursor: pointer;
+    margin-right: 7px;
 }
 .selectautoacl{
 
 }
 .aclrowpublic{
-    margin-bottom: 5px;
-    border: 2px solid #6091EF;
+   /*margin-bottom: 5px; */
+    border: 2px solid #158AE5;
     width: 100%;
     float: left;
     height: 45px;
@@ -699,10 +725,12 @@ td,th{
         margin-right: 92px;
 }
 .halfreldiv{
-    width: 44%;
-    height: 30px;
     float: left;
-    border: 1px solid #DDD;
+    border: 2px solid #D8D8D8;
+    height: 30px;
+    border-radius: 4px;
+    width: 44%;
+    float: left;
     margin-top: 25px;
     margin-right: 5%;
 }
@@ -717,12 +745,14 @@ td,th{
     margin-top: 5px;
 }
 .listrelationdiv{
-    width: 93%;
+        width: 96%;
     min-height: 60px;
     float: left;
-    border: 1px solid #DDD;
+    border: 2px solid #DDD;
     margin-top: 25px;
     margin-right: 5%;
+    border-radius: 4px;
+    padding: 1px;
 }
 .buttonlstrelation{
     width: 86%;
@@ -735,15 +765,15 @@ td,th{
     font-size: 20px;
 }
 .buttonlstrelationacl{
-       width: 69%;
-    margin-left: 28%;
+       width: 50%;
+    margin-left: 49%;
     /* height: 62%; */
-    margin-top: -5px;
-    color: black;
-    background-color: #E0E6EA;
-    border: 1px solid #AAA;
+    margin-top: -9px;
+    color: white;
+    background-color: #158AE5;
+    border: 1px solid #158AE5;
     font-size: 20px;
-    height: 31px;
+    height: 35px;
 }
 .listdivrel{
     max-height: 300px;
@@ -766,13 +796,10 @@ td,th{
     margin-bottom: 10px;
 }
 .spanrelcustom{
-        color: #888;
-    padding: 12px;
-    /* padding-top: 10px; */
-    /* margin-bottom: -7px; */
-    font-size: 17px;
-    color: black;
-    /* margin-top: 4px; */
+        color: black;
+    margin-left: 9px;
+    float: left;
+    margin-top: 3px;
 }
 .overlayrelation{
     opacity: 0 !important;
@@ -786,14 +813,14 @@ td,th{
     font-size: 20px;
 }
 .relationchangerelaion{
-    width: 26%;
+       width: 26%;
     /* margin-left: 28%; */
     /* height: 62%; */
-    margin-top: 13px;
-    color: black;
-    background-color: #E0E6EA;
-    border: 1px solid #AAA;
-    font-size: 20px;
+    margin-top: 11px;
+    color: white;
+    background-color: #158AE5;
+    border: 1px solid #158AE5;
+    font-size: 18px;
     height: 31px;
     margin-right: 10px;
 }
@@ -900,6 +927,9 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
     min-height: 200px;
     max-height: 350px;
     overflow-y: scroll;
+    background-color: #F3F5F7;
+    border-radius: 5px;
+    padding: 8px;
 }
 .badgelistcount{
     position: relative;
@@ -922,4 +952,81 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
 }
 .zi10{
         z-index: 10;
+}
+.linaerprogfile{
+    height: 9px !important;
+    margin-top: 12px !important;
+}
+.pprogresslineaer{
+        font-size: 20px;
+    margin-top: 20px;
+    color: #312D2D;
+    float: left;
+}
+.pprogresslineaer99{
+        font-size: 20px;
+    float: right;
+    color: #0D5186;
+    font-weight: bold;
+}
+#loader{
+    position: absolute;
+    left: 48%;
+    top: 50%;
+}
+.mdl-spinner {
+    display: inline-block;
+    position: relative;
+    width: 40px !important;
+    height: 40px !important;
+}
+.Choosefilebtn{
+        width: 100%;
+    margin-top: 15%;
+    border: 1px solid #158AE5;
+    height: 30px;
+    color: white;
+    background-color: #158AE5;
+}
+.geodiv{
+
+}
+.latdiv{
+    width: 100%;
+    float: left;
+    border: 1px solid #DACFCF;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #FFF;
+}
+.londiv{
+    margin-top: 3px;
+    width: 100%;
+    float: left;
+    border: 1px solid #DACFCF;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #FFF;
+    margin-bottom: 10px;
+}
+.ptaglatlong{
+    width: 50%;
+    float: left;
+    height: 100%;
+    margin-left: 12px;
+    margin-top: -13px;
+}
+.headinlatlon{
+    width: 100%;
+    float: left;
+    color: black;
+    font-size: 25px;
+    padding-left: 10px;
+    padding-top: 6px;
+}
+.textfiledgeo{
+    float: right;
+    margin-top: -30px;
+    margin-right: 40px;
+    margin-bottom: 15px;
 }
