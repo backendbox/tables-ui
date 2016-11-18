@@ -37,3 +37,4 @@ after_success:
 - gcloud container clusters get-credentials $GOOGLECLUSTERNAME --zone $GOOGLEZONE --project $GOOGLEPROJECT
 #Push docker images.
 - docker push cloudboost/data-browser:latest
+- kubectl rolling-update cloudboost-data-browser --image=cloudboost/data-browser:latest --image-pull-policy=Always

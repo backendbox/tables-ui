@@ -59,7 +59,7 @@ class HideColumns extends React.Component {
 			return <p key={ i } className="parapop"><input checked={ hidden } type="checkbox" className="checkselect" onChange={ this.hideShowColumn.bind(this,data.name,hidden) }/>{ data.name }</p>
 		})
 		return (
-			<div style={{display:'inline'}}>
+			<div className="disinb">
 				<button className="btn subhbtnpop" onTouchTap={this.handleTouchTap.bind(this)}><i className="fa fa-columns mr2" aria-hidden="true"></i>{ hiddenButtonText }</button>
 				<Popover
 		          open={this.state.open}

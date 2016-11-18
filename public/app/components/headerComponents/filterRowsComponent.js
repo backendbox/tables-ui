@@ -130,7 +130,7 @@ class FilterRows extends React.Component {
 				 />
 			})
 		return (
-			<div style={{display:'inline'}}>
+			<div className="disinb">
 				<button className="btn subhbtnpop" onTouchTap={this.handleTouchTap.bind(this)}><i className="fa fa-filter mr2" aria-hidden="true"></i>Filters</button>
 				<Popover
 		          open={this.state.open}
