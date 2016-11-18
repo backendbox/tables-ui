@@ -35,6 +35,5 @@ after_success:
 #Install Kubectl
 - gcloud components install kubectl
 - gcloud container clusters get-credentials $GOOGLECLUSTERNAME --zone $GOOGLEZONE --project $GOOGLEPROJECT
-#Push docker images. 
-- docker push cloudboost/data_browser:2.0.$TRAVIS_BUILD_NUMBER
+#Push docker images.
 - docker push cloudboost/data_browser:latest
