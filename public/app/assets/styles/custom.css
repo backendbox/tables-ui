@@ -386,17 +386,16 @@ td,th{
     margin-top: 20px;
 }
 .deletefilelist{
-    float: left;
+        float: left;
     margin-left: -150px;
     width: 150px;
-    /* margin-top: 14px; */
-    background-color: white;
-    border: 1px solid #DDD;
-    /* position: relative; */
-    /* left: 0; */
-    /* top: 0; */
     background-color: rgba(247, 58, 58, 0.84);
     color: white;
+    font-weight: bold;
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
+    border: 1px solid rgba(247, 58, 58, 0.84);
 }
 .dropFileList{
     width: 150px;
@@ -432,20 +431,24 @@ td,th{
     cursor: pointer !important;
 }
 .popupsearchcol{
-    width: 240px !important;
+    width: 285px !important;
     background-color: white;
-    height: 42px;
+    height: 35px;
 }
 .searchinputpop{
-    width: 200px;
-    height: 38px;
-    margin-top: 2px;
+        width: 245px;
+    height: 27px;
+    margin-top: 4px;
     margin-left: 3px;
     border: 1px solid #DDD;
+    padding: 5px;
+    float: left;
 }
 .searchclose{
-    font-size: 22px !important;
+        font-size: 20px !important;
     margin-left: 10px;
+    margin-top: 7px;
+    float: left;
 }
 .headertablecrud{
     height: 25px;
@@ -482,16 +485,21 @@ td,th{
     margin-top: 5px;
 }
 .popupaddtable{
-    width: 150px !important;
+        width: 160px !important;
     background-color: white;
-    height: 60px;
+    height: 107px;
+    padding: 5px;
 }
 .inputaddtable{
     width: 146px;
-    height: 28px;
+    height: 32px;
     margin-top: 2px;
     margin-left: 2px;
     border: 1px solid #DDD;
+    border-radius: 2px;
+    padding: 3px;
+    margin-bottom: 4px;
+
 }
 .addtablebutton{
     width: 146px;
@@ -502,18 +510,22 @@ td,th{
     background-color: #5BAEED;
 }
 .popupdeletetable{
-    width: 150px !important;
+   width: 150px !important;
     background-color: white;
-    height: 30px;
+    height: 80px;
 }
 .deletetablebtn{
-    width: 146px;
-    height: 28px;
-    margin-left: 2px;
-    border: 0;
-    color: white;
-    background-color: #DE5163;
-    margin-top: 1px;
+        width: 100%;
+    border: 2px solid #EEE;
+    height: 33px;
+    background-color: #FFFFFF;
+    color: #3E3838;
+    margin-top: 0px;
+    text-align: left;
+    padding-left: 10px;
+}
+.deletetablebtn:hover{
+    background-color: #EEE;
 }
 .addcolumns{
     font-size: 15px !important;
@@ -546,36 +558,53 @@ td,th{
     /* min-height: 80%; */
     min-height: 170px;
     float: left;
+    background-color: #F7FAFB;
 }
 .addcolinput{
-        width: 99%;
-    height: 35px;
-    border: 3px solid #DDD;
-    margin-left: 1px;
-    border-radius: 4px;
-}
-.addcol{
-    width: 50%;
-    /* margin-top: 3px; */
-    border: 0;
-    height: 29px;
-    background-color: #5BAEED;
-    color: white;
-}
-.delcol{
-     width: 50%;
-    /* margin-top: 3px; */
-    border: 0;
-    height: 29px;
-    background-color: #DE5163;
-    color: white;
-}
-.addcolselect{
-    width: 85%;
+    width: 96%;
     height: 30px;
     border: 1px solid #DDD;
-    margin-left: 16px;
+    margin-left: 2%;
+    border-radius: 0px;
+    margin-top: 3px;
+    padding: 5px;
+}
+.addcol{
+        width: 47%;
+    border: 0;
+    height: 25px;
+    color: white;
+    background-color: #158AE5 !important;
+    border-color: #158AE5 !important;
+    font-weight: bold;
     border-radius: 1px;
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    margin-left: 4px;
+    margin-right: 3px;
+    margin-bottom: 4px;
+}
+.delcol{
+    width: 47%;
+    height: 25px;
+    color: #FFFFFF !important;
+    background-color: rgba(236, 13, 13, 0.64) !important;
+    font-weight: bold;
+    border-radius: 2px;
+    border: 1px solid rgba(236, 13, 13, 0.64);
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+}
+.addcolselect{
+    width: 96%;
+    height: 35px;
+    border: 1px solid #DDD;
+    margin-left: 2%;
+    border-radius: 1px;
+    background-color: white;
+    padding: 5px;
 }
 .paddcolumns{
     text-align: center;
@@ -586,7 +615,7 @@ td,th{
 
 .paddcolumnsfl{
         float: left;
-    margin-left: 22px;
+    margin-left: 20px;
     margin-top: 10px;
 }
 .paddcolumnsfr{
@@ -612,29 +641,34 @@ td,th{
 .relationselectordiv{
     min-height: 250px;
     max-height: 390px;
-    /* overflow-y: scroll; */
+    /* overflow-y: auto; */
     /* width: 100%; */
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .searchrelation{
-    width: 100%;
+       width: 100%;
     height: 35px;
     border: 1px solid #CCC;
-    border-radius: 3px;
-    padding: 20px;
-    /* padding-left: 20px; */
-    margin-bottom: 5px;
+    border-radius: 2px;
+    padding: 5px;
 }
 .tabledatadiv{
-        margin-top: 3px;
-    /* border: 1px solid #DDD; */
-    background-color: whitesmoke;
-    padding: 10px;
+        margin-top: 5px;
+    background-color: white;
     float: left;
-    border-radius: 6px;
+    border-radius: 1px;
     width: 100%;
     padding: 0px;
     padding-left: 10px;
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
+    border: 1px solid #EEE;
+    padding-top: 6px;
+    padding-bottom: 0px;
+}
+.tabledatadiv:hover{
+    background-color: #EEE;
 }
 .idrelationslector{
         font-size: 20px !important;
@@ -655,24 +689,25 @@ td,th{
 }
 .textRaltion{
     float: left;
-    width: 50%;
+    width: 100%;
     height: 38px;
-    margin-top: 26px;
+    margin-top: 35px;
 }
 .textnamerlation{
-    float: left;
-    margin-top: -21px;
+   float: left;
+    margin-top: -24px;
     color: #5A5656;
     font-weight: bolder;
     font-size: 16px;
+    margin-bottom: 0px;
 }
 .textinputrltion{
     float: left;
-    border: 2px solid #D8D8D8;
+    border: 1px solid #D8D8D8;
     width: 90%;
     height: 30px;
-    padding: 4px;
-    border-radius: 4px;
+    padding: 5px;
+    border-radius: 2px;
 }
 .aclrow{
     width: 100%;
@@ -710,28 +745,31 @@ td,th{
     margin-right: 7px;
 }
 .selectautoacl{
-
+        /* text-align: center; */
+    float: left;
+    /* margin-left: 64%; */
+    width: 150% !important;
 }
 .aclrowpublic{
-   /*margin-bottom: 5px; */
-    border: 2px solid #158AE5;
-    width: 100%;
+       width: 100%;
     float: left;
     height: 45px;
+    border-bottom: 3px solid #CCC;
     padding: 10px;
-    background-color: #D4E5F7;
+    background-color: #F9F9F9;
+    font-weight: bold;
 }
 .mr92{
         margin-right: 92px;
 }
 .halfreldiv{
-    float: left;
-    border: 2px solid #D8D8D8;
+        float: left;
+    border: 1px solid #D8D8D8;
     height: 30px;
-    border-radius: 4px;
+    border-radius: 2px;
     width: 44%;
     float: left;
-    margin-top: 25px;
+    margin-top: 35px;
     margin-right: 5%;
 }
 .relationrowcheckbox{
@@ -744,15 +782,34 @@ td,th{
         margin-right: 20px;
     margin-top: 5px;
 }
-.listrelationdiv{
-        width: 96%;
-    min-height: 60px;
+.textnamerlationrle{
     float: left;
-    border: 2px solid #DDD;
-    margin-top: 25px;
+    margin-top: -34px;
+    color: #5A5656;
+    font-weight: bolder;
+    font-size: 16px;
+    margin-bottom: 0px;
+    margin-left: -10px;
+}
+.listrelationdiv{
+   width: 90%;
+    min-height: 65px;
+    float: left;
+    border: 1px solid #DDD;
+    margin-top: 35px;
     margin-right: 5%;
-    border-radius: 4px;
-    padding: 1px;
+    border-radius: 2px;
+    padding: 10px;
+}
+.listrelationdivacl{
+        width: 90%;
+    min-height: 65px;
+    float: left;
+    border: 1px solid #DDD;
+    margin-top: 19px;
+    margin-right: 5%;
+    border-radius: 2px;
+    padding: 10px;
 }
 .buttonlstrelation{
     width: 86%;
@@ -765,28 +822,32 @@ td,th{
     font-size: 20px;
 }
 .buttonlstrelationacl{
-       width: 50%;
-    margin-left: 49%;
+    width: 30%;
+    margin-left: 70%;
     /* height: 62%; */
-    margin-top: -9px;
+    margin-top: -15px;
     color: white;
-    background-color: #158AE5;
-    border: 1px solid #158AE5;
-    font-size: 20px;
-    height: 35px;
+    background-color: rgba(21, 138, 229, 0.75);
+    border: 1px solid rgba(21, 138, 229, 0.68);
+    font-size: 19px;
+    height: 33px;
+    float: left;
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
 }
 .listdivrel{
     max-height: 300px;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-bottom: 10px;
     padding-left: 3px;
 }
 .halfreldivfile{
-    width: 93%;
+       width: 90%;
     min-height: 100px;
     float: left;
     border: 1px solid #DDD;
-    margin-top: 25px;
+    margin-top: 35px;
     margin-right: 5%;
 }
 .previewSmallImagerelation{
@@ -813,16 +874,17 @@ td,th{
     font-size: 20px;
 }
 .relationchangerelaion{
-       width: 26%;
-    /* margin-left: 28%; */
-    /* height: 62%; */
+    width: 26%;
     margin-top: 11px;
-    color: white;
-    background-color: #158AE5;
-    border: 1px solid #158AE5;
-    font-size: 18px;
-    height: 31px;
     margin-right: 10px;
+    color: white;
+    background-color: rgba(21, 138, 229, 0.75);
+    border: 1px solid rgba(21, 138, 229, 0.68);
+    font-size: 19px;
+    height: 33px;
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
 }
 .modaltitle{
         background-color: #158AE5;
@@ -831,20 +893,39 @@ td,th{
     margin-bottom: 4px !important;
 }
 .btn-danger,.btn-danger:hover,.btn-danger:active,.btn-danger::selection {
-    color: #fff;
-    /* background-color: #E28784; */
-    /* border-color: #DA9390; */
-    border: 1px solid #C1BDBD !important;
-    color: #4A4747 !important;
-    background-color: white !important;
+    color: #FFFFFF !important;
+    background-color: rgba(236, 13, 13, 0.64) !important;
     width: 100px;
+    font-weight: bold;
+    border-radius: 2px;
+    border: 1px solid rgba(236, 13, 13, 0.64);
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+-moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+}
+
+.btn-success,.btn-success:hover,.btn-success:active,.btn-success::selection {
+    color: #FFFFFF !important;
+    background-color: #5cb85c !important;
+    width: 100px;
+    font-weight: bold;
+    border-radius: 2px;
+    border: 1px solid #5cb85c;
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+-moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 }
 
 .btn-primary,.btn-primary:hover,.btn-primary:active,.btn-primary::selection{
     color: #fff !important;
     background-color: #158AE5 !important;
-    border-color: #2e6da4 !important;
+    border-color: #158AE5 !important;
     width: 100px;
+    font-weight: bold;
+    border-radius: 1px;
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+-moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 }
 .btn-success,.btn-success:hover,.btn-success:active,.btn-success::selection{
     width: 100px;
@@ -893,11 +974,16 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
 }
 .coloptbtn{
         width: 100%;
-    border: 1px solid #EEE;
+    border: 0px solid #EEE;
     height: 35px;
     background-color: #FFFFFF;
     color: #3E3838;
-    margin-top: 1px;
+    margin-top: 0px;
+    text-align: left;
+    padding-left: 12px;
+}
+.coloptbtn:hover{
+    background-color: #EEE;
 }
 .savebtneditablecol{
     width: 100%;
@@ -926,7 +1012,7 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
 .listdivscontent{
     min-height: 200px;
     max-height: 350px;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: #F3F5F7;
     border-radius: 5px;
     padding: 8px;
@@ -1032,4 +1118,91 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
 }
 .disinb{
     display: inline-block;
+}
+.padleftright0{
+        padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.texttypetdinput{
+    height: 39px !important;
+    border-radius: 0px !important;
+}
+.booleantdcheck{
+    cursor: pointer;
+    position: relative;
+    overflow: visible;
+    display: table;
+    height: auto;
+    width: 20% !important;
+    margin-left: 40% !important;
+}
+.addnewtablep{
+    font-size: 17px;
+    text-align: center;
+    padding-bottom: 0;
+    margin-bottom: 4px;
+}
+.dasbardlikarrow{
+    float: left;
+    color: white;
+    /* font-weight: bold; */
+    font-size: 23px !important;
+    margin-left: 7px;
+    position: absolute;
+    margin-top: 3px;
+}
+.dasboardlink{
+       float: left;
+    color: white;
+    /* font-weight: bold; */
+    font-size: 18px !important;
+    margin-left: 33px;
+    position: absolute;
+    margin-top: 6px;
+    font-weight: bold;
+}
+.applyfiler{
+    width: 100px;
+    color: #fff !important;
+    background-color: #158AE5 !important;
+    border-color: #158AE5 !important;
+    font-weight: bold;    
+    border-radius: 1px;
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    margin-left: 30%;
+    border: 1px solid #158AE5 !important;
+}
+.clearfilter{
+    width: 100px;
+    color: #FFFFFF !important;
+    background-color: rgba(236, 13, 13, 0.64) !important;
+    font-weight: bold;
+    border-radius: 2px;
+    border: 1px solid rgba(236, 13, 13, 0.64);
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    margin-left: 3px;
+}
+.filterbutton{
+        float: left;
+    width: 100%;
+    margin-bottom: 2px;
+}
+.filterrowdiv{
+    float: left;
+    width: 100%;
+    min-height: 80px;
+    padding-bottom: 10px;
+}
+.morerowsbtn{
+    position: fixed;
+    bottom: 5%;
+    left: 45%;
+    opacity: 0.6;
+}
+.morerowsbtn:hover{
+    opacity: 1;
 }

@@ -127,7 +127,7 @@ class ACLTd extends React.Component {
 	}
 	render() {
 		return (
-            <div className="listrelationdiv">
+            <div className="listrelationdivacl">
             	<ViewACL aclList={ this.state.aclList }/>
             	<button onClick={this.openCloseModal.bind(this,true)} className="buttonlstrelationacl">Modify ACL</button>
             	{	

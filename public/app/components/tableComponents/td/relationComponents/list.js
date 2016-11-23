@@ -102,7 +102,7 @@ class ListTdComponent extends React.Component {
 		}
 		return (
             <div className="listrelationdiv">
-            	<span className="textnamerlation"> { this.props.columnData.name } </span>
+            	<span className="textnamerlationrle"> { this.props.columnData.name } </span>
             	<div className="listdivrel">
             		<GenericAddToList
             			addToElementData={ this.addToElementData.bind(this) }

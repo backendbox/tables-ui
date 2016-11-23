@@ -39,9 +39,9 @@ class URLTdComponent extends React.Component {
     }
 	render() {
 		return (
-            <td className='mdl-data-table__cell--non-numeric pointer' onDoubleClick={this.toggleInput.bind(this,false)}>
+            <td className={ this.state.inputHidden ? 'mdl-data-table__cell--non-numeric pointer' : 'mdl-data-table__cell--non-numeric pointer padleftright0' } onDoubleClick={this.toggleInput.bind(this,false)}>
             	<span className={!this.state.inputHidden ? 'hide':''}>{this.props.elementData ? this.props.elementData.slice(0,30):''}</span>
-            	<input ref="Input" value={this.props.elementData || ''} onChange={this.changeHandler.bind(this)} className={this.state.inputHidden ? 'hide':'form-control'} onBlur={this.toggleInput.bind(this,true)} type="url" />
+            	<input ref="Input" value={this.props.elementData || ''} onChange={this.changeHandler.bind(this)} className={this.state.inputHidden ? 'hide':'form-control texttypetdinput'} onBlur={this.toggleInput.bind(this,true)} type="url" />
             	<Paper className={!this.state.errorShow ? 'hide':'paperError'} zDepth={1}> <p className="abstext">Please enter a valid url.</p> </Paper>
             </td>
 		);

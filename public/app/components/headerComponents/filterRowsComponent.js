@@ -33,7 +33,7 @@ class FilterRows extends React.Component {
 			listDataValue:[]
 		})
 		this.setState(this.state)
-		this.runQuery()
+		// this.runQuery()
 	}
 	deleteFilter(id){
 		this.state.filters = this.state.filters.filter(x => x.id != id)
@@ -41,7 +41,17 @@ class FilterRows extends React.Component {
 			this.state.filters[0].type = ['where']
 		}
 		this.setState(this.state)
-		this.runQuery()
+		// this.runQuery()
+	}
+	clearFilter(){
+		this.setState({
+			filters:[],
+			andQuery:null,
+			orQueries:[],
+			finalQuery:null
+		})
+		this.props.tableStore.showLoader()
+		this.props.tableStore.setColumnsData()
 	}
 	runQuery(){
 		this.state.andQuery = null
@@ -56,8 +66,9 @@ class FilterRows extends React.Component {
 		}
 
 		if(this.state.finalQuery){
+			this.props.tableStore.showLoader()
 			this.state.finalQuery.find().then((res)=>{
-				console.log(res)
+				this.props.tableStore.updateColumnsData(res)
 			},(err)=>{
 				console.log(err)
 			})
@@ -105,7 +116,7 @@ class FilterRows extends React.Component {
 			return x
 		})
 		this.setState(this.state)
-		this.runQuery()
+		// this.runQuery()
 	}
 	removeListDataValue(index,id){
 		this.state.filters = this.state.filters.map((x)=>{
@@ -115,7 +126,7 @@ class FilterRows extends React.Component {
 			return x
 		})
 		this.setState(this.state)
-		this.runQuery()
+		// this.runQuery()
 	}
 	render() {
 		let filters = this.state.filters.map((x,i)=>{
@@ -142,7 +153,13 @@ class FilterRows extends React.Component {
 		          className="popupfilterrrow"
 		        >
 		          <button className="btn popupshowhideleft addfilter" onClick={ this.addFilter.bind(this) }>Add filter</button>
-		          { filters }
+		          <div className="filterrowdiv">
+		          	{ filters }
+		          </div>
+		          <div className="filterbutton">
+			          <button className="applyfiler" onClick={ this.runQuery.bind(this) }>Apply</button>
+			          <button className="clearfilter" onClick={ this.clearFilter.bind(this) }>Clear</button>
+		          </div>
 		        </Popover>
 			</div>
 		);

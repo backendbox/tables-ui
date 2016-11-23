@@ -23,11 +23,10 @@ class Table extends React.Component {
 	componentDidMount(){
 		$(window).scroll(function() {
 		   if($(window).scrollTop() + $(window).height() == $(document).height()) {
-		   		setTimeout(()=>{
-		   			if($(window).scrollTop() + $(window).height() == $(document).height()){
-		   				this.props.tableStore.showNextRecords(10)
-		   			}
-		   		},2000)
+		   		console.log($('.morerowsbtn'))
+		   		$('.morerowsbtn').removeClass('hide')
+		   } else {
+		   		$('.morerowsbtn').addClass('hide')
 		   }
 		}.bind(this))
 	}
@@ -35,6 +34,9 @@ class Table extends React.Component {
 		setTimeout(()=>{
 			this.props.tableStore.hideLoader()
 		},1000)
+	}
+	showMoreRecord(){
+		this.props.tableStore.showNextRecords(10)
 	}
 	addRow(){
 		var row = new CB.CloudObject(this.props.tableStore.TABLE)
@@ -140,6 +142,7 @@ class Table extends React.Component {
 				<div id="loader">
 					<div className="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
 				</div>
+				<button className="btn btn-primary morerowsbtn hide" onClick={ this.showMoreRecord.bind(this) }>More</button>
 		    </div>
 		);
 	}

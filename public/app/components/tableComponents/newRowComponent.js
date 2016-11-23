@@ -33,7 +33,8 @@ class NewRow extends React.Component {
 
 		return (
 			<tr> 
-				{ !this.props.overlap ?
+				{/* TODO: Clean the logic here */}
+				{ this.props.overlap ?
 					<RowErrorComponent rowObject={ this.props.rowObject } tableStore={ this.props.tableStore } error={ this.state.error }/>
 					:
 					<td className="tdtrcheck">

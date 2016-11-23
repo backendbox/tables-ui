@@ -35,10 +35,10 @@ class PasswordTdComponent extends React.Component {
     }
 	render() {
 		return (
-            <td className='mdl-data-table__cell--non-numeric pointer' onDoubleClick={this.toggleInput.bind(this,false)}>
+            <td className={ this.state.inputHidden ? 'mdl-data-table__cell--non-numeric pointer' : 'mdl-data-table__cell--non-numeric pointer padleftright0' } onDoubleClick={this.toggleInput.bind(this,false)}>
             	<form onSubmit={this.toggleInput.bind(this,true)}>
 	            	<span className={!this.state.inputHidden ? 'hide':'color888'}>hidden</span>
-	            	<input ref="Input" onChange={this.changeHandler.bind(this)} className={this.state.inputHidden ? 'hide':'form-control'} onBlur={this.blurHandler.bind(this,true)} type="text" />
+	            	<input ref="Input" onChange={this.changeHandler.bind(this)} className={this.state.inputHidden ? 'hide':'form-control texttypetdinput'} onBlur={this.blurHandler.bind(this,true)} type="text" />
 	            	<button ref="FormSubmitButton" type="submit" className="hide"></button>
             	</form>
             </td>

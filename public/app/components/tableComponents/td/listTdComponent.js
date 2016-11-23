@@ -115,7 +115,7 @@ class ListTdComponent extends React.Component {
 			})
 		}
 		return (
-            <td className='mdl-data-table__cell--non-numeric pointer'>
+            <td className='mdl-data-table__cell--non-numeric pointer' onDoubleClick={this.openCloseModal.bind(this,true,false)}>
             	<span className="color888">
 	            	<Badge
 				      badgeContent={ this.state.elementData ? this.state.elementData.length : 0 }

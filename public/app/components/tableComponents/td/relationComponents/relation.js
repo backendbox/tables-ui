@@ -33,7 +33,7 @@ class Relation extends React.Component {
 	render() {
 		return (
             <div className="listrelationdiv">
-            	<span className="textnamerlation"> { this.props.columnData.name } </span>
+            	<span className="textnamerlationrle"> { this.props.columnData.name } </span>
             	<span className="relationtextrlation">{ this.props.elementData ? this.props.elementData.id : 'unassigned' }</span>
             	<button className="fr relationchangerelaion" onClick={this.openCloseModal.bind(this,true,'isOpenSelect')}>Change</button>
             	<button className="fr relationchangerelaion" onClick={this.openCloseModal.bind(this,true,'isOpenView')}>View</button>

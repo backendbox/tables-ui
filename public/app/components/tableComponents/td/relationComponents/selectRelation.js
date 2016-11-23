@@ -42,6 +42,7 @@ class SelectRelation extends React.Component {
 		if(this.state.tableData.length){
 			tableData = this.state.tableData
 			.filter(x =>{
+				//console.log(x)
 				if(this.state.search){
 					let re = new RegExp(this.state.search.toLowerCase(), 'g')
 					return x.id.toLowerCase().match(re) != null
@@ -49,9 +50,9 @@ class SelectRelation extends React.Component {
 			})
 			.map((x,i)=>{
 				return <div className="tabledatadiv cp" key={ i } onClick={ this.selectRelation.bind(this,x) }>
-							<p className="idrelationslector">{ x.id }</p>
-	        				<p className="createdatrelationslector">{ this.dateFormat(x.createdAt) }</p>
-	        				<p className="updatedatrelationslector">{ this.dateFormat(x.updatedAt) }</p>
+							<p className="idrelationslector">Id: { x.id }</p>
+	        				<p className="createdatrelationslector"> Created At: { this.dateFormat(x.createdAt) }</p>
+	        				<p className="updatedatrelationslector">Updated At: { this.dateFormat(x.updatedAt) }</p>
 	        			</div>
 			})
 		}

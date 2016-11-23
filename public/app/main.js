@@ -13,12 +13,20 @@ import Header from './components/header.js';
 import TableStore from './stores/tableStore.js';
 
 class Layout extends React.Component {
+	constructor(props){
+		super(props)
+		this.state = {
+			appName:''
+		}
+	}
 	componentDidMount() {
 		let appId = window.location.hash.split('/')[1]
 		axios.get('https://service.cloudboost.io/app/'+appId).then((data)=>{
 			if(data.data && appId){
 				CB.CloudApp.init(appId,data.data.keys.master)
 				TableStore.initialize()
+				this.setState({appName:data.data.name})
+				document.title = "CloudBoost Table | "+data.data.name
 			} else {
 				window.location.href = "https://dashboard.cloudboost.io/"
 			}
@@ -30,7 +38,7 @@ class Layout extends React.Component {
 	  return (
 	  	<MuiThemeProvider>
 	  		<div id="reactmain">
-		  		<Header tableStore={ TableStore } appName={ 'jjwiumppcgur' }/>
+		  		<Header tableStore={ TableStore } appName={ this.state.appName }/>
 		  		<Table tableStore={ TableStore }></Table>
 	  		</div>
 	  	</MuiThemeProvider>

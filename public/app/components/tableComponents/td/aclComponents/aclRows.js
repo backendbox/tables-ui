@@ -115,7 +115,7 @@ class ACLRows extends React.Component {
 				</div>
         		{ aclList }
         		<AutoComplete
-			      floatingLabelText="Search user or role"
+			      floatingLabelText="Add User or Role"
 			      filter={AutoComplete.fuzzyFilter}
 			      dataSource={ this.getSearchItems() }
 			      maxSearchResults={5}

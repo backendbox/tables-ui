@@ -79,6 +79,7 @@ class HeaderTable extends React.Component {
 		          className="popupaddtable"
 		        >
 		        <form onSubmit={ this.addtable.bind(this) }>
+		        	<p className="addnewtablep">Add new Table</p>
 			        <input className="inputaddtable" placeholder="Table name" onChange={ this.changeHandler.bind(this,'tableName') } value={ this.state.tableName } required />
 			        <button className="addtablebutton" type="submit">Add</button>
 			    </form>
@@ -92,7 +93,7 @@ class HeaderTable extends React.Component {
 		          animation={PopoverAnimationVertical}
 		          className="popupdeletetable"
 		        >
-			        <button className="deletetablebtn" type="submit" onClick={ this.deleteTable.bind(this) }>Delete <i className="fa fa-trash" aria-hidden="true"></i></button>
+			        <button className="deletetablebtn" type="submit" onClick={ this.deleteTable.bind(this) }><i className="fa fa-trash" aria-hidden="true"></i> Delete </button>
 		        </Popover>
 			</div>
 		);

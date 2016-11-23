@@ -15,7 +15,6 @@ class BooleanTdComponent extends React.Component {
 		return (
             <td className='mdl-data-table__cell--non-numeric pointer'>
             	<Checkbox
-			      label="Boolean Select"
 			      className='booleantdcheck'
 			      onCheck={ this.changeHandler.bind(this) }
 			      checked={ this.props.elementData ? this.props.elementData : false }

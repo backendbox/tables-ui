@@ -25,7 +25,7 @@ class HideColumns extends React.Component {
 	}
 	hideAll(){
 		this.props.tableStore.getColumns.map((x)=>{
-			if(x.name != '_id'){
+			if(x.dataType != 'Id'){
 				this.hideShowColumn(x.name,false)
 			}
 		})
@@ -54,7 +54,9 @@ class HideColumns extends React.Component {
 		if(hiddenColumns.length){
 			hiddenButtonText = hiddenColumns.length + " Hidden Columns"
 		}
-		columns = columns.map((data,i)=>{
+		columns = columns
+		.filter( x => x.dataType != 'Id')
+		.map((data,i)=>{
 			let hidden = hiddenColumns.indexOf(data.name) != -1
 			return <p key={ i } className="parapop"><input checked={ hidden } type="checkbox" className="checkselect" onChange={ this.hideShowColumn.bind(this,data.name,hidden) }/>{ data.name }</p>
 		})
