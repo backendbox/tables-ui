@@ -16,20 +16,27 @@ class Layout extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			appName:''
+			appName:'',
+			userProfile:''
 		}
 	}
 	componentDidMount() {
+		axios.defaults.withCredentials = true
 		let appId = window.location.hash.split('/')[1]
-		axios.get('https://service.cloudboost.io/app/'+appId).then((data)=>{
-			if(data.data && appId){
-				CB.CloudApp.init(appId,data.data.keys.master)
-				TableStore.initialize()
-				this.setState({appName:data.data.name})
-				document.title = "CloudBoost Table | "+data.data.name
-			} else {
+		axios.get('https://service.cloudboost.io/user').then((userData)=>{
+			axios.get('https://service.cloudboost.io/app/'+appId).then((data)=>{
+				if(data.data && appId){
+					CB.CloudApp.init(appId,data.data.keys.master)
+					TableStore.initialize()
+					this.setState({appName:data.data.name,userProfile:userData.data})
+					document.title = "CloudBoost Table | "+data.data.name
+				} else {
+					window.location.href = "https://dashboard.cloudboost.io/"
+				}
+			},(err)=>{
+				console.log(err)
 				window.location.href = "https://dashboard.cloudboost.io/"
-			}
+			})
 		},(err)=>{
 			window.location.href = "https://accounts.cloudboost.io"
 		})
@@ -38,7 +45,7 @@ class Layout extends React.Component {
 	  return (
 	  	<MuiThemeProvider>
 	  		<div id="reactmain">
-		  		<Header tableStore={ TableStore } appName={ this.state.appName }/>
+		  		<Header tableStore={ TableStore } appName={ this.state.appName } userProfile={ this.state.userProfile }/>
 		  		<Table tableStore={ TableStore }></Table>
 	  		</div>
 	  	</MuiThemeProvider>

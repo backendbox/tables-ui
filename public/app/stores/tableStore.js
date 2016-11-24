@@ -168,6 +168,7 @@ class TableStore {
 			})
 		})
 		Promise.all(prm).then((res)=>{
+			$('[data-row]').removeClass('lgrey')
 			this.setColumnsData()
 			this.rowsToDelete = []
 		})

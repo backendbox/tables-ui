@@ -60,7 +60,12 @@ class Header extends React.Component {
 					<i className="fa fa-arrow-left dasbardlikarrow cp" aria-hidden="true" onClick={ this.dashRedirect.bind(this) }></i>
 					<span className="dasboardlink cp" onClick={ this.dashRedirect.bind(this) }> Dashboard</span>
 					<p className="appname">{ this.props.appName }</p>
-					<i className="fa fa-user userLogoheadng" aria-hidden="true"></i>
+					{ 
+						this.props.userProfile.file ? 
+						<img src={ this.props.userProfile.file.document ? this.props.userProfile.file.document.url : '' } className="userlogoimage"/>
+						:
+						<i className="fa fa-user userLogoheadng" aria-hidden="true"></i> 
+					}
 					<i className="fa fa-book userHelpheadng cp" aria-hidden="true" onClick={ this.newPageRedirect.bind(this,"https://tutorials.cloudboost.io/") }></i>
 					<i className="fa fa-question userHelpheadng cp" aria-hidden="true" onClick={ this.newPageRedirect.bind(this,"https://slack.cloudboost.io") }></i>
 					<HeaderTable tableStore={ this.props.tableStore }/>

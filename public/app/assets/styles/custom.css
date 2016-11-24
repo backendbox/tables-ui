@@ -54,7 +54,10 @@ td,th{
 }
 
 .lgrey{
-	background-color: #EEE
+	background-color: #EEE !important;
+}
+.lgreyhover{
+    background-color: #EEE;
 }
 
 .mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type {
@@ -235,14 +238,14 @@ td,th{
     float: right;
     font-size: 30px !important;
     color: white;
-    margin-top: -23px;
+    margin-top: -20px;
     margin-right: 12px;
 }
 .userHelpheadng{
-    float: right;
+        float: right;
     font-size: 20px !important;
     color: white;
-    margin-top: -17px;
+    margin-top: -12px;
     margin-right: 12px;
 }
 .logoCB{
@@ -455,20 +458,26 @@ td,th{
     background-color: #5BAEED;
     margin-top: 13px;
     position: absolute;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: 91%;
+    overflow-y: hidden;
 }
 .tableselected{
     height: 100%;
     min-width: 110px;
-    max-width: 200px;
-    float: left;
+    /* max-width: 200px; */
+    /* float: left; */
+    display: inline-block;
 }
 .tablenotselected{
-    height: 100%;
+        height: 100%;
     min-width: 110px;
     max-width: 200px;
     background-color: #C4E2F9;
-    float: left;
+    /* float: left; */
     margin-left: 1px;
+    display: inline-block;
 }
 .white{
     color: white
@@ -477,8 +486,9 @@ td,th{
     height: 100%;
     width: 30px;
     background-color: #C4E2F9;
-    float: left;
+    /* float: left; */
     margin-left: 1px;
+    display: inline-block;
 }
 .addicoontable{
     margin-left: 9px;
@@ -927,7 +937,7 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 }
-.btn-success,.btn-success:hover,.btn-success:active,.btn-success::selection{
+.btn-success,.btn-suserlogoimageuccess:hover,.btn-success:active,.btn-success::selection{
     width: 100px;
 }
 .taleft{
@@ -1171,7 +1181,7 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    margin-left: 30%;
+    margin-left: 32%;
     border: 1px solid #158AE5 !important;
 }
 .clearfilter{
@@ -1205,4 +1215,31 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
 }
 .morerowsbtn:hover{
     opacity: 1;
+}
+
+.headertablecrud::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+.headertablecrud::-webkit-scrollbar
+{
+    width: 0px;
+    background-color: #F5F5F5;
+    height: 4px;
+}
+
+.headertablecrud::-webkit-scrollbar-thumb
+{
+    background-color: #1167A9;
+}
+.userlogoimage{
+    float: right;
+    width: 40px;
+    height: 40px;
+    margin-top: -23px;
+    margin-right: 12px;
+    border-radius: 50%;
+    padding: 0px;
 }

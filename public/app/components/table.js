@@ -23,15 +23,25 @@ class Table extends React.Component {
 	componentDidMount(){
 		$(window).scroll(function() {
 		   if($(window).scrollTop() + $(window).height() == $(document).height()) {
-		   		console.log($('.morerowsbtn'))
 		   		$('.morerowsbtn').removeClass('hide')
 		   } else {
 		   		$('.morerowsbtn').addClass('hide')
 		   }
 		}.bind(this))
+		
 	}
 	componentDidUpdate(){
 		setTimeout(()=>{
+			$('[data-row]').mouseover(function(){
+				let index = $(this).attr('data-index')
+				$('[data-row="row'+index+'"]').addClass('lgreyhover')
+				$('[data-row="rowoverlap'+index+'"]').addClass('lgreyhover')
+			})
+			$('[data-row]').mouseleave(function(){
+				let index = $(this).attr('data-index')
+				$('[data-row="row'+index+'"]').removeClass('lgreyhover')
+				$('[data-row="rowoverlap'+index+'"]').removeClass('lgreyhover')
+			})
 			this.props.tableStore.hideLoader()
 		},1000)
 	}
@@ -47,29 +57,25 @@ class Table extends React.Component {
 	rowCheckHandler(index,id,e,data){
 		if(data) {
 			this.props.tableStore.addToDeleteRows(id)
-			this.refs['row'+index].className = 'lgrey'
-			this.refs['rowoverlap'+index].className = 'lgrey'
+			$('[data-row="row'+index+'"]').addClass('lgrey')
+			$('[data-row="rowoverlap'+index+'"]').addClass('lgrey')
 		} else {
 			this.props.tableStore.removeFromDeleteRows(id)
-			this.refs['row'+index].className = ''
-			this.refs['rowoverlap'+index].className = ''
+			$('[data-row="row'+index+'"]').removeClass('lgrey')
+			$('[data-row="rowoverlap'+index+'"]').removeClass('lgrey')
 		}
 	}
 	selectDeselectAllRows(e,data){
-		for(var key in this.refs){
-			if(this.refs.hasOwnProperty(key)){
-				if(data){
-					this.refs[key].className = 'lgrey'
-				} else {
-					this.refs[key].className = ''
+		if(data) $('[data-row]').addClass('lgrey')
+			else $('[data-row]').removeClass('lgrey')
+		
+		if(data){
+			this.props.tableStore.columnsData.map((x)=>{
+				if(this.props.tableStore.rowsToDelete.indexOf(x.id) == -1){
+					this.props.tableStore.addToDeleteRows(x.id)
 				}
-			}
-		}
-		//TODO - edge case for de-selcting all
-		this.props.tableStore.columnsData.map((x)=>{
-			if(data) this.props.tableStore.addToDeleteRows(x.id)
-				else this.props.tableStore.removeFromDeleteRows(x.id)
-		})
+			})
+		} else  this.props.tableStore.rowsToDelete = []
 	}
 	changeHandler(which,e){
 		this.state[which] = e.target.value
@@ -83,7 +89,7 @@ class Table extends React.Component {
 			return  i.error ?
 					<NewRowComponent key={index} rowObject={ i } tableStore={ this.props.tableStore } overlap={false}/>
 					:
-					<tr key={index} ref={'row'+index}> 
+					<tr key={index} data-row={'row'+index} data-index={index}> 
 						<RowCheckBoxComponent key={index} indexValue = { index } checkHandler={ this.rowCheckHandler.bind(this) } rowObject={ i } tableStore={ this.props.tableStore }/>
 						{ 	getColumns
 							.filter(x => hiddenColumns.indexOf(x.name) == -1)
@@ -97,7 +103,7 @@ class Table extends React.Component {
 			return  i.error ?
 					<NewRowComponent key={index} rowObject={ i } tableStore={ this.props.tableStore } overlap={true}/>
 					:
-					<tr key={index} ref={'rowoverlap'+index}> 
+					<tr key={index} data-row={'rowoverlap'+index} data-index={index}> 
 						<RowCheckBoxComponent key={index} indexValue = { index } checkHandler={ this.rowCheckHandler.bind(this) } rowObject={ i } tableStore={ this.props.tableStore }/>
 						{ 	getColumns
 							.filter(x => x.dataType == "Id")
