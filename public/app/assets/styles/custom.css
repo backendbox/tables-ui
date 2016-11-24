@@ -383,6 +383,9 @@ td,th{
     margin-top: 25px;
     margin-bottom: 5px;
 }
+.fileListPreveiew:hover{
+    border: 3px solid #158AE5;
+}
 .savecanclist{
     float: right;
     width: 100%;
@@ -773,14 +776,14 @@ td,th{
         margin-right: 92px;
 }
 .halfreldiv{
-        float: left;
+    float: left;
     border: 1px solid #D8D8D8;
     height: 30px;
     border-radius: 2px;
-    width: 44%;
+    width: 43%;
     float: left;
     margin-top: 35px;
-    margin-right: 5%;
+    margin-right: 4%;
 }
 .relationrowcheckbox{
     float: left;
@@ -936,6 +939,18 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+}
+.btn-orange,.btn-orange:hover,.btn-orange:active,.btn-orange::selection{
+        color: #fff !important;
+    background-color: rgba(255, 85, 0, 0.78) !important;
+    border-color: rgba(255, 85, 0, 0.84) !important;
+    width: 104px;
+    font-weight: bold;
+    border-radius: 1px;
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    margin-right: 4px;
 }
 .btn-success,.btn-suserlogoimageuccess:hover,.btn-success:active,.btn-success::selection{
     width: 100px;

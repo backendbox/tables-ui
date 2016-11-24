@@ -55,6 +55,10 @@ class FileTdComponent extends React.Component {
 		this.props.fetchObject()
 		this.openCloseModal(false)
 	}
+	downloadFile(){
+		let win = window.open(this.state.file.preview, '_blank')
+  		win.focus()
+	}
 	fetchImageFromCB(props){
 		if(props.elementData){
 			props.elementData.fetch({
@@ -88,6 +92,7 @@ class FileTdComponent extends React.Component {
 		            <LinearProgress mode="determinate" value={this.state.completed} className={ !this.state.progress ? "hide" : "linaerprogfile"}/>
 		            <button className="btn btn-primary fr ml5 clearboth mt10" onClick={this.fileSave.bind(this)} disabled={ this.state.progress || !this.state.file.name }>SUBMIT</button>
 	          		<button className="btn btn-danger fr mt10" onClick={this.cancelFileSave.bind(this)} disabled={ this.state.progress }>CLOSE</button>
+	          		<button className="btn btn-orange fr mt10" onClick={this.downloadFile.bind(this)} disabled={ !!!this.state.file.preview }>DOWNLOAD</button>
         		</Dialog>
             </td>
 		);

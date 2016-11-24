@@ -18,7 +18,6 @@ class FileListComponent extends React.Component {
 		if(props.data){
 			props.data.fetch({
 			  success: function(file) {
-			  	console.log(file)
 			  	this.state.filePreview = file
 			  	this.setState(this.state)
 			     //received file Object
@@ -28,12 +27,16 @@ class FileListComponent extends React.Component {
 			});
 		}
 	}
+	downloadFile(){
+		let win = window.open(this.state.filePreview.url, '_blank')
+  		win.focus()
+	}
 	render() {
 		return (
 			<div>
 				<img src={ 
 					this.state.filePreview ? (this.state.filePreview.type.split('/')[0] == 'image' ? this.state.filePreview.url : '/app/assets/images/file.png') : '/app/assets/images/file.png' 
-				} className="fileListPreveiew" />
+				} className="fileListPreveiew cp" onClick={ this.downloadFile.bind(this) }/>
 				<button onClick={ this.deleteValue.bind(this) } className="deletefilelist"><i className="fa fa-trash" aria-hidden="true"></i> Delete</button>
 			</div>
 		);

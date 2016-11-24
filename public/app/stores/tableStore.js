@@ -141,11 +141,11 @@ class TableStore {
 	}
 
 	hideColumn(name){
-		this.hiddenColumns.push(name)
+		this.hiddenColumns = this.hiddenColumns.concat([name])
 	}
 
 	removeHiddenColumn(name){
-		this.hiddenColumns.splice(this.hiddenColumns.indexOf(name),1)
+		this.hiddenColumns = this.hiddenColumns.filter(x => x != name)
 	}
 
 	showAll(){
