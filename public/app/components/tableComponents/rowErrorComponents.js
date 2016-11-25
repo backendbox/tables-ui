@@ -18,9 +18,10 @@ class RowErrorComponent extends React.Component {
 		//console.log(this.props)
 	}
 	render() {
+		console.log(this.props.error)
 		return (
            	<td onMouseEnter={this.hover.bind(this,false)} onMouseLeave={this.hover.bind(this,true)} className="tdtrcheck zi10">
-           		<i className="fa fa-exclamation-triangle errorsigntd" aria-hidden="true" data-tip={ this.props.error }></i>
+           		<i className="fa fa-exclamation-triangle errorsigntd" aria-hidden="true" data-tip={ "Please fill all the required columns." }></i>
            		<ReactTooltip />
            	</td>
 		);

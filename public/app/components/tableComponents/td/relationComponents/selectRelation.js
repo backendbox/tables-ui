@@ -7,8 +7,7 @@ class SelectRelation extends React.Component {
 		super()
 		this.state = {
 			isModalOpen:false,
-			tableData:[],
-			search:''
+			tableData:[]
 		}
 	}
 	componentDidMount(){
@@ -27,8 +26,12 @@ class SelectRelation extends React.Component {
 		this.props.openCloseModal(false,'isOpenSelect')
 	}
 	search(which,e){
-		this.state[which] = e.target.value
-		this.setState(this.state)
+		let query = new CB.CloudQuery(this.props.table)
+		if (e.target.value) query.search(e.target.value)
+		query.find().then((list)=>{
+			this.state.tableData = list
+			this.setState(this.state)
+		})
 	}
     dateFormat(date){
     	if(date) return new Date(date).toISOString().slice(0,10).replace(/-/g,"/") + ", " + new Date(date).getHours()+":"+new Date(date).getMinutes()
@@ -41,13 +44,6 @@ class SelectRelation extends React.Component {
 		let tableData = []
 		if(this.state.tableData.length){
 			tableData = this.state.tableData
-			.filter(x =>{
-				//console.log(x)
-				if(this.state.search){
-					let re = new RegExp(this.state.search.toLowerCase(), 'g')
-					return x.id.toLowerCase().match(re) != null
-				} else return true
-			})
 			.map((x,i)=>{
 				return <div className="tabledatadiv cp" key={ i } onClick={ this.selectRelation.bind(this,x) }>
 							<p className="idrelationslector">Id: { x.id }</p>
@@ -61,7 +57,7 @@ class SelectRelation extends React.Component {
 	            
 	        	<Dialog title="Select a Relation Object" modal={false} open={this.props.open} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 	        		<div className="relationselectordiv">
-		        		<input className="searchrelation" placeholder="Search by id..." value={ this.state.search } onChange={ this.search.bind(this,'search') }/>
+		        		<input className="searchrelation" placeholder="Search .." onChange={ this.search.bind(this,'search') }/>
 		        		{ tableData }
 	          		</div>
 	          		<div className="cancelselctrela">

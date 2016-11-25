@@ -55,11 +55,12 @@ class GeoTdComponent extends React.Component {
 		
 	}
 	render() {
+		let requiredClass = this.props.isRequired ? " requiredred":""
 		let data = {}
 		data.lat = this.props.elementData ? ( this.props.elementData.latitude || 0 ) : 0
 		data.long = this.props.elementData ? ( this.props.elementData.longitude || 0 ) : 0
 		return (
-            <td className='mdl-data-table__cell--non-numeric pointer' onDoubleClick={this.openCloseModal.bind(this,true)}>
+            <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true)}>
             	<span className="color888">{ JSON.stringify(data) }</span>
             	<i className="fa fa-expand fr" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
             	<Dialog title="Geo Location EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">

@@ -25,7 +25,8 @@ class GenericNewTd extends React.Component {
 		this.state = {
 			elementData:null,
 			elementDataBackup:null,
-			componentToRender:TextTd
+			componentToRender:TextTd,
+			isRequired:false
 		}
 	}
 	componentDidMount(){
@@ -111,16 +112,23 @@ class GenericNewTd extends React.Component {
 				this.state.elementData = "a"
 				break;
 		}
+		if(this.state.elementData == undefined && props.columnType.required == true){
+			this.state.isRequired = true
+		}
 		this.state.elementDataBackup = this.state.elementData
 		this.setState(this.state)
 	}
 	updateObject(){
+		if(this.state.elementData && this.props.columnType.required == true){
+			this.state.isRequired = false
+		}
 		this.props.columnData.set(this.props.columnType.name,this.state.elementData)
 		this.props.columnData.save().then((res)=>{
 			this.state.elementDataBackup = res.document[this.props.columnType.name]
 			this.setState(this.state)
 			this.props.setError(false)
 		},(err)=>{
+			console.log(err)
 			this.props.setError(err)
 			//this.fetchObject()
 		})
@@ -143,7 +151,8 @@ class GenericNewTd extends React.Component {
 		       	fetchObject:this.fetchObject.bind(this),
 		       	columnName:this.props.columnType.name,
 		       	columnData:this.props.columnData,
-		       	columnType:this.props.columnType
+		       	columnType:this.props.columnType,
+		       	isRequired:this.state.isRequired
            })
 		);
 	}

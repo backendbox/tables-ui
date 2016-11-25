@@ -25,8 +25,9 @@ class RelationTd extends React.Component {
 
 	}
 	render() {
+		let requiredClass = this.props.isRequired ? " requiredred":""
 		return (
-            <td className='mdl-data-table__cell--non-numeric pointer' onDoubleClick={this.openCloseModal.bind(this,true,'isOpenView')}>
+            <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true,'isOpenView')}>
             	<span className="color888">{ this.props.elementData ? this.props.elementData.id : '' }</span>
             	<i className="fa fa-expand fr" aria-hidden="true" onClick={this.openCloseModal.bind(this,true,'isOpenView')}></i>
             	<i className="fa fa-plus fr mr10" aria-hidden="true" onClick={this.openCloseModal.bind(this,true,'isOpenSelect')}></i>

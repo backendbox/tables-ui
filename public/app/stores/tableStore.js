@@ -123,6 +123,7 @@ class TableStore {
 
 	search(searchString){
 		let query = new CB.CloudQuery(this.TABLE)
+		query.setLimit(this.recordsToShow)
 		if (searchString) query.search(searchString)
 		return query.find()
 	}

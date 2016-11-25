@@ -76,8 +76,9 @@ class FileTdComponent extends React.Component {
 
 	}
 	render() {
+		let requiredClass = this.props.isRequired ? " requiredred":""
 		return (
-            <td className='mdl-data-table__cell--non-numeric pointer' onDoubleClick={this.openCloseModal.bind(this,true)}>
+            <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true)}>
             	<span className={this.state.filePreview.document ? 'hide' : 'color888'}>Upload File</span>
             	<img className={this.state.filePreview.document ? 'previewSmallImage' : 'hide'} src={ this.state.filePreview.document ?  this.state.filePreview.document.url : ''} />
             	<i className={this.state.filePreview.document ? 'mt10 fa fa-expand fr' : 'fa fa-expand fr'} aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>

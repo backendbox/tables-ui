@@ -19,6 +19,11 @@ class NumberTdComponent extends React.Component {
 		this.state['inputHidden'] = which
 		this.setState(this.state)
 	}
+	saveKeyAction(e){
+		if(e.which == 13){
+			this.toggleInput(true)
+		}
+	}
 	componentDidUpdate(){
 		if(!this.state['inputHidden']){
      		ReactDOM.findDOMNode(this.refs.Input).focus()
@@ -28,10 +33,11 @@ class NumberTdComponent extends React.Component {
     	this.props.updateElement(parseInt(e.target.value))
     }
 	render() {
+		let requiredClass = this.props.isRequired ? " requiredred":""
 		return (
-            <td className={ this.state.inputHidden ? 'mdl-data-table__cell--non-numeric pointer' : 'mdl-data-table__cell--non-numeric pointer padleftright0' } onDoubleClick={this.toggleInput.bind(this,false)}>
+            <td className={ this.state.inputHidden ? ('mdl-data-table__cell--non-numeric pointer'+requiredClass) : 'mdl-data-table__cell--non-numeric pointer padleftright0' } onDoubleClick={this.toggleInput.bind(this,false)}>
             	<span className={!this.state.inputHidden ? 'hide':''}>{this.props.elementData ? this.props.elementData.toString().slice(0,20):''}</span>
-            	<input ref="Input" value={this.props.elementData || 0 } onChange={this.changeHandler.bind(this)} className={this.state.inputHidden ? 'hide':'form-control texttypetdinput'} onBlur={this.toggleInput.bind(this,true)} type="number" />
+            	<input ref="Input" value={this.props.elementData || 0 } onChange={this.changeHandler.bind(this)} className={this.state.inputHidden ? 'hide':'form-control texttypetdinput'} onBlur={this.toggleInput.bind(this,true)} type="number" onKeyDown={ this.saveKeyAction.bind(this) }/>
             </td>
 		);
 	}

@@ -100,6 +100,7 @@ class ListTdComponent extends React.Component {
 
 	}
 	render() {
+		let requiredClass = this.props.isRequired ? " requiredred":""
 		let elements = []
 		if(this.state.elementData){
 			elements = this.state.elementData.map((data,index)=>{
@@ -115,7 +116,7 @@ class ListTdComponent extends React.Component {
 			})
 		}
 		return (
-            <td className='mdl-data-table__cell--non-numeric pointer' onDoubleClick={this.openCloseModal.bind(this,true,false)}>
+            <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true,false)}>
             	<span className="color888">
 	            	<Badge
 				      badgeContent={ this.state.elementData ? this.state.elementData.length : 0 }

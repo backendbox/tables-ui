@@ -55,6 +55,7 @@ class DateTdComponent extends React.Component {
 	render() {
 		let date = ''
 		let time = ''
+		let requiredClass = this.props.isRequired ? " requiredred":""
 		if(this.state.dateOpen){
 			date = <DatePicker id="date" ref="InputDate" className='width0' onChange={this.viewChangeDate.bind(this)}/>
 		}
@@ -62,7 +63,7 @@ class DateTdComponent extends React.Component {
 			time = <TimePicker id="time" ref="InputTime" className='width0' onChange={this.viewChangeTime.bind(this)}/>
 		}
 		return (
-            <td className='mdl-data-table__cell--non-numeric pointer' onDoubleClick={this.openInput.bind(this,'InputDate')}>
+            <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openInput.bind(this,'InputDate')}>
             	<span className={''}>{ this.dateFormat(this.props.elementData) }</span>
             	<i className="fa fa-calendar fr mtl2" aria-hidden="true" onClick={this.openInput.bind(this,'InputDate')}></i>
             	<i className="fa fa-clock-o fr mtl2" aria-hidden="true" onClick={this.openInput.bind(this,'InputTime')}></i>

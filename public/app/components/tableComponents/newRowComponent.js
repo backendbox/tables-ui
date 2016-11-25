@@ -30,7 +30,6 @@ class NewRow extends React.Component {
 	render() {
 
 		let { getColumns,hiddenColumns } = this.props.tableStore
-
 		return (
 			<tr> 
 				{/* TODO: Clean the logic here */}

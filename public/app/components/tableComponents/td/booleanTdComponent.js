@@ -12,8 +12,9 @@ class BooleanTdComponent extends React.Component {
     	this.props.updateObject()
     }
 	render() {
+		let requiredClass = this.props.isRequired ? " requiredred":""
 		return (
-            <td className='mdl-data-table__cell--non-numeric pointer'>
+            <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass}>
             	<Checkbox
 			      className='booleantdcheck'
 			      onCheck={ this.changeHandler.bind(this) }
