@@ -21,13 +21,22 @@ class Layout extends React.Component {
 		}
 	}
 	componentDidMount() {
+		let isHosted = true
+		let USERSERVICEURL = 'http://localhost:3000/'
+		if(isHosted == "true" || isHosted == true){
+			USERSERVICEURL = "https://service.cloudboost.io/"
+		}
 		axios.defaults.withCredentials = true
 		let appId = window.location.hash.split('/')[1]
-		axios.get('https://service.cloudboost.io/user').then((userData)=>{
-			axios.get('https://service.cloudboost.io/app/'+appId).then((data)=>{
+		let tableName = window.location.hash.split('/')[2]
+		axios.get(USERSERVICEURL+'user').then((userData)=>{
+			axios.get(USERSERVICEURL+'app/'+appId).then((data)=>{
 				if(data.data && appId){
-					CB.CloudApp.init(appId,data.data.keys.master)
-					TableStore.initialize()
+					if(isHosted == "true" || isHosted == true){
+						CB.CloudApp.init(appId,data.data.keys.master)
+					} else CB.CloudApp.init("http://localhost:4730",appId,data.data.keys.master)
+					if(tableName) TableStore.initialize(tableName)
+						else TableStore.initialize()
 					this.setState({appName:data.data.name,userProfile:userData.data})
 					document.title = "CloudBoost Table | "+data.data.name
 				} else {

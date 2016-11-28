@@ -141,7 +141,9 @@ class Table extends React.Component {
 			        	<tr className="addnewrow"> 
 							<td className="pointer tdplus" onClick={this.addRow.bind(this)}><i className="fa fa-plus plusrow" aria-hidden="true"></i></td>
 							{
-								getColumns.map((x,i)=>{
+								getColumns
+								.filter(x => hiddenColumns.indexOf(x.name) == -1)
+								.map((x,i)=>{
 									return <td className="testdt" key={ i }></td>
 								})
 							}

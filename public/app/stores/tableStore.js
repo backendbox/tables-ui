@@ -29,7 +29,8 @@ class TableStore {
 				this.TABLE = data[0].document.name
 			}
 			if(tableName){
-				this.TABLE = tableName
+				let tableFound = data.filter(x => x.document.name == tableName)[0]
+				if(tableFound) this.TABLE = tableFound.document.name
 			}
 			this.tables = data
 			this.recordsToShow = 20

@@ -7,12 +7,14 @@ env:
     - PATH=${HOME}/google-cloud-sdk/bin:$PATH
     # Ensure the install happens without prompts
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+    - CLOUDBOOST_HOSTED=true
 language: node_js
 node_js:
 - '6'
 before_install:
 - npm install
 install:
+- webpack --progress
 - docker build -t cloudboost/data-browser:2.0.$TRAVIS_BUILD_NUMBER .
 - docker build -t cloudboost/data-browser:latest .
 after_success:
