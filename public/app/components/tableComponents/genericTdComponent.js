@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configObject from '../../config/app.js'
+import Snackbar from 'material-ui/Snackbar'
 
 //components
 import TextTd from './td/textTdComponent'
@@ -25,7 +26,8 @@ class GenericTdComponent extends React.Component {
 		this.state = {
 			elementData:null,
 			elementDataBackup:null,
-			componentToRender:TextTd
+			componentToRender:TextTd,
+			isRequired:false
 		}
 	}
 	componentDidMount(){
@@ -121,19 +123,33 @@ class GenericTdComponent extends React.Component {
 				break;
 		}
 		let elementDataBackup = elementData
-		this.setState({
-			elementDataBackup:elementDataBackup,
-			elementData:elementData,
-			componentToRender:componentToRender
-		})
+		if(elementData == undefined && props.columnType.required == true){
+			this.setState({
+				elementDataBackup:elementDataBackup,
+				elementData:elementData,
+				componentToRender:componentToRender,
+				isRequired:true
+			})
+		} else {
+			this.setState({
+				elementDataBackup:elementDataBackup,
+				elementData:elementData,
+				componentToRender:componentToRender,
+				isRequired:false
+			})
+		}
 	}
 	updateObject(){
+		if(this.state.elementData && this.props.columnType.required == true){
+			this.state.isRequired = false
+		}
 		this.props.columnData.set(this.props.columnType.name,this.state.elementData)
 		this.props.columnData.save().then((res)=>{
 			this.setState({elementDataBackup:res.document[this.props.columnType.name]})
 		},(err)=>{
 			console.log(err)
 			this.fetchObject()
+			this.props.tableStore.showSnackbar(3000,err)
 		})
 	}
 	fetchObject(){
@@ -153,7 +169,8 @@ class GenericTdComponent extends React.Component {
 		       	fetchObject:this.fetchObject.bind(this),
 		       	columnName:this.props.columnType.name,
 		       	columnData:this.props.columnData,
-		       	columnType:this.props.columnType
+		       	columnType:this.props.columnType,
+		       	isRequired:this.state.isRequired
            })
 		);
 	}

@@ -42,6 +42,22 @@ class Table extends React.Component {
 				$('[data-row="row'+index+'"]').removeClass('lgreyhover')
 				$('[data-row="rowoverlap'+index+'"]').removeClass('lgreyhover')
 			})
+			$('.testdt').mouseover(function(){
+				$('.testdt').addClass('lgreyhover')
+				$('.tdplus').addClass('lgreyhover')
+			})
+			$('.testdt').mouseleave(function(){
+				$('.testdt').removeClass('lgreyhover')
+				$('.tdplus').removeClass('lgreyhover')
+			})
+			$('.tdplus').mouseover(function(){
+				$('.testdt').addClass('lgreyhover')
+				$('.tdplus').addClass('lgreyhover')
+			})
+			$('.tdplus').mouseleave(function(){
+				$('.testdt').removeClass('lgreyhover')
+				$('.tdplus').removeClass('lgreyhover')
+			})
 			this.props.tableStore.hideLoader()
 		},1000)
 	}
@@ -124,6 +140,11 @@ class Table extends React.Component {
 			        	{ clomunTr }
 			        	<tr className="addnewrow"> 
 							<td className="pointer tdplus" onClick={this.addRow.bind(this)}><i className="fa fa-plus plusrow" aria-hidden="true"></i></td>
+							{
+								getColumns.map((x,i)=>{
+									return <td className="testdt" key={ i }></td>
+								})
+							}
 						</tr>
 			        </tbody>
 			    </table>
@@ -142,6 +163,7 @@ class Table extends React.Component {
 			          { clomunTrOverlap }
 			          	<tr className="addnewrow"> 
 							<td className="pointer tdplus" onClick={this.addRow.bind(this)}><i className="fa fa-plus plusrow" aria-hidden="true"></i></td>
+							<td className="testdt"></td>
 						</tr>
 			        </tbody>
 			    </table>
@@ -149,6 +171,7 @@ class Table extends React.Component {
 					<div className="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
 				</div>
 				<button className="btn btn-primary morerowsbtn hide" onClick={ this.showMoreRecord.bind(this) }>More</button>
+				<div id="snackbar"></div>
 		    </div>
 		);
 	}

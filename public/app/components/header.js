@@ -49,6 +49,9 @@ class Header extends React.Component {
 	dashRedirect(){
 		window.location.href="https://dashboard.cloudboost.io/"
 	}
+	dashprofileRedirect(){
+		window.location.href="https://dashboard.cloudboost.io/#/profile"
+	}
 	changeHandler(which,e){
 		this.state[which] = e.target.value
 		this.setState(this.state)
@@ -62,9 +65,9 @@ class Header extends React.Component {
 					<p className="appname">{ this.props.appName }</p>
 					{ 
 						this.props.userProfile.file ? 
-						<img src={ this.props.userProfile.file.document ? this.props.userProfile.file.document.url : '' } className="userlogoimage"/>
+						<img src={ this.props.userProfile.file.document ? this.props.userProfile.file.document.url : '' } className="userlogoimage cp" onClick={ this.dashprofileRedirect.bind(this) }/>
 						:
-						<i className="fa fa-user userLogoheadng" aria-hidden="true"></i> 
+						<i className="fa fa-user userLogoheadng cp" aria-hidden="true" onClick={ this.dashprofileRedirect.bind(this) }></i> 
 					}
 					<i className="fa fa-book userHelpheadng cp" aria-hidden="true" onClick={ this.newPageRedirect.bind(this,"https://tutorials.cloudboost.io/") }></i>
 					<i className="fa fa-question userHelpheadng cp" aria-hidden="true" onClick={ this.newPageRedirect.bind(this,"https://slack.cloudboost.io") }></i>

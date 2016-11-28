@@ -525,11 +525,11 @@ td,th{
 .popupdeletetable{
    width: 150px !important;
     background-color: white;
-    height: 80px;
+    height: 33px;
 }
 .deletetablebtn{
         width: 100%;
-    border: 2px solid #EEE;
+    border: 0px solid #EEE;
     height: 33px;
     background-color: #FFFFFF;
     color: #3E3838;
@@ -1174,16 +1174,16 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
     font-size: 23px !important;
     margin-left: 7px;
     position: absolute;
-    margin-top: 3px;
+    margin-top: 8px;
 }
 .dasboardlink{
-       float: left;
+    float: left;
     color: white;
     /* font-weight: bold; */
     font-size: 18px !important;
     margin-left: 33px;
     position: absolute;
-    margin-top: 6px;
+    margin-top: 11px;
     font-weight: bold;
 }
 .applyfiler{
@@ -1259,6 +1259,57 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
     padding: 0px;
 }
 .requiredred{
-    border: 2px solid #E68989 !important;
+        border: 2px solid rgb(202, 162, 10) !important;
     background-color: rgba(255, 0, 0, 0.03) !important;
+}
+.testdt{
+    border: 0px solid white !important;
+}
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
 }

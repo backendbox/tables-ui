@@ -184,6 +184,14 @@ class TableStore {
 		$('#tableoverlap').removeClass('hide')
 		$('#loader').addClass('hide')
 	}
+	showSnackbar(time,text){
+		$('#snackbar').html(text)
+		$('#snackbar').addClass('show')
+		setTimeout(()=>{
+			$('#snackbar').html('')
+			$('#snackbar').removeClass('show')
+		},time)
+	}
 
 }
 

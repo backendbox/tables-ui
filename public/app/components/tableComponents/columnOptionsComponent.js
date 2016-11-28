@@ -96,13 +96,13 @@ class ColumnOptions extends React.Component {
 		          className="columnpop"
 		        >
 		        	<Checkbox
-				      label="isRequired"
+				      label="Required"
 				      className="checkeditcol"
 				      checked={ this.state.required }
 				      onCheck={ this.checkHandler.bind(this,'required') }
 				    />
 				    <Checkbox
-				      label="isUnique"
+				      label="Unique"
 				      className="checkeditcol"
 				      checked={ this.state.unique }
 				      onCheck={ this.checkHandler.bind(this,'unique') }
