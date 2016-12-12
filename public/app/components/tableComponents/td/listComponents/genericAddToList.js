@@ -44,7 +44,8 @@ class GenericAddToList extends React.Component {
 		let element = ''
 		if(this.props.columnType == 'File'){
 			element =	<Dropzone className="dropFileList" onDrop={ this.dropHandler.bind(this) }>
-		            		<div>Try dropping some files here, or click to select files to upload.</div>
+		            		<i className="fa fa-paperclip attahcmentfile" aria-hidden="true"></i>
+		            		<div className="attahctext">Try dropping some files here, or click to select files to upload.</div>
 		            	</Dropzone>
 		           		
 		} else if(['Text','Email','URL','EncryptedText','Boolean','Number','DateTime','GeoPoint','Object'].indexOf(this.props.columnType) == -1){

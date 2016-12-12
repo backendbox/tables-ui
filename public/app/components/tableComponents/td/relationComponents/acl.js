@@ -129,7 +129,7 @@ class ACLTd extends React.Component {
 		return (
             <div className="listrelationdivacl">
             	<ViewACL aclList={ this.state.aclList }/>
-            	<button onClick={this.openCloseModal.bind(this,true)} className="buttonlstrelationacl">Modify ACL</button>
+            	<i className="fa fa-expand aclrealexpand" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
             	{	
 	            	this.state.isOpenACL ? <Dialog title="ACL Selector" modal={false} open={this.state.isOpenACL} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 								        		<ACLRows 

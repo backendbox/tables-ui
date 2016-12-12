@@ -35,8 +35,8 @@ class Relation extends React.Component {
             <div className="listrelationdiv">
             	<span className="textnamerlationrle"> { this.props.columnData.name } </span>
             	<span className="relationtextrlation">{ this.props.elementData ? this.props.elementData.id : 'unassigned' }</span>
-            	<button className="fr relationchangerelaion" onClick={this.openCloseModal.bind(this,true,'isOpenSelect')}>Change</button>
-            	<button className="fr relationchangerelaion" onClick={this.openCloseModal.bind(this,true,'isOpenView')}>View</button>
+            	<i className="fa fa-expand aclrealexpand relrelexp" aria-hidden="true" onClick={this.openCloseModal.bind(this,true,'isOpenView')}></i>
+            	<i className="fa fa-plus aclrealexpand relreladd" aria-hidden="true" onClick={this.openCloseModal.bind(this,true,'isOpenSelect')}></i>
             	{	
 	            	this.state.isOpenView ? <ViewRelation 
 												elementData={ this.props.elementData }

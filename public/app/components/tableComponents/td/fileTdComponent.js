@@ -12,7 +12,8 @@ class FileTdComponent extends React.Component {
 			file:{},
 			filePreview:{},
 			completed: 0,
-			progress:false
+			progress:false,
+			showWrapper:false
 		}
 	}
 	componentDidMount(){
@@ -33,6 +34,7 @@ class FileTdComponent extends React.Component {
 		this.setState(this.state)
     }
     fileSave(){
+    	this.setState({showWrapper:false})
     	let cloudFile = new CB.CloudFile(this.state.file)
     	this.setState({progress:true})
     	cloudFile.save({
@@ -59,6 +61,14 @@ class FileTdComponent extends React.Component {
 		let win = window.open(this.state.file.preview, '_blank')
   		win.focus()
 	}
+	deleteFile(){
+		this.props.updateElement(null)
+		this.props.updateObject()
+		this.setState({
+			file:{},
+			filePreview:{}
+		})
+	}
 	fetchImageFromCB(props){
 		if(props.elementData){
 			props.elementData.fetch({
@@ -75,6 +85,9 @@ class FileTdComponent extends React.Component {
 	handleClose(){
 
 	}
+	toggleShowWrapper(what){
+		this.setState({showWrapper:what})
+	}
 	render() {
 		let requiredClass = this.props.isRequired ? " requiredred":""
 		return (
@@ -87,13 +100,16 @@ class FileTdComponent extends React.Component {
 		              <div>Try dropping some files here, or click to select files to upload.</div>
 		              <button className="Choosefilebtn">Choose File</button>
 		            </Dropzone>
-		            <img className={ this.state.progress ? "hide" : "previewImage"} src={this.state.file.preview || ''} />
+		            <img className={ this.state.progress ? "hide" : "previewImage"} src={this.state.file.preview || ''} onMouseEnter={ this.toggleShowWrapper.bind(this,true) } />
+		            <div className={this.state.showWrapper ? "imagewrapperfile":"hide" } onMouseLeave={ this.toggleShowWrapper.bind(this,false) }>
+		            	<i className="fa fa-download cp filewrapperdownload" onClick={this.downloadFile.bind(this)} aria-hidden="true"></i>
+		            	<i className="fa fa-trash-o cp filewrapperdelete" onClick={this.deleteFile.bind(this)} aria-hidden="true"></i>
+		            </div>
 		            <p className={ !this.state.progress ? "hide" : "pprogresslineaer"}>Please wait while we upload your file.</p>
 		            <p className={ !this.state.progress ? "hide" : "pprogresslineaer99"}>( { this.state.completed == 100 ? 99 : Math.floor(this.state.completed) }% )</p>
 		            <LinearProgress mode="determinate" value={this.state.completed} className={ !this.state.progress ? "hide" : "linaerprogfile"}/>
 		            <button className="btn btn-primary fr ml5 clearboth mt10" onClick={this.fileSave.bind(this)} disabled={ this.state.progress || !this.state.file.name }>SUBMIT</button>
 	          		<button className="btn btn-danger fr mt10" onClick={this.cancelFileSave.bind(this)} disabled={ this.state.progress }>CLOSE</button>
-	          		<button className="btn btn-orange fr mt10" onClick={this.downloadFile.bind(this)} disabled={ !!!this.state.file.preview }>DOWNLOAD</button>
         		</Dialog>
             </td>
 		);

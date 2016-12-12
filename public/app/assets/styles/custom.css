@@ -359,16 +359,17 @@ td,th{
     background-color: white;
 }
 .addtextrecord{
-    width: 100%;
-    /* margin: auto; */
-    /* margin-left: 14%; */
+        width: 100%;
     margin-bottom: 10px;
     background-color: white;
-    border: 1px solid #CCC;
     border-radius: 2px;
     height: 30px;
-    background: #ECF3F9;
-    color: #1D1C1C;
+    background: #FFFFFF;
+    color: #3E3B3B;
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.14);
+    border: 1px solid #ECEAEA;
 }
 .trashlistinputtext{
     margin-left: 5px;
@@ -404,14 +405,28 @@ td,th{
     border: 1px solid rgba(247, 58, 58, 0.84);
 }
 .dropFileList{
-    width: 150px;
+        width: 150px;
     height: 175px;
-    border: 2px dashed rgb(102, 102, 102);
+    border: 1px solid rgb(243, 231, 231);
     border-radius: 5px;
     float: left;
     margin-top: 15px;
     margin-right: 20px;
     padding: 16px;
+    background-color: white;
+    -webkit-box-shadow: 1px 1px 8px 0px rgba(99,96,99,1);
+    -moz-box-shadow: 1px 1px 8px 0px rgba(99,96,99,1);
+    box-shadow: 1px 1px 8px 0px rgba(99,96,99,1);
+    cursor: pointer;
+}
+.attahcmentfile{
+        font-size: 45px !important;
+
+}
+.attahctext{
+    font-size: 14px;
+    margin-top: 11px;
+
 }
 .datetimelist{
     width: 90%;
@@ -583,12 +598,12 @@ td,th{
     padding: 5px;
 }
 .addcol{
-        width: 47%;
+         width: 47%;
     border: 0;
     height: 25px;
-    color: white;
-    background-color: #158AE5 !important;
-    border-color: #158AE5 !important;
+    color: #158AE5 !important;
+    background-color: #FFFFFF !important;
+    border: 2px solid #158AE5 !important;
     font-weight: bold;
     border-radius: 1px;
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
@@ -599,13 +614,13 @@ td,th{
     margin-bottom: 4px;
 }
 .delcol{
-    width: 47%;
+       width: 47%;
     height: 25px;
-    color: #FFFFFF !important;
-    background-color: rgba(236, 13, 13, 0.64) !important;
+    color: rgba(236, 13, 13, 0.64) !important;
+    background-color: rgba(255, 255, 255, 0.64) !important;
     font-weight: bold;
     border-radius: 2px;
-    border: 1px solid rgba(236, 13, 13, 0.64);
+    border: 2px solid rgba(236, 13, 13, 0.64);
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
@@ -709,18 +724,19 @@ td,th{
 .textnamerlation{
    float: left;
     margin-top: -24px;
-    color: #5A5656;
+    color: #949494;
     font-weight: bolder;
     font-size: 16px;
     margin-bottom: 0px;
 }
 .textinputrltion{
-    float: left;
-    border: 1px solid #D8D8D8;
+        float: left;
+    border: 1px solid #D5D7D9;
     width: 90%;
     height: 30px;
     padding: 5px;
     border-radius: 2px;
+    background-color: white;
 }
 .aclrow{
     width: 100%;
@@ -798,15 +814,15 @@ td,th{
 .textnamerlationrle{
     float: left;
     margin-top: -34px;
-    color: #5A5656;
+    color: #949494;
     font-weight: bolder;
     font-size: 16px;
     margin-bottom: 0px;
     margin-left: -10px;
 }
 .listrelationdiv{
-   width: 90%;
-    min-height: 65px;
+        width: 90%;
+    min-height: 44px;
     float: left;
     border: 1px solid #DDD;
     margin-top: 35px;
@@ -816,13 +832,14 @@ td,th{
 }
 .listrelationdivacl{
         width: 90%;
-    min-height: 65px;
+    min-height: 42px;
     float: left;
     border: 1px solid #DDD;
     margin-top: 19px;
     margin-right: 5%;
     border-radius: 2px;
     padding: 10px;
+     background-color: white;
 }
 .buttonlstrelation{
     width: 86%;
@@ -862,15 +879,17 @@ td,th{
     border: 1px solid #DDD;
     margin-top: 35px;
     margin-right: 5%;
+    position: relative;
 }
 .previewSmallImagerelation{
-        width: 280px;
+    width: 280px;
     height: 160px;
     margin-left: 28%;
     margin-bottom: 10px;
+    margin-top: 7px;
 }
 .spanrelcustom{
-        color: black;
+       /* color: black; */
     margin-left: 9px;
     float: left;
     margin-top: 3px;
@@ -906,36 +925,36 @@ td,th{
     margin-bottom: 4px !important;
 }
 .btn-danger,.btn-danger:hover,.btn-danger:active,.btn-danger::selection {
-    color: #FFFFFF !important;
-    background-color: rgba(236, 13, 13, 0.64) !important;
+    color: rgba(236, 13, 13, 0.64) !important;
+    background-color: rgba(255, 255, 255, 0.64) !important;
     width: 100px;
     font-weight: bold;
     border-radius: 2px;
-    border: 1px solid rgba(236, 13, 13, 0.64);
+    border: 2px solid rgba(236, 13, 13, 0.64);
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
--moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 }
 
 .btn-success,.btn-success:hover,.btn-success:active,.btn-success::selection {
-    color: #FFFFFF !important;
-    background-color: #5cb85c !important;
+    color: #5cb85c !important;
+    background-color: rgba(255, 255, 255, 0.64) !important;
     width: 100px;
     font-weight: bold;
     border-radius: 2px;
-    border: 1px solid #5cb85c;
+    border: 2px solid #5cb85c;
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 }
 
 .btn-primary,.btn-primary:hover,.btn-primary:active,.btn-primary::selection{
-    color: #fff !important;
-    background-color: #158AE5 !important;
-    border-color: #158AE5 !important;
+    color: #158AE5 !important;
+    background-color: rgba(255, 255, 255, 0.64) !important;
+    border: 2px solid #158AE5 !important;
     width: 100px;
     font-weight: bold;
-    border-radius: 1px;
+    border-radius: 2px;
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
@@ -1187,25 +1206,25 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
     font-weight: bold;
 }
 .applyfiler{
-    width: 100px;
-    color: #fff !important;
-    background-color: #158AE5 !important;
+        width: 100px;
+    color: #158AE5 !important;
+    background-color: #FFFFFF !important;
     border-color: #158AE5 !important;
-    font-weight: bold;    
+    font-weight: bold;
     border-radius: 1px;
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    margin-left: 32%;
-    border: 1px solid #158AE5 !important;
+    margin-left: 31%;
+    border: 2px solid #158AE5 !important;
 }
 .clearfilter{
     width: 100px;
-    color: #FFFFFF !important;
-    background-color: rgba(236, 13, 13, 0.64) !important;
+    color: rgba(236, 13, 13, 0.64) !important;
+    background-color: rgba(255, 255, 255, 0.64) !important;
     font-weight: bold;
     border-radius: 2px;
-    border: 1px solid rgba(236, 13, 13, 0.64);
+    border: 2px solid rgba(236, 13, 13, 0.64);
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
@@ -1257,6 +1276,10 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
     margin-right: 12px;
     border-radius: 50%;
     padding: 0px;
+}
+.aclrealexpand{
+        float: right;
+    cursor: pointer;
 }
 .requiredred{
         border: 2px solid rgb(202, 162, 10) !important;
@@ -1312,4 +1335,58 @@ However, delay the fade out process for 2.5 seconds */
 @keyframes fadeout {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
+}
+
+.relreladd{
+        margin-right: 12px;
+    margin-top: 3px;
+}
+.relrelexp{
+        margin-top: 2px;
+}
+.imagewrapperfile{
+    position: absolute;
+    width: 400px;
+    height: 222px;
+    border: 1px solid black;
+    left: 283px;
+    top: 90px;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 20;
+}
+.filewrapperdownload{
+        color: white;
+    font-size: 60px !important;
+    margin-left: 30%;
+    margin-top: 20%;
+}
+.filewrapperdelete{
+        color: #E02222;
+    font-size: 77px !important;
+    margin-left: 5%;
+}
+.filerelwrapperedit{
+    color: #FFFFFF;
+    font-size: 77px !important;
+    margin-left: 35%;
+    margin-top: 13%;
+}
+.imagewrapperfilerel{
+        position: absolute;
+    width: 285px;
+    height: 165px;
+    border: 1px solid black;
+    left: 181px;
+    top: 5px;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 20;
+}
+.bodyClassNamerel{
+    padding-right: 0 !important;
+    background-color: #FAFAFA;
+}
+.mr15{
+    margin-right: 15px;
 }
