@@ -21,7 +21,7 @@ class Layout extends React.Component {
 		}
 	}
 	componentDidMount() {
-		let isHosted = false
+		let isHosted = true
 		let USERSERVICEURL = 'http://localhost:3000/'
 		if(isHosted == "true" || isHosted == true){
 			USERSERVICEURL = "https://service.cloudboost.io/"
