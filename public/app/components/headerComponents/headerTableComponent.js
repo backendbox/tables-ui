@@ -20,6 +20,7 @@ class HeaderTable extends React.Component {
 		this.props.tableStore.showLoader()
 	}
 	deleteTable(){
+		this.props.tableStore.showLoader()
 		this.props.tableStore.deleteTable(this.state.tableTodelete)
 		this.state.openDeleteTable = false
 		this.state.tableTodelete = ''
@@ -27,6 +28,7 @@ class HeaderTable extends React.Component {
 	}
 	addtable(e){
 		e.preventDefault()
+		this.props.tableStore.showLoader()
 		this.props.tableStore.createTable(this.state.tableName)
 		this.state.openNewTable = false
 		this.state.tableName = ''

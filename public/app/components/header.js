@@ -1,6 +1,7 @@
 import React from 'react'
 import { observer } from "mobx-react"
 import Snackbar from 'material-ui/Snackbar'
+import {Popover, PopoverAnimationVertical} from 'material-ui/Popover'
 //components
 import HideColumns from './headerComponents/hideColumnsComponent.js';
 import FilterRows from './headerComponents/filterRowsComponent.js';
@@ -14,6 +15,7 @@ class Header extends React.Component {
 		this.state = {
 			searchString:'',
 			searchErrorOpen: false,
+			open: false,
 		}
 	}
 	search(searchString){
@@ -30,10 +32,17 @@ class Header extends React.Component {
 			})
 		})
 	}
-	handleRequestClose(){
+	handleTouchTap(event){
+		// This prevents ghost click.
+		event.preventDefault();
 		this.setState({
-			searchErrorOpen: false
+		  open: true,
+		  anchorEl: event.currentTarget
 		})
+	}
+	handleRequestClose(which){
+		this.state[which] = false
+		this.setState(this.state)
 	}
 	refreshRows(){
 		this.props.tableStore.setColumnsData()
@@ -52,6 +61,9 @@ class Header extends React.Component {
 	dashprofileRedirect(){
 		window.location.href="https://dashboard.cloudboost.io/#/profile"
 	}
+	logout(){
+		window.location.href="https://accounts.cloudboost.io"
+	}
 	changeHandler(which,e){
 		this.state[which] = e.target.value
 		this.setState(this.state)
@@ -65,16 +77,29 @@ class Header extends React.Component {
 					<p className="appname">{ this.props.appName }</p>
 					{ 
 						this.props.userProfile.file ? 
-						<img src={ this.props.userProfile.file.document ? this.props.userProfile.file.document.url : '' } className="userlogoimage cp" onClick={ this.dashprofileRedirect.bind(this) }/>
+						<img src={ this.props.userProfile.file.document ? this.props.userProfile.file.document.url : '' } className="userlogoimage cp" onTouchTap={this.handleTouchTap.bind(this)} />
 						:
-						<i className="fa fa-user userLogoheadng cp" aria-hidden="true" onClick={ this.dashprofileRedirect.bind(this) }></i> 
+						<i className="fa fa-user userLogoheadng cp" aria-hidden="true" onTouchTap={this.handleTouchTap.bind(this)} ></i> 
 					}
+					<Popover
+				          open={this.state.open}
+				          anchorEl={this.state.anchorEl}
+				          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+				          targetOrigin={{horizontal: 'left', vertical: 'top'}}
+				          onRequestClose={this.handleRequestClose.bind(this,'open')}
+				          animated={false}
+				          className="columnpop"
+				        >
+				        	<button className="coloptbtn" onClick={ this.dashprofileRedirect.bind(this) }><i className="fa fa-user" aria-hidden="true"></i> Profile</button>
+				        	<button className="coloptbtn" onClick={ this.dashRedirect.bind(this) }><i className="fa fa-home" aria-hidden="true"></i> Dashboard</button>
+				        	<button className="coloptbtn" onClick={ this.logout.bind(this) }><i className="fa fa-sign-out" aria-hidden="true"></i> Logout</button>
+				    </Popover>
 					<i className="fa fa-book userHelpheadng cp" aria-hidden="true" onClick={ this.newPageRedirect.bind(this,"https://tutorials.cloudboost.io/") }></i>
 					<i className="fa fa-question userHelpheadng cp" aria-hidden="true" onClick={ this.newPageRedirect.bind(this,"https://slack.cloudboost.io") }></i>
 					<HeaderTable tableStore={ this.props.tableStore }/>
 				</div>
 				<div id="dataSubHeader">
-					<button className="btn subhbtn ml5" onClick={ this.refreshRows.bind(this) }><i className="fa fa-refresh mr2" aria-hidden="true"></i> Refresh rows</button>
+					<div className="btn subhbtn ml5" onClick={ this.refreshRows.bind(this) }><i className="fa fa-refresh mr2" aria-hidden="true"></i> Refresh rows</div>
 					<button className={this.props.tableStore.rowsToDelete.length > 0 ? 'btn subhbtn':'hide'} onClick={ this.deleteRows.bind(this) }><i className="fa fa-trash mr2" aria-hidden="true"></i> Delete rows</button>
 					<HideColumns tableStore={ this.props.tableStore }/>
 					<FilterRows tableStore={ this.props.tableStore }/>
@@ -84,7 +109,7 @@ class Header extends React.Component {
 		          open={this.state.searchErrorOpen}
 		          message="Cannot Search, Table does not have a text datatype column."
 		          autoHideDuration={4000}
-		          onRequestClose={this.handleRequestClose.bind(this)}
+		          onRequestClose={this.handleRequestClose.bind(this,'searchErrorOpen')}
 		        />
 			</div>
 		);

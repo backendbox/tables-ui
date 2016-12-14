@@ -63,7 +63,7 @@ class GeoTdComponent extends React.Component {
             <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true)}>
             	<span className="color888">{ JSON.stringify(data) }</span>
             	<i className="fa fa-expand fr" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
-            	<Dialog title="Geo Location EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
+            	<Dialog title="Geo Location" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 	          		<div className="latdiv">
 	          			<p className="headinlatlon">Latitude </p>
 	          			<p className="ptaglatlong">Latitude must be range of -90 to 90</p>

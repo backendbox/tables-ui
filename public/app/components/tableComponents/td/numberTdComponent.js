@@ -30,7 +30,7 @@ class NumberTdComponent extends React.Component {
      	}
     }
     changeHandler(e){
-    	this.props.updateElement(parseInt(e.target.value))
+    	this.props.updateElement(parseFloat(e.target.value))
     }
 	render() {
 		let requiredClass = this.props.isRequired ? " requiredred":""

@@ -50,7 +50,7 @@ class Search extends React.Component {
 		          className="popupsearchcol"
 		        >
 		        <input className="searchinputpop" placeholder="Search.." onChange={ this.search.bind(this) } value={ this.props.searchString }/>
-		        <i className="fa fa-trash searchclose cp" aria-hidden="true" onClick={ this.clearSearch.bind(this) }></i>
+		        <i className="fa fa-times searchclose cp" aria-hidden="true" onClick={ this.clearSearch.bind(this) }></i>
 		        </Popover>
 			</div>
 		);

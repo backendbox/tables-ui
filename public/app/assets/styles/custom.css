@@ -84,8 +84,8 @@ td,th{
 }
 
 .paperError{
-	width: 178px;
-    height: 50px;
+	    width: 178px;
+    min-height: 30px;
     position: absolute;
     left: 10px;
     z-index: 1;
@@ -98,8 +98,9 @@ td,th{
 }
 
 .abstext {
-       color: #EA4747;
+    color: #EA4747;
     font-size: 14px;
+    margin-bottom: 0 !important;
 }
 
 .jsonmodal{
@@ -170,12 +171,22 @@ td,th{
     padding-top: 8px;
 }
 .subhbtn{
-	height: 37px;
+	    height: 37px;
+    margin-top: 4px;
+    margin-left: 1px;
+    border-radius: 2px;
+    background-color: #DEEFFB;
+    padding-top: 8px;
+}
+
+.subhbtn,.subhbtn:hover,.subhbtn:active,.subhbtn::selection{
+    height: 37px;
     margin-top: 4px;
     margin-left: 1px;
     border-radius: 2px;
     background-color: #DEEFFB;
 }
+
 .subhbtnpop{
 	height: 37px;
     margin-top: 4px;
@@ -192,7 +203,7 @@ td,th{
 }
 .popupshowhideleft{
 	width: 85px;
-    height: 30px;
+    height: 33px;
     margin-top: 6px;
     margin-left: 19px;
     background-color: white;
@@ -203,7 +214,7 @@ td,th{
 	width: 85px;
     background-color: white;
     border: 1px solid #DDD;
-    height: 30px;
+    height: 33px;
     margin-top: 6px;
     margin-left: 14px;
     margin-bottom: 10px
@@ -466,9 +477,10 @@ td,th{
     float: left;
 }
 .searchclose{
-        font-size: 20px !important;
+    font-size: 20px !important;
     margin-left: 10px;
     margin-top: 7px;
+    color: #807777;
     float: left;
 }
 .headertablecrud{
@@ -478,7 +490,7 @@ td,th{
     position: absolute;
     overflow-x: auto;
     white-space: nowrap;
-    max-width: 91%;
+    max-width: 98%;
     overflow-y: hidden;
 }
 .tableselected{
@@ -487,15 +499,19 @@ td,th{
     /* max-width: 200px; */
     /* float: left; */
     display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .tablenotselected{
         height: 100%;
     min-width: 110px;
-    max-width: 200px;
+    /*max-width: 200px;*/
     background-color: #C4E2F9;
     /* float: left; */
     margin-left: 1px;
     display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .white{
     color: white
@@ -1046,6 +1062,10 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
     border: 2px solid #5BAEED !important;
     background-color: #EBF7FF;
 }
+.clickedCell{
+    border: 2px solid #5BAEED !important;
+    background-color: #EBF7FF;
+}
 .booleanlistval{
     float: left;
     width: 80% !important;
@@ -1078,7 +1098,7 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
     font-size: 15px;
     /* margin-left: -7px; */
     margin-right: 9px;
-    color: #FB5050;
+    color: #CAA20A;
 }
 .zi10{
         z-index: 10;
@@ -1216,7 +1236,9 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     margin-left: 31%;
-    border: 2px solid #158AE5 !important;
+    border: 1px solid #158AE5 !important;
+    font-size: 12px;
+
 }
 .clearfilter{
     width: 100px;
@@ -1224,16 +1246,17 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
     background-color: rgba(255, 255, 255, 0.64) !important;
     font-weight: bold;
     border-radius: 2px;
-    border: 2px solid rgba(236, 13, 13, 0.64);
+    border: 1px solid rgba(236, 13, 13, 0.64);
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     margin-left: 3px;
+    font-size: 12px;
 }
 .filterbutton{
-        float: left;
+    float: left;
     width: 100%;
-    margin-bottom: 2px;
+    margin-bottom: 7px;
 }
 .filterrowdiv{
     float: left;
@@ -1286,7 +1309,7 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
     background-color: rgba(255, 0, 0, 0.03) !important;
 }
 .testdt{
-    border: 0px solid white !important;
+    /*border: 0px solid white !important;*/
 }
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {

@@ -58,6 +58,10 @@ class Table extends React.Component {
 				$('.testdt').removeClass('lgreyhover')
 				$('.tdplus').removeClass('lgreyhover')
 			})
+			$('td').click(function(){
+				$('td').removeClass('clickedCell')
+				$(this).addClass('clickedCell')
+			})
 			this.props.tableStore.hideLoader()
 		},1000)
 	}
@@ -138,7 +142,7 @@ class Table extends React.Component {
 			        </thead>
 			        <tbody>
 			        	{ clomunTr }
-			        	<tr className="addnewrow"> 
+			        	<tr className="addnewrow" onDoubleClick={this.addRow.bind(this)}> 
 							<td className="pointer tdplus" onClick={this.addRow.bind(this)}><i className="fa fa-plus plusrow" aria-hidden="true"></i></td>
 							{
 								getColumns
@@ -163,7 +167,7 @@ class Table extends React.Component {
 			        </thead>
 			        <tbody>
 			          { clomunTrOverlap }
-			          	<tr className="addnewrow"> 
+			          	<tr className="addnewrow" onDoubleClick={this.addRow.bind(this)}> 
 							<td className="pointer tdplus" onClick={this.addRow.bind(this)}><i className="fa fa-plus plusrow" aria-hidden="true"></i></td>
 							<td className="testdt"></td>
 						</tr>
