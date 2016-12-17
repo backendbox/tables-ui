@@ -56,13 +56,13 @@ class Header extends React.Component {
   		win.focus()
 	}
 	dashRedirect(){
-		window.location.href="https://dashboard.cloudboost.io/"
+		window.location.href=DASHBOARD_URL
 	}
 	dashprofileRedirect(){
-		window.location.href="https://dashboard.cloudboost.io/#/profile"
+		window.location.href=DASHBOARD_URL+"/#/profile"
 	}
 	logout(){
-		window.location.href="https://accounts.cloudboost.io"
+		window.location.href=ACCOUNTS_URL
 	}
 	changeHandler(which,e){
 		this.state[which] = e.target.value

@@ -21,33 +21,28 @@ class Layout extends React.Component {
 		}
 	}
 	componentDidMount() {
-		let isHosted = true
-		let USERSERVICEURL = 'http://localhost:3000/'
-		if(isHosted == "true" || isHosted == true){
-			USERSERVICEURL = "https://service.cloudboost.io/"
-		}
 		axios.defaults.withCredentials = true
 		let appId = window.location.hash.split('/')[1]
 		let tableName = window.location.hash.split('/')[2]
-		axios.get(USERSERVICEURL+'user').then((userData)=>{
-			axios.get(USERSERVICEURL+'app/'+appId).then((data)=>{
+		axios.get(USER_SERVICE_URL+'user').then((userData)=>{
+			axios.get(USER_SERVICE_URL+'app/'+appId).then((data)=>{
 				if(data.data && appId){
-					if(isHosted == "true" || isHosted == true){
+					if(__isHosted == "true" || __isHosted == true){
 						CB.CloudApp.init(appId,data.data.keys.master)
-					} else CB.CloudApp.init("http://localhost:4730",appId,data.data.keys.master)
+					} else CB.CloudApp.init(SERVER_URL,appId,data.data.keys.master)
 					if(tableName) TableStore.initialize(tableName)
 						else TableStore.initialize()
 					this.setState({appName:data.data.name,userProfile:userData.data})
 					document.title = "CloudBoost Table | "+data.data.name
 				} else {
-					window.location.href = "https://dashboard.cloudboost.io/"
+					window.location.href = DASHBOARD_URL
 				}
 			},(err)=>{
 				console.log(err)
-				window.location.href = "https://dashboard.cloudboost.io/"
+				window.location.href = DASHBOARD_URL
 			})
 		},(err)=>{
-			window.location.href = "https://accounts.cloudboost.io"
+			window.location.href = ACCOUNTS_URL
 		})
 	}
 	render() {
