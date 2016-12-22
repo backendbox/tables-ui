@@ -45,7 +45,7 @@ class DateTimeListComponent extends React.Component {
             	<i className="fa fa-clock-o fl dateml" aria-hidden="true" onClick={this.openInput.bind(this,'InputTime')}></i>
             	<DatePicker id="date" ref="InputDate" className='width0 fl' onChange={this.viewChangeDate.bind(this)}/>
             	<TimePicker id="time" ref="InputTime" className='width0 fl' onChange={this.viewChangeTime.bind(this)}/>
-            	<i className="fa fa-trash datedeletebt" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
+            	<i className="fa fa-times datedeletebt" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
 			</div>
 		);
 	}

@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {blue500} from 'material-ui/styles/colors';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import axios from 'axios'
 injectTapEventPlugin();
@@ -46,14 +48,22 @@ class Layout extends React.Component {
 		})
 	}
 	render() {
-	  return (
-	  	<MuiThemeProvider>
-	  		<div id="reactmain">
+		const muiTheme = getMuiTheme({
+			palette: {
+				primary1Color: blue500,
+				primary2Color: blue500,
+				accent1Color: blue500,
+				pickerHeaderColor: blue500,
+			},
+		})
+		return (
+			<MuiThemeProvider muiTheme={muiTheme}>
+				<div id="reactmain">
 		  		<Header tableStore={ TableStore } appName={ this.state.appName } userProfile={ this.state.userProfile }/>
 		  		<Table tableStore={ TableStore }></Table>
-	  		</div>
-	  	</MuiThemeProvider>
-	  );
+				</div>
+			</MuiThemeProvider>
+		);
 	}
 }
 

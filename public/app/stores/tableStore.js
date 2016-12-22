@@ -67,6 +67,8 @@ class TableStore {
 			this.setColumns()
 			this.setColumnsData()
 		},(err)=>{
+			this.showSnackbar(3000,"Cannot add a column, please try again.")
+			this.hideLoader()
 			console.log(err)
 		})
 	}

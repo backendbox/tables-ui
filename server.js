@@ -34,6 +34,10 @@ app.get('/app/key.js',function(req,res){
 	res.end();
 });
 
+app.get('/status', function(req,res,next) {
+	res.status(200).json({status:200, message : "Tables Status : OK"});           
+});
+
 let port = process.env.PORT || 3333
 app.listen(port, function () {
   console.log( "Data-Browser running on :" + port )

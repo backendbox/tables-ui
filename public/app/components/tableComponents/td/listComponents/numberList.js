@@ -22,7 +22,7 @@ class NumberListComponent extends React.Component {
 		return (
 			<div>
 				<input type="number" className="listtexttableinput" value={ this.props.data } onChange={ this.updateValue.bind(this) }/>
-				<i className="fa fa-trash trashlistinputtext" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
+				<i className="fa fa-times trashlistinputtext" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
 			</div>
 		);
 	}

@@ -41,7 +41,7 @@ class ViewACL extends React.Component {
             	</span>
 		}
 		return (
-            <span>{ str }</span>
+            <span className="expandleftpspan">{ str }</span>
 		);
 	}
 }

@@ -46,7 +46,7 @@ class GeoListComponent extends React.Component {
 		data.long = this.props.data.longitude || 0
 		return (
 			<div>
-        		<Dialog title="Geo Location EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
+        		<Dialog title="Geo Location" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 	          		<TextField
 				      hintText="Latitude"
 				      floatingLabelText="Enter a Latitude"
@@ -69,8 +69,8 @@ class GeoListComponent extends React.Component {
 	          		<button className="btn btn-danger fr" onClick={this.openCloseModal.bind(this,false)}>CLOSE</button>
         		</Dialog>
 				<input type="text" className="listtexttableinput" disabled="true" value={ JSON.stringify(data) }/>
-				<i className="fa fa-pencil trashlistinputtext" aria-hidden="true" onClick={ this.openCloseModal.bind(this,true) }></i>
-				<i className="fa fa-trash trashlistinputtext" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
+				<i className="fa fa-expand trashlistinputtext expandiconlist" aria-hidden="true" onClick={ this.openCloseModal.bind(this,true) }></i>
+				<i className="fa fa-times trashlistinputtext" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
 			</div>
 		);
 	}

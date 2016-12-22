@@ -1,5 +1,6 @@
 body{
-	height: 100%
+	height: 100%;
+        background-color: #EAF2F8;
 }
 #main{
 	height: 100%;
@@ -614,7 +615,7 @@ td,th{
     padding: 5px;
 }
 .addcol{
-         width: 47%;
+        width: 70%;
     border: 0;
     height: 25px;
     color: #158AE5 !important;
@@ -625,7 +626,7 @@ td,th{
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    margin-left: 4px;
+    margin-left: 15%;
     margin-right: 3px;
     margin-bottom: 4px;
 }
@@ -940,7 +941,7 @@ td,th{
     /* padding-bottom: 18px !important; */
     margin-bottom: 4px !important;
 }
-.btn-danger,.btn-danger:hover,.btn-danger:active,.btn-danger::selection {
+.btn-danger,.btn-danger:active,.btn-danger::selection {
     color: rgba(236, 13, 13, 0.64) !important;
     background-color: rgba(255, 255, 255, 0.64) !important;
     width: 100px;
@@ -950,9 +951,14 @@ td,th{
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+    transition: background-color ease 0.2s , color ease 0.2s;
+}
+.btn-danger:hover {
+    color: white !important;
+    background-color: rgba(236, 13, 13, 0.64) !important;
 }
 
-.btn-success,.btn-success:hover,.btn-success:active,.btn-success::selection {
+.btn-success,.btn-success:active,.btn-success::selection {
     color: #5cb85c !important;
     background-color: rgba(255, 255, 255, 0.64) !important;
     width: 100px;
@@ -962,9 +968,15 @@ td,th{
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+transition: background-color ease 0.2s , color ease 0.2s;
 }
 
-.btn-primary,.btn-primary:hover,.btn-primary:active,.btn-primary::selection{
+.btn-success:hover {
+    color: white !important;
+    background-color: #5cb85c !important;
+}
+
+.btn-primary,.btn-primary:active,.btn-primary::selection{
     color: #158AE5 !important;
     background-color: rgba(255, 255, 255, 0.64) !important;
     border: 2px solid #158AE5 !important;
@@ -974,7 +986,14 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
 box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
+transition: background-color ease 0.2s , color ease 0.2s;
 }
+
+.btn-primary:hover {
+    color: white !important;
+    background-color: #158AE5 !important;
+}
+
 .btn-orange,.btn-orange:hover,.btn-orange:active,.btn-orange::selection{
         color: #fff !important;
     background-color: rgba(255, 85, 0, 0.78) !important;
@@ -1017,11 +1036,12 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
     position: absolute !important;
     padding: 8px !important;
     -webkit-box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
--moz-box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
-box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
-    margin-top: -2px !important;
-    margin-left: 0px !important;
-    border-left: 0 !important;
+    -moz-box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
+    box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
+    margin-top: -1px !important;
+    margin-left: -1px !important;
+    /* border-left: 0 !important; */
+    background-color: white;
 }
 .tdselected{
     border: 2px solid #5BAEED !important;
@@ -1068,16 +1088,18 @@ box-shadow: 2px 0px 5px -2px rgba(0,0,0,0.75);
 }
 .booleanlistval{
     float: left;
-    width: 80% !important;
+    width: 75% !important;
+    padding-left: 49px;
 }
 .boollistel{
-    margin-top: 1%;
+        float: left;
+    margin-left: 20px;
 }
 .listdivscontent{
-    min-height: 200px;
+    /*min-height: 200px;*/
     max-height: 350px;
     overflow-y: auto;
-    background-color: #F3F5F7;
+    /*background-color: #F3F5F7;*/
     border-radius: 5px;
     padding: 8px;
 }
@@ -1410,6 +1432,44 @@ However, delay the fade out process for 2.5 seconds */
     padding-right: 0 !important;
     background-color: #FAFAFA;
 }
+.bodyClassNameobj{
+    padding-left: 0 !important;
+}
 .mr15{
     margin-right: 15px;
+}
+.expandCircle{
+    padding: 6px;
+    border-radius: 50%;
+    color: #504E4E;
+    background-color: white;
+    -webkit-box-shadow: 1px 1px 4px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 4px -1px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 6px -2px rgba(0,0,0,0.75);
+    transition: box-shadow ease 0.2s;
+}
+.expandCircle:hover{
+    box-shadow: 1px 1px 8px -2px rgba(0,0,0,0.75);
+}
+.expandleftpspan{
+    margin-top: 6px;
+    float: left;
+}
+.ace_editor{
+        position: relative;
+    overflow: hidden;
+    font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    direction: ltr;
+        width: 100% !important;
+    margin-bottom: 10px;
+}
+.mdl-data-table td:last-of-type, .mdl-data-table th:last-of-type {
+    padding-right: 24px !important;
+    border-right: 0 !important;
+}
+.expandiconlist{
+        font-size: 17px !important;
+}
+.bodyClassNamelist{
+        width: 600px !important;
 }

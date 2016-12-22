@@ -117,7 +117,7 @@ class ListTdComponent extends React.Component {
 		}
 		return (
             <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true,false)}>
-            	<span className="color888">
+            	<span className="color888 expandleftpspan">
 	            	<Badge
 				      badgeContent={ this.state.elementData ? this.state.elementData.length : 0 }
 				      primary={ this.state.elementData ? !!this.state.elementData.length : false }
@@ -126,15 +126,18 @@ class ListTdComponent extends React.Component {
 				    <span className="entriesbadgeright"> - Entries </span>
 			    </span>
 			{ /* <span className="color888">List - { this.state.elementData ? this.state.elementData.length : 0 } - Entries</span> */ }
-            	<i className="fa fa-expand fr" aria-hidden="true" onClick={this.openCloseModal.bind(this,true,false)}></i>
-            	<Dialog title="List Editor" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
-            		<GenericAddToList
-            			addToElementData={ this.addToElementData.bind(this) }
-            			columnType={ this.props.columnType.relatedTo }
-            		/>
+            	<i className="fa fa-expand fr expandCircle" aria-hidden="true" onClick={this.openCloseModal.bind(this,true,false)}></i>
+            	<Dialog title="List Editor" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle" contentClassName={"bodyClassNamelist"}>
+         
             		<div className="listdivscontent">
 	          		{ elements }
 	          		</div>
+
+	          		<GenericAddToList
+            			addToElementData={ this.addToElementData.bind(this) }
+            			columnType={ this.props.columnType.relatedTo }
+            		/>
+            		
 	          		<div className="savecanclist">
 	          			<button className="btn btn-danger fr ml5" onClick={this.openCloseModal.bind(this,false,false)}>CLOSE</button>
 	          			<button className="btn btn-primary fr" onClick={this.openCloseModal.bind(this,false,true)}>SAVE</button>

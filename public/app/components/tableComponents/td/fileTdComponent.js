@@ -92,9 +92,9 @@ class FileTdComponent extends React.Component {
 		let requiredClass = this.props.isRequired ? " requiredred":""
 		return (
             <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true)}>
-            	<span className={this.state.filePreview.document ? 'hide' : 'color888'}>Upload File</span>
+            	<span className={this.state.filePreview.document ? 'hide' : 'color888 expandleftpspan'}>Upload File</span>
             	<img className={this.state.filePreview.document ? 'previewSmallImage' : 'hide'} src={ this.state.filePreview.document ?  this.state.filePreview.document.url : ''} />
-            	<i className={this.state.filePreview.document ? 'mt10 fa fa-expand fr' : 'fa fa-expand fr'} aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
+            	<i className={this.state.filePreview.document ? 'fa fa-expand fr expandCircle' : 'fa fa-expand fr expandCircle'} aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
             	<Dialog title="Upload File" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 	          		<Dropzone className={ this.state.progress ? "hide" : "dropFile"} onDrop={this.changeHandler.bind(this)}>
 		              <div>Try dropping some files here, or click to select files to upload.</div>

@@ -21,24 +21,29 @@ class AddColumnComponent extends React.Component {
 	}
 	buildColumn(e){
 		e.preventDefault();
-		let column = new CB.Column(this.state.name)
-		column.required = this.state.required
-		column.dataType = this.state.dataType
-		if(this.state.dataType == 'Relation'){
-			column.relatedTo = this.state.target
-		} else if(this.state.dataType == 'List'){
-			if(this.props.tableStore.getTables.filter(x => x.name == this.state.target).length){
+		try{
+			if(!this.state.dataType) this.state.dataType = 'Text'
+			let column = new CB.Column(this.state.name)
+			column.required = this.state.required
+			column.dataType = this.state.dataType
+			if(this.state.dataType == 'Relation'){
 				column.relatedTo = this.state.target
+			} else if(this.state.dataType == 'List'){
+				if(this.props.tableStore.getTables.filter(x => x.name == this.state.target).length){
+					column.relatedTo = this.state.target
+				} else {
+					column.relatedTo = this.state.target
+					column.listDataType = this.state.target
+				}
 			} else {
-				column.relatedTo = this.state.target
-				column.listDataType = this.state.target
+				if(this.state.uniqueCheck) column.unique = this.state.unique
 			}
-		} else {
-			if(this.state.uniqueCheck) column.unique = this.state.unique
+			this.props.tableStore.showLoader()
+			this.props.tableStore.addColumn(column)
+			this.setInitialState()
+		} catch(e){
+			this.props.tableStore.showSnackbar(3000,e)
 		}
-		this.props.tableStore.showLoader()
-		this.props.tableStore.addColumn(column)
-		this.setInitialState()
 	}
 	handleTouchTap(event){
 		// This prevents ghost click.
@@ -103,16 +108,15 @@ class AddColumnComponent extends React.Component {
 			        >
 			        <form onSubmit={this.buildColumn.bind(this)}>
 				        <div className="addcoldiv">
-				        	<input className="addcolinput" placeholder="Enter a column name." type="text" value={ this.state.name } onChange={ this.changeHandler.bind(this,'name') } required/>
+				        	<input className="addcolinput" placeholder="Column name." type="text" value={ this.state.name } onChange={ this.changeHandler.bind(this,'name') } required/>
 				        	<p className="paddcolumns"> Select the column type </p>
-				        	<select required className="addcolselect" value={ this.state.dataType } onChange={ this.setDataType.bind(this) }>
-				        		<option value=''>-select-</option>
+				        	<select required className="addcolselect" value={ this.state.dataType || 'Text' } onChange={ this.setDataType.bind(this) }>
 				        		{ columnTypes }
 				        	</select>
 				        	<p className={ this.state.dataType ? ( this.state.dataType == 'List' || this.state.dataType == 'Relation' ? "paddcolumns" : 'hide' ) : "hide"}> Select target type </p>
 				        	<select className={ this.state.dataType ? ( this.state.dataType == 'List' || this.state.dataType == 'Relation' ? "addcolselect" : 'hide' ) : "hide"} value={ this.state.target } onChange={ this.changeHandler.bind(this,'target') }>
 				        		<option value=''>-select-</option>
-				        		<optgroup label="Data types" className={ this.state.dataType ? ( this.state.dataType == 'List' ? "" : 'hide' ) : "hide"}>
+				        		<optgroup label="DataTypes" className={ this.state.dataType ? ( this.state.dataType == 'List' ? "" : 'hide' ) : "hide"}>
 				        			{ targetTypesData }
 				        		</optgroup>
 				        		<optgroup label="Tables">
@@ -125,7 +129,6 @@ class AddColumnComponent extends React.Component {
 				        	<Checkbox className={ this.state.uniqueCheck ? 'checkStyleaddcolfr' : 'hide' } onCheck={this.checkHandler.bind(this,'unique')} checked={this.state.unique}/>
 				        </div>
 				        <button className="fl addcol" type="submit">Add</button>
-				        <button className="fl delcol" type="button" onClick={this.handleRequestClose.bind(this)}>Cancel</button>
 			        </form>
 			    	</Popover>
 	           	</th>

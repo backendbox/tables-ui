@@ -37,7 +37,7 @@ class FileListComponent extends React.Component {
 				<img src={ 
 					this.state.filePreview ? (this.state.filePreview.type.split('/')[0] == 'image' ? this.state.filePreview.url : '/app/assets/images/file.png') : '/app/assets/images/file.png' 
 				} className="fileListPreveiew cp" onClick={ this.downloadFile.bind(this) }/>
-				<button onClick={ this.deleteValue.bind(this) } className="deletefilelist"><i className="fa fa-trash" aria-hidden="true"></i> Delete</button>
+				<button onClick={ this.deleteValue.bind(this) } className="deletefilelist"><i className="fa fa-times" aria-hidden="true"></i> Delete</button>
 			</div>
 		);
 	}

@@ -51,9 +51,9 @@ class ObjectTdComponent extends React.Component {
 		let jsonData = JSON.stringify(this.props.elementData) || ''
 		return (
             <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true)}>
-            	<span className="color888">{ jsonData ? jsonData.slice(0,20) : '' }</span>
-            	<i className="fa fa-expand fr" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
-            	<Dialog title="Json Object Editor" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
+            	<span className="color888 expandleftpspan">{ jsonData ? jsonData.slice(0,20) : '' }</span>
+            	<i className="fa fa-expand fr expandCircle" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
+            	<Dialog title="JSON Object" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle" bodyClassName={"bodyClassNameobj"}>
 	          		<AceEditor
 					    mode="json"
 					    theme="github"

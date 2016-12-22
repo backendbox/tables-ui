@@ -49,8 +49,8 @@ class ObjectListComponent extends React.Component {
 	          		<button className="btn btn-danger fr" onClick={this.openCloseModal.bind(this,false)}>CLOSE</button>
         		</Dialog>
 				<input type="text" className="listtexttableinput" value={ JSON.stringify(this.props.data) } disabled="true" />
-				<i className="fa fa-pencil trashlistinputtext" aria-hidden="true" onClick={ this.openCloseModal.bind(this,true) }></i>
-				<i className="fa fa-trash trashlistinputtext" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
+				<i className="fa fa-expand trashlistinputtext expandiconlist" aria-hidden="true" onClick={ this.openCloseModal.bind(this,true) }></i>
+				<i className="fa fa-times trashlistinputtext" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
 			</div>
 		);
 	}

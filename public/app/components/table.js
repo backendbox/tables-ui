@@ -61,6 +61,7 @@ class Table extends React.Component {
 			$('td').click(function(){
 				$('td').removeClass('clickedCell')
 				$(this).addClass('clickedCell')
+				$('.tdtrcheck').removeClass('clickedCell')
 			})
 			this.props.tableStore.hideLoader()
 		},1000)

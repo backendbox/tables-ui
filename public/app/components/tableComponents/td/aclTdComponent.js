@@ -131,7 +131,7 @@ class ACLTd extends React.Component {
 		return (
             <td className='mdl-data-table__cell--non-numeric pointer' onDoubleClick={this.openCloseModal.bind(this,true)}>
             	<ViewACL aclList={ this.state.aclList }/>
-            	<i className="fa fa-expand fr" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
+            	<i className="fa fa-expand fr expandCircle" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
             	{	
 	            	this.state.isOpenACL ? <Dialog title="Access Control List" modal={false} open={this.state.isOpenACL} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
 								        		<ACLRows 
