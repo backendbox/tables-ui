@@ -108,12 +108,13 @@ class AddColumnComponent extends React.Component {
 			        >
 			        <form onSubmit={this.buildColumn.bind(this)}>
 				        <div className="addcoldiv">
+				        	<p className="paddcolumns"> Column name.</p>
 				        	<input className="addcolinput" placeholder="Column name." type="text" value={ this.state.name } onChange={ this.changeHandler.bind(this,'name') } required/>
-				        	<p className="paddcolumns"> Select the column type </p>
+				        	<p className="paddcolumns"> Column type. </p>
 				        	<select required className="addcolselect" value={ this.state.dataType || 'Text' } onChange={ this.setDataType.bind(this) }>
 				        		{ columnTypes }
 				        	</select>
-				        	<p className={ this.state.dataType ? ( this.state.dataType == 'List' || this.state.dataType == 'Relation' ? "paddcolumns" : 'hide' ) : "hide"}> Select target type </p>
+				        	<p className={ this.state.dataType ? ( this.state.dataType == 'List' || this.state.dataType == 'Relation' ? "paddcolumns" : 'hide' ) : "hide"}> Target type. </p>
 				        	<select className={ this.state.dataType ? ( this.state.dataType == 'List' || this.state.dataType == 'Relation' ? "addcolselect" : 'hide' ) : "hide"} value={ this.state.target } onChange={ this.changeHandler.bind(this,'target') }>
 				        		<option value=''>-select-</option>
 				        		<optgroup label="DataTypes" className={ this.state.dataType ? ( this.state.dataType == 'List' ? "" : 'hide' ) : "hide"}>

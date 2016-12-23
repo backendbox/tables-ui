@@ -90,17 +90,21 @@ class FileTdComponent extends React.Component {
 	}
 	render() {
 		let requiredClass = this.props.isRequired ? " requiredred":""
+		let dialogTitle = <div className="modaltitle">
+							<span className="diadlogTitleText">File Editor</span>
+							<i className='fa fa-paperclip iconmodal'></i>
+						</div>
 		return (
             <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true)}>
             	<span className={this.state.filePreview.document ? 'hide' : 'color888 expandleftpspan'}>Upload File</span>
             	<img className={this.state.filePreview.document ? 'previewSmallImage' : 'hide'} src={ this.state.filePreview.document ?  this.state.filePreview.document.url : ''} />
             	<i className={this.state.filePreview.document ? 'fa fa-expand fr expandCircle' : 'fa fa-expand fr expandCircle'} aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
-            	<Dialog title="Upload File" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
+            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)}>
 	          		<Dropzone className={ this.state.progress ? "hide" : "dropFile"} onDrop={this.changeHandler.bind(this)}>
 		              <div>Try dropping some files here, or click to select files to upload.</div>
 		              <button className="Choosefilebtn">Choose File</button>
 		            </Dropzone>
-		            <img className={ this.state.progress ? "hide" : "previewImage"} src={this.state.file.preview || ''} onMouseEnter={ this.toggleShowWrapper.bind(this,true) } />
+		            <img className={ this.state.progress || !this.state.file.preview ? "hide" : "previewImage"} src={this.state.file.preview || ''} onMouseEnter={ this.toggleShowWrapper.bind(this,true) } />
 		            <div className={this.state.showWrapper ? "imagewrapperfile":"hide" } onMouseLeave={ this.toggleShowWrapper.bind(this,false) }>
 		            	<i className="fa fa-download cp filewrapperdownload" onClick={this.downloadFile.bind(this)} aria-hidden="true"></i>
 		            	<i className="fa fa-trash-o cp filewrapperdelete" onClick={this.deleteFile.bind(this)} aria-hidden="true"></i>

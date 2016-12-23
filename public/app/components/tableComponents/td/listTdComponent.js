@@ -115,6 +115,10 @@ class ListTdComponent extends React.Component {
 			           })
 			})
 		}
+		let dialogTitle = <div className="modaltitle">
+							<span className="diadlogTitleText">List Editor</span>
+							<i className='fa fa-bars iconmodal'></i>
+						</div>
 		return (
             <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true,false)}>
             	<span className="color888 expandleftpspan">
@@ -127,7 +131,7 @@ class ListTdComponent extends React.Component {
 			    </span>
 			{ /* <span className="color888">List - { this.state.elementData ? this.state.elementData.length : 0 } - Entries</span> */ }
             	<i className="fa fa-expand fr expandCircle" aria-hidden="true" onClick={this.openCloseModal.bind(this,true,false)}></i>
-            	<Dialog title="List Editor" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle" contentClassName={"bodyClassNamelist"}>
+            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} contentClassName={"bodyClassNamelist"}>
          
             		<div className="listdivscontent">
 	          		{ elements }

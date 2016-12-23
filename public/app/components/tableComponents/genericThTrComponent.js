@@ -42,9 +42,16 @@ class GenericTh extends React.Component {
 		let columnsHeadings = getColumns.map((x,index) => {
 			let iconClass = configObject.dataTypes.filter(y => y.name == x.dataType)[0].icon
 			let IconElem = <i className={ iconClass + ' colicon'}></i>
+			let smallIconElem
+			if(x.relatedTo && x.dataType == 'List'){ 
+				let iconClass = configObject.dataTypes.filter(y => y.name == x.relatedTo)
+				iconClass = iconClass[0] ? iconClass[0].icon : 'fa fa-external-link'
+				smallIconElem = <i className={ iconClass + ' smallcolicon'}></i>
+			} else smallIconElem = ""
 			let hidden = hiddenColumns.indexOf(x.name) != -1
 			return <th key={index} className={ hidden ? 'hide':'taleft pb7'}>
 						{ IconElem }
+						{ smallIconElem }
 						<span className="colname"> { x.name } </span>
 						<i className='fr ion-arrow-down-b cp' onTouchTap={this.handleTouchTap.bind(this,x)}></i>
 					</th>

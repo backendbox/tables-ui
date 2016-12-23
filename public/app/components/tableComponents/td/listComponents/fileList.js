@@ -16,15 +16,20 @@ class FileListComponent extends React.Component {
 	}
 	fetchImageFromCB(props){
 		if(props.data){
-			props.data.fetch({
-			  success: function(file) {
-			  	this.state.filePreview = file
-			  	this.setState(this.state)
-			     //received file Object
-			  }.bind(this), error: function(err) {
-			      //error in getting file Object
-			  }
-			});
+			try {
+				props.data.fetch({
+				  success: function(file) {
+				  	this.state.filePreview = file
+				  	this.setState(this.state)
+				     //received file Object
+				  }.bind(this), error: function(err) {
+				  	console.log(err)
+				      //error in getting file Object
+				  }
+				});
+			} catch(e){
+				console.log(e)
+			}
 		}
 	}
 	downloadFile(){
