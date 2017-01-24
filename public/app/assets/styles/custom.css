@@ -1531,3 +1531,8 @@ However, delay the fade out process for 2.5 seconds */
 .relcontent{
     width: 680px !important;
 }
+.advanceoptionaddcolum{
+        color: #158ae5;
+    text-decoration: none;
+    font-weight: bold;
+}
