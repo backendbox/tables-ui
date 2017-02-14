@@ -10,6 +10,9 @@ node_js:
 - '6'
 before_install:
 - npm install
+- curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+- chmod +x ./kubectl
+- sudo mv ./kubectl /usr/local/bin/kubectl
 install:
 - webpack --progress
 after_success:
@@ -37,6 +40,12 @@ after_deploy:
   docker login --username $DOCKERUSERNAME --password $DOCKERPASSWORD --email $DOCKEREMAIL;
   docker push cloudboost/data-browser:2.0.$TRAVIS_BUILD_NUMBER;
   docker push cloudboost/data-browser:latest;
+  git clone https://github.com/CloudBoost/kube-cred.git;
+  cd kube-cred;
+  openssl enc -in config.enc -out config -d -aes256 -k $KUBE_ENC;
+  mkdir ~/.kube;
+  mv config ~/.kube/;
+  kubectl rolling-update cloudboost-data-browser --image=cloudboost/data-browser:latest --image-pull-policy=Always;
   fi
 branches:
   except:
