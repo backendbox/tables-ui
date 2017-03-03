@@ -76,6 +76,8 @@ class GenericTh extends React.Component {
 					</th>
 						{ columnsHeadings }
 					<AddColumnComponent tableStore={ this.props.tableStore } />
+					<th className='tacenter pb7 tdtrcheck hiddencolbtn'>
+					</th>
 				</tr>
 		);
 	}

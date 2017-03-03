@@ -68,7 +68,6 @@ class TableStore {
 			this.setColumnsData()
 		},(err)=>{
 			this.showSnackbar(3000,"Cannot add a column, please try again.")
-			this.hideLoader()
 			console.log(err)
 		})
 	}
@@ -186,6 +185,14 @@ class TableStore {
 		$('#table').removeClass('hide')
 		$('#tableoverlap').removeClass('hide')
 		$('#loader').addClass('hide')
+	}
+	showBlur(){
+		$('#table').addClass('blur')
+		$('#tableoverlap').addClass('blur')
+	}
+	hideBlur(){
+		$('#table').removeClass('blur')
+		$('#tableoverlap').removeClass('blur')
 	}
 	showSnackbar(time,text){
 		$('#snackbar').html(text)
