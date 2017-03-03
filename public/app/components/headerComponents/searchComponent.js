@@ -2,6 +2,8 @@ import React from 'react'
 import {Popover, PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+
 
 class Search extends React.Component {
 	constructor(){
@@ -39,6 +41,17 @@ class Search extends React.Component {
 	render() {
 		return (
 			<div style={{display:'inline'}}>
+
+				<div id="loaderTop" className="">
+					<RefreshIndicator
+						size={40}
+						left={10}
+						top={0}
+						status="loading"
+						className="loadertop"
+					/>
+				</div>
+
 				<i className="fa fa-search searchheading cp" aria-hidden="true" onTouchTap={this.handleTouchTap.bind(this)}></i>
 				<Popover
 		          open={this.state.open}
@@ -49,8 +62,8 @@ class Search extends React.Component {
 		          animation={PopoverAnimationVertical}
 		          className="popupsearchcol"
 		        >
-		        <input className="searchinputpop" placeholder="Search.." onChange={ this.search.bind(this) } value={ this.props.searchString }/>
-		        <i className="fa fa-times searchclose cp" aria-hidden="true" onClick={ this.clearSearch.bind(this) }></i>
+					<input className="searchinputpop" placeholder="Search.." onChange={ this.search.bind(this) } value={ this.props.searchString }/>
+					<i className="fa fa-times searchclose cp" aria-hidden="true" onClick={ this.clearSearch.bind(this) }></i>
 		        </Popover>
 			</div>
 		);

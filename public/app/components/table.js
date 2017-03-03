@@ -64,7 +64,7 @@ class Table extends React.Component {
 				$('.tdtrcheck').removeClass('clickedCell')
 			})
 			this.props.tableStore.hideLoader()
-			this.props.tableStore.hideBlur()
+			this.props.tableStore.hideTopLoader()
 		},1000)
 	}
 	showMoreRecord(){

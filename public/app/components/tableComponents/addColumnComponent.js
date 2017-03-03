@@ -58,7 +58,7 @@ class AddColumnComponent extends React.Component {
 				if(this.state.uniqueCheck)
 					column.unique = this.state.unique
 			}
-			this.props.tableStore.showBlur()
+			this.props.tableStore.showTopLoader()
 			this.props.tableStore.addColumn(column)
 			this.setInitialState()
 		}

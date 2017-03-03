@@ -24,7 +24,7 @@ class Header extends React.Component {
 		this.props.tableStore.search(searchString).then((res)=>{
 			if(res.length){
 				this.props.tableStore.updateColumnsData(res)
-				this.props.tableStore.showBlur()
+				this.props.tableStore.showTopLoader()
 			}
 		},(err)=>{
 			this.setState({
@@ -46,7 +46,7 @@ class Header extends React.Component {
 	}
 	refreshRows(){
 		this.props.tableStore.setColumnsData()
-		this.props.tableStore.showBlur()
+		this.props.tableStore.showTopLoader()
 	}
 	deleteRows(){
 		this.props.tableStore.deleteRows()
@@ -87,9 +87,10 @@ class Header extends React.Component {
 				          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
 				          targetOrigin={{horizontal: 'left', vertical: 'top'}}
 				          onRequestClose={this.handleRequestClose.bind(this,'open')}
-				          animated={false}
+				          animated={true}
 				          className="columnpop"
-				        >
+				        >	
+							<p className="headingpop">{ this.props.userProfile ? this.props.userProfile.user.email.toUpperCase() : ''}</p>
 				        	<button className="coloptbtn" onClick={ this.dashprofileRedirect.bind(this) }><i className="fa fa-user" aria-hidden="true"></i> Profile</button>
 				        	<button className="coloptbtn" onClick={ this.dashRedirect.bind(this) }><i className="fa fa-home" aria-hidden="true"></i> Dashboard</button>
 				        	<button className="coloptbtn" onClick={ this.logout.bind(this) }><i className="fa fa-sign-out" aria-hidden="true"></i> Logout</button>

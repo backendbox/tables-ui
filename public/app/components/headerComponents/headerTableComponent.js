@@ -91,7 +91,7 @@ class HeaderTable extends React.Component {
 		          className="popupaddtable"
 		        >
 		        <form onSubmit={ this.addtable.bind(this) }>
-		        	<p className="addnewtablep">Add New Table</p>
+		        	<p className="headingpop">ADD NEW TABLE</p>
 			        <input className="inputaddtable" placeholder="Table name" onChange={ this.changeHandler.bind(this,'tableName') } value={ this.state.tableName } required />
 			        <button className="addtablebutton" type="submit">Add</button>
 			    </form>

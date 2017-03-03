@@ -536,29 +536,35 @@ td,th{
     margin-top: 5px;
 }
 .popupaddtable{
-        width: 160px !important;
-    background-color: white;
-    height: 107px;
-    padding: 5px;
+    width: 200px !important;
+    height: 120px;
+    border-radius: 5px !important;
+    background-color: #f3faff !important;
 }
 .inputaddtable{
-    width: 146px;
+        width: 90%;
     height: 32px;
-    margin-top: 2px;
-    margin-left: 2px;
+    margin-top: 5px;
+    margin-left: 5%;
     border: 1px solid #DDD;
     border-radius: 2px;
-    padding: 3px;
+    padding: 7px;
     margin-bottom: 4px;
 
 }
+.inputaddtable:focus{
+    outline: none;
+}
 .addtablebutton{
-    width: 146px;
+    width: 90%;
     height: 28px;
-    margin-left: 2px;
-    border: 0;
-    color:white;
-    background-color: #5BAEED;
+    margin-left: 5%;
+    color: #313131;
+    background-color: #ffffff;
+    border: 1px solid #dedede;
+}
+.addtablebutton:hover{
+    background-color: #EEE;
 }
 .popupdeletetable{
    width: 150px !important;
@@ -1064,9 +1070,21 @@ transition: background-color ease 0.2s , color ease 0.2s;
     background-color: #EBF7FF;
 }
 .columnpop{
-    width: 200px !important;
+    min-width: 220px !important;
     min-height: 100px !important;
+    border-radius: 5px !important;
+    background-color: #f3faff !important;
+}
+.headingpop{
+    height: 40px;
+    padding: 7px;
+    border-bottom: 2px solid #eaf2f8;
+    color: #089073;
+    font-weight: 600;
+    margin-bottom: 0px;
+    padding-left: 12px;
     background-color: white;
+    font-size: 13px;
 }
 .coloptbtn{
         width: 100%;
@@ -1545,4 +1563,13 @@ However, delay the fade out process for 2.5 seconds */
 }
 .blur{
     filter: blur(2px);
+}
+#loaderTop{
+    display: inline;
+    position: relative;
+    float: right;
+}
+.loadertop{
+    position: absolute !important;
+    margin-left: -62px;
 }

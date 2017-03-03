@@ -66,6 +66,10 @@ class TableStore {
 		table.save().then((res)=>{
 			this.setColumns()
 			this.setColumnsData()
+			// scroll to the extreme left
+			setTimeout(()=>{
+				$('#datatable').scrollLeft($('#datatable').outerWidth())
+			},500)
 		},(err)=>{
 			this.showSnackbar(3000,"Cannot add a column, please try again.")
 			console.log(err)
@@ -186,13 +190,13 @@ class TableStore {
 		$('#tableoverlap').removeClass('hide')
 		$('#loader').addClass('hide')
 	}
-	showBlur(){
-		$('#table').addClass('blur')
-		$('#tableoverlap').addClass('blur')
+	showTopLoader(){
+		$('.searchheading').hide(500)
+		$('#loaderTop').show(500)
 	}
-	hideBlur(){
-		$('#table').removeClass('blur')
-		$('#tableoverlap').removeClass('blur')
+	hideTopLoader(){
+		$('#loaderTop').hide(500)
+		$('.searchheading').show(500)
 	}
 	showSnackbar(time,text){
 		$('#snackbar').html(text)
