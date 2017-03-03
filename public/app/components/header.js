@@ -88,7 +88,7 @@ class Header extends React.Component {
 				          targetOrigin={{horizontal: 'left', vertical: 'top'}}
 				          onRequestClose={this.handleRequestClose.bind(this,'open')}
 				          animated={true}
-				          className="columnpop"
+				          className="profilepop"
 				        >	
 							<p className="headingpop">{ this.props.userProfile ? this.props.userProfile.user.email.toUpperCase() : ''}</p>
 				        	<button className="coloptbtn" onClick={ this.dashprofileRedirect.bind(this) }><i className="fa fa-user" aria-hidden="true"></i> Profile</button>

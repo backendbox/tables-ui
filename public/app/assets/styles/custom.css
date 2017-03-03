@@ -1070,6 +1070,12 @@ transition: background-color ease 0.2s , color ease 0.2s;
     background-color: #EBF7FF;
 }
 .columnpop{
+    width: 220px !important;
+    min-height: 100px !important;
+    border-radius: 5px !important;
+    background-color: #f3faff !important;
+}
+.profilepop{
     min-width: 220px !important;
     min-height: 100px !important;
     border-radius: 5px !important;
