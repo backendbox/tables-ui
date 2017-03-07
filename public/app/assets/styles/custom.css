@@ -1644,6 +1644,8 @@ However, delay the fade out process for 2.5 seconds */
     padding: 5px;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
     padding-bottom: 10px;
+    max-height: 350px;
+    overflow-y: scroll;
 }
 .filediv{
     max-width: 17%;
@@ -1667,9 +1669,9 @@ However, delay the fade out process for 2.5 seconds */
     /*transform: scale(1.05,1.05);*/
 }
 .devfileicon{
-    width: 50px !important;
-    height: 50px !important;
-    color: #1066aa !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 5px;
 }
 .divfoldericon{
     width: 50px !important;
@@ -1684,6 +1686,7 @@ However, delay the fade out process for 2.5 seconds */
     font-size: 13px;
     font-weight: 600;
     word-wrap: break-word;
+    max-height: 40px;
 }
 .slash{
     color: #1066aa;
@@ -1714,6 +1717,10 @@ However, delay the fade out process for 2.5 seconds */
     color: white !important;
     background-color: #158AE5 !important;
     margin-bottom: 20px;
+}
+.filepickerselect{
+    color: white !important;
+    background-color: #158AE5 !important;
 }
 .filepickerother{
     float: left;
@@ -1762,4 +1769,14 @@ However, delay the fade out process for 2.5 seconds */
     margin-top: 5px;
     font-weight: 600;
     font-size: 15px;
+}
+.content td{
+    border: none !important;
+    cursor: pointer;
+}
+.content tr:hover{
+    background-color: #EEE !important;
+}
+.content th{
+    border: none !important;
 }

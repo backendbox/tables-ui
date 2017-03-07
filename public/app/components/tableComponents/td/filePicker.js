@@ -3,14 +3,9 @@ import ReactDOM from 'react-dom';
 import Dialog from 'material-ui/Dialog';
 import Dropzone from 'react-dropzone';
 import LinearProgress from 'material-ui/LinearProgress';
-
-// icons
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import CONFIG from '../../../config/app.js'
 import NewFile from 'material-ui/svg-icons/file/file-upload'
-import File from 'material-ui/svg-icons/editor/insert-drive-file'
-import Folder from 'material-ui/svg-icons/file/folder'
-import PDF from 'material-ui/svg-icons/image/picture-as-pdf'
-import ImageIcon from 'material-ui/svg-icons/image/collections'
-import DocIcon from 'material-ui/svg-icons/action/description'
 
 
 class FilePicker extends React.Component {
@@ -76,15 +71,13 @@ class FilePicker extends React.Component {
     getFileIcon(file){
         let fileType = file.type.split("/")[1]
         if(fileType){
-            if(['png','jpeg','jpg','gif'].indexOf(fileType) > -1){
-                return <ImageIcon className="devfileicon" />
-            } else if(['pdf'].indexOf(fileType) > -1){
-                return <PDF className="devfileicon" />
-            } else if(['doc','xls','docx'].indexOf(fileType) > -1){
-                return <DocIcon className="devfileicon" />
-            } else return <File className="devfileicon" />
+            if(CONFIG.iconTypes.indexOf(fileType) > -1){
+                return <img src={"/app/assets/images/file/"+fileType+".png"} className="devfileicon" />
+            } else {
+                return <img src={"/app/assets/images/file/file.png"} className="devfileicon" />
+            }
         } else {
-            return <File className="devfileicon" />
+            return <img src={"/app/assets/images/file/file.png"} className="devfileicon" />
         }
     }
     chooseFile(file){
@@ -112,17 +105,15 @@ class FilePicker extends React.Component {
             return filePathExist && fileInFolder
         }).map((file, i) => {
             if (file.type == "folder/folder") {
-                return  <div className="filediv" key={i} onDoubleClick={this.setFolder.bind(this, file)}>
-                            <Folder className="divfoldericon" />
-                            <span className="divfilename">{file.name}</span>
-                        </div>
+                return   <TableRow key={ i } onDoubleClick={this.setFolder.bind(this, file)}>
+                            <TableRowColumn><img src={"/app/assets/images/file/folder.png"} className="devfileicon" /><span>{file.name}</span></TableRowColumn>
+                            <TableRowColumn><span>{file.updatedAt ? ( new Date(file.updatedAt).toDateString() ) : ''}</span></TableRowColumn>
+                        </TableRow>
             } else {
-                return  <div className="filediv" key={i} onDoubleClick={ this.chooseFile.bind(this,file) }>
-                            {
-                                this.getFileIcon(file)
-                            }
-                            <span className="divfilename">{file.name}</span>
-                        </div>
+                return  <TableRow key={ i } onDoubleClick={this.chooseFile.bind(this,file)}>
+                            <TableRowColumn>{ this.getFileIcon(file) }<span>{file.name}</span></TableRowColumn>
+                            <TableRowColumn><span>{file.updatedAt ? ( new Date(file.updatedAt).toDateString() ) : ''}</span></TableRowColumn>
+                        </TableRow>
             }
         })
         return (
@@ -150,7 +141,17 @@ class FilePicker extends React.Component {
                         <NewFile className="file" onClick={ this.openAddFile.bind(this) }/>
                     </div>
                     <div className={ this.state.progress ? "hide" : "content"}>
-                        {files}
+                        <Table selectable={false} multiSelectable={false}>
+                            <TableHeader displaySelectAll={false} adjustForCheckbox={false} enableSelectAll={false}>
+                                <TableRow displayBorder={ false }>
+                                    <TableHeaderColumn>Name</TableHeaderColumn>
+                                    <TableHeaderColumn>Modified</TableHeaderColumn>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody displayRowCheckbox={false}>
+                                { files }
+                            </TableBody>
+                        </Table>
                     </div>
 
                     <p className={ !this.state.progress ? "hide" : "pprogresslineaer"}>Please wait while we upload your file.</p>

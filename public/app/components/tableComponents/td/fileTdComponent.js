@@ -4,6 +4,7 @@ import Dialog from 'material-ui/Dialog';
 import Dropzone from 'react-dropzone';
 import LinearProgress from 'material-ui/LinearProgress';
 import FilePicker from './filePicker'
+import CONFIG from '../../../config/app.js'
 
 
 class FileTdComponent extends React.Component {
@@ -58,13 +59,13 @@ class FileTdComponent extends React.Component {
 			if(fileType){
 				if(['png','jpeg','jpg','gif'].indexOf(fileType) > -1){
 					return <img src={ file.url } className="fileimagescr"/>
-				} else if(['pdf'].indexOf(fileType) > -1){
-					return <i className="fa fa-file-pdf-o fileimage" aria-hidden="true"></i>
-				} else if(['doc','xls','docx'].indexOf(fileType) > -1){
-					return <i className="fa fa-file-text-o fileimage" aria-hidden="true"></i>
-				} else return <i className="fa fa-file-text-o fileimage" aria-hidden="true"></i>
+				} else if(CONFIG.iconTypes.indexOf(fileType) > -1){
+					return <img src={"/app/assets/images/file/"+fileType+".png"} className="fileimagescr" />
+				} else {
+					return <img src={"/app/assets/images/file/file.png"} className="fileimagescr" />
+				}
 			} else {
-				return <i className="fa fa-file-text-o fileimage" aria-hidden="true"></i>
+				return <img src={"/app/assets/images/file/file.png"} className="fileimagescr" />
 			}
 		}
     }
@@ -75,10 +76,10 @@ class FileTdComponent extends React.Component {
 				if(['png','jpeg','jpg','gif'].indexOf(fileType) > -1){
 					return <img className={file.document ? 'previewSmallImage' : 'hide'} src={ file.document ?  file.document.url : ''} />
 				} else {
-					return <img className={file.document ? 'previewSmallImage' : 'hide'} src={'/app/assets/images/file.png'} />
+					return <img className={file.document ? 'previewSmallImage' : 'hide'} src={'/app/assets/images/file/file.png'} />
 				}
 			} else {
-				return <img className={file.document ? 'previewSmallImage' : 'hide'} src={'/app/assets/images/file.png'} />
+				return <img className={file.document ? 'previewSmallImage' : 'hide'} src={'/app/assets/images/file/file.png'} />
 			}
 		}
     }
