@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Dropzone from 'react-dropzone';
 import SelectRelation from '../relationComponents/selectRelation.js'
+import FilePicker from '../filePicker'
 
 class GenericAddToList extends React.Component {
 	constructor(){
@@ -23,9 +24,8 @@ class GenericAddToList extends React.Component {
 			this.props.addToElementData('')
 		}
 	}
-	dropHandler(acceptedFiles, rejectedFiles){
-		let cloudFile = new CB.CloudFile(acceptedFiles[0])
-		this.props.addToElementData(cloudFile)
+	dropHandler(file){
+		this.props.addToElementData(file)
     }
     updateElementRealtion(relationObject){
 		this.props.addToElementData(relationObject)
@@ -43,10 +43,12 @@ class GenericAddToList extends React.Component {
 	render() {
 		let element = ''
 		if(this.props.columnType == 'File'){
-			element =	<Dropzone className="dropFileList" onDrop={ this.dropHandler.bind(this) }>
-		            		<i className="fa fa-paperclip attahcmentfile" aria-hidden="true"></i>
-		            		<span className="attahctext">Click to select files to upload.</span>
-		            	</Dropzone>
+			element =	<FilePicker chooseFile={ this.dropHandler.bind(this) }>
+							<div className="listilepicker">
+								<i className="fa fa-paperclip attahcmentfile" aria-hidden="true"></i>
+								<span className="attahctext">Click to select files to upload.</span>
+							</div>
+						</FilePicker>
 		           		
 		} else if(['Text','Email','URL','EncryptedText','Boolean','Number','DateTime','GeoPoint','Object'].indexOf(this.props.columnType) == -1){
 			element = 	<button className="addtextrecord" onClick={this.openCloseModal.bind(this,true,'isOpenSelect')}>+ Add New Record</button>
