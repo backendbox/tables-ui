@@ -26,7 +26,7 @@ class ViewACL extends React.Component {
 		if(!users && !roles && all){
 			str = <span>
             		<i className="fa fa-wikipedia-w" aria-hidden="true"></i>
-	            	<span className="color888">  Public Read Write</span>
+	            	<span className="color888">  Public Read And Write</span>
             	</span>
 		} else {
 			str = <span>

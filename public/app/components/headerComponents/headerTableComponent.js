@@ -106,7 +106,7 @@ class HeaderTable extends React.Component {
 		          animation={PopoverAnimationVertical}
 		          className="popupdeletetable"
 		        >
-			        <button className="deletetablebtn" type="submit" onClick={this.openCloseModal.bind(this,true)}><i className="fa fa-trash" aria-hidden="true"></i> Delete </button>
+			        <button className="deletetablebtn" type="submit" onClick={this.openCloseModal.bind(this,true)}><i className="ion ion-ios-trash-outline trash-icon" aria-hidden="true"></i> Delete </button>
 					
 		        </Popover>
 		        <Dialog title="Delete Confirmation" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="deletemodal" contentClassName={"contentclassdeletemodal"}>

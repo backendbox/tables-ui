@@ -72,8 +72,8 @@ class HideColumns extends React.Component {
 		          animation={PopoverAnimationVertical}
 		          className="popuphidecol"
 		        >
-		          <button className="btn popupshowhideleft" onClick={ this.showAll.bind(this) }>show all</button>
-		          <button className="btn popupshowhideright" onClick={ this.hideAll.bind(this) }>hide all</button>
+		          <button className="btn popupshowhideleft" onClick={ this.showAll.bind(this) }>Show All</button>
+		          <button className="btn popupshowhideright" onClick={ this.hideAll.bind(this) }>Hide All</button>
 		          {columns}
 		        </Popover>
 			</div>

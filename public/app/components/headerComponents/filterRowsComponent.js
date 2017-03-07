@@ -152,7 +152,7 @@ class FilterRows extends React.Component {
 		          animation={PopoverAnimationVertical}
 		          className="popupfilterrrow"
 		        >
-		          <button className="btn popupshowhideleft addfilter" onClick={ this.addFilter.bind(this) }>Add filter</button>
+		          <button className="btn popupshowhideleft addfilter" onClick={ this.addFilter.bind(this) }>Add Filter</button>
 		          <div className="filterrowdiv">
 		          	{ filters }
 		          </div>
