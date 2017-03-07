@@ -1565,7 +1565,7 @@ However, delay the fade out process for 2.5 seconds */
     width: 680px !important;
 }
 .advanceoptionaddcolum{
-        color: #158ae5;
+    color: #158ae5;
     text-decoration: none;
     font-weight: bold;
 }
@@ -1579,6 +1579,10 @@ However, delay the fade out process for 2.5 seconds */
 }
 .loadertop{
     margin-right: 15px;
+    margin-top: 7px;
+}
+.loadertop div{
+    height: 25px !important;
 }
 
 .topnav{

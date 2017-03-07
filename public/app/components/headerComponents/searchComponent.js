@@ -42,8 +42,8 @@ class Search extends React.Component {
 		return (
 			<div style={{display:'inline'}}>
 
-				<div id="loaderTop" className="">
-					<Loader color="#FFF" size="12px" className="loadertop"/>
+				<div id="loaderTop" className="" style={{display:'none'}}>
+					<Loader color="#FFF" className="loadertop"/>
 				</div>
 
 				<i className="fa fa-search searchheading cp" aria-hidden="true" onTouchTap={this.handleTouchTap.bind(this)}></i>

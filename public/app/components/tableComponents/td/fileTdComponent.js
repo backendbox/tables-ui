@@ -75,6 +75,8 @@ class FileTdComponent extends React.Component {
 			if(fileType){
 				if(['png','jpeg','jpg','gif'].indexOf(fileType) > -1){
 					return <img className={file.document ? 'previewSmallImage' : 'hide'} src={ file.document ?  file.document.url : ''} />
+				} else if(CONFIG.iconTypes.indexOf(fileType) > -1){
+					return <img src={"/app/assets/images/file/"+fileType+".png"} className={file.document ? 'previewSmallImage' : 'hide'} />
 				} else {
 					return <img className={file.document ? 'previewSmallImage' : 'hide'} src={'/app/assets/images/file/file.png'} />
 				}
