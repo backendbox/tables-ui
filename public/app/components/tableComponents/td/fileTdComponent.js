@@ -3,17 +3,15 @@ import ReactDOM from 'react-dom';
 import Dialog from 'material-ui/Dialog';
 import Dropzone from 'react-dropzone';
 import LinearProgress from 'material-ui/LinearProgress';
+import FilePicker from './filePicker'
+
 
 class FileTdComponent extends React.Component {
 	constructor(){
 		super()
 		this.state = {
 			isModalOpen:false,
-			file:{},
-			filePreview:{},
-			completed: 0,
-			progress:false,
-			showWrapper:false
+			file:{}
 		}
 	}
 	componentDidMount(){
@@ -22,59 +20,31 @@ class FileTdComponent extends React.Component {
 	componentWillReceiveProps(props){
 		this.fetchImageFromCB(props)
 	}
-	openCloseModal(what){
-		if(what && this.state.filePreview.document){
-			this.state.file.preview = this.state.filePreview.document.url
-		}
-		this.state.isModalOpen = what
-		this.setState(this.state)
+	
+	addFile(file){
+		this.setState({file:file})
 	}
-	changeHandler(acceptedFiles, rejectedFiles){
-		this.state.file = acceptedFiles[0]
-		this.setState(this.state)
-    }
-    fileSave(){
-    	this.setState({showWrapper:false})
-    	let cloudFile = new CB.CloudFile(this.state.file)
-    	this.setState({progress:true})
-    	cloudFile.save({
-			success: function(res) {
-				this.setState({progress:false})
-				this.setState({completed:0})
-		    	this.props.updateElement(cloudFile)
-		 		this.props.updateObject()
-		 		this.openCloseModal(false)
-			}.bind(this), error: function(err) {
-				console.log(err)
-				this.props.fetchObject()
-				this.openCloseModal(false)
-			}.bind(this), uploadProgress : function(percentComplete){
-			    this.setState({completed:(percentComplete*100)})
-			}.bind(this)
-		})
-	}
-    cancelFileSave(){
-		this.props.fetchObject()
+	saveFile(){
+		this.props.updateElement(this.state.file)
+		this.props.updateObject()
 		this.openCloseModal(false)
 	}
 	downloadFile(){
-		let win = window.open(this.state.file.preview, '_blank')
+		let win = window.open(this.state.file.url, '_blank')
   		win.focus()
 	}
 	deleteFile(){
 		this.props.updateElement(null)
 		this.props.updateObject()
 		this.setState({
-			file:{},
-			filePreview:{}
+			file:{}
 		})
 	}
 	fetchImageFromCB(props){
 		if(props.elementData){
 			props.elementData.fetch({
 			  success: function(file) {
-			  	this.state.filePreview = file
-			  	this.setState(this.state)
+			  	this.setState({file:file})
 			     //received file Object
 			  }.bind(this), error: function(err) {
 			      //error in getting file Object
@@ -82,11 +52,46 @@ class FileTdComponent extends React.Component {
 			});
 		}
 	}
+	getFileIcon(file){
+		if(file.type){
+			let fileType = file.type.split("/")[1]
+			if(fileType){
+				if(['png','jpeg','jpg','gif'].indexOf(fileType) > -1){
+					return <img src={ file.url } className="fileimagescr"/>
+				} else if(['pdf'].indexOf(fileType) > -1){
+					return <i className="fa fa-file-pdf-o fileimage" aria-hidden="true"></i>
+				} else if(['doc','xls','docx'].indexOf(fileType) > -1){
+					return <i className="fa fa-file-text-o fileimage" aria-hidden="true"></i>
+				} else return <i className="fa fa-file-text-o fileimage" aria-hidden="true"></i>
+			} else {
+				return <i className="fa fa-file-text-o fileimage" aria-hidden="true"></i>
+			}
+		}
+    }
+	getPreviewIcon(file){
+		if(file.type){
+			let fileType = file.type.split("/")[1]
+			if(fileType){
+				if(['png','jpeg','jpg','gif'].indexOf(fileType) > -1){
+					return <img className={file.document ? 'previewSmallImage' : 'hide'} src={ file.document ?  file.document.url : ''} />
+				} else {
+					return <img className={file.document ? 'previewSmallImage' : 'hide'} src={'/app/assets/images/file.png'} />
+				}
+			} else {
+				return <img className={file.document ? 'previewSmallImage' : 'hide'} src={'/app/assets/images/file.png'} />
+			}
+		}
+    }
+	cancelFileSave(){
+		this.props.fetchObject()
+		this.openCloseModal(false)
+	}
+	openCloseModal(what){
+		this.state.isModalOpen = what
+		this.setState(this.state)
+	}
 	handleClose(){
 
-	}
-	toggleShowWrapper(what){
-		this.setState({showWrapper:what})
 	}
 	render() {
 		let requiredClass = this.props.isRequired ? " requiredred":""
@@ -96,24 +101,30 @@ class FileTdComponent extends React.Component {
 						</div>
 		return (
             <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true)}>
-            	<span className={this.state.filePreview.document ? 'hide' : 'color888 expandleftpspan'}>Upload File</span>
-            	<img className={this.state.filePreview.document ? 'previewSmallImage' : 'hide'} src={ this.state.filePreview.document ?  this.state.filePreview.document.url : ''} />
-            	<i className={this.state.filePreview.document ? 'fa fa-expand fr expandCircle' : 'fa fa-expand fr expandCircle'} aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
-            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)}>
-	          		<Dropzone className={ this.state.progress ? "hide" : "dropFile"} onDrop={this.changeHandler.bind(this)}>
-		              <div>Try dropping some files here, or click to select files to upload.</div>
-		              <button className="Choosefilebtn">Choose File</button>
-		            </Dropzone>
-		            <img className={ this.state.progress || !this.state.file.preview ? "hide" : "previewImage"} src={this.state.file.preview || ''} onMouseEnter={ this.toggleShowWrapper.bind(this,true) } />
-		            <div className={this.state.showWrapper ? "imagewrapperfile":"hide" } onMouseLeave={ this.toggleShowWrapper.bind(this,false) }>
-		            	<i className="fa fa-download cp filewrapperdownload" onClick={this.downloadFile.bind(this)} aria-hidden="true"></i>
-		            	<i className="fa fa-trash-o cp filewrapperdelete" onClick={this.deleteFile.bind(this)} aria-hidden="true"></i>
-		            </div>
-		            <p className={ !this.state.progress ? "hide" : "pprogresslineaer"}>Please wait while we upload your file.</p>
-		            <p className={ !this.state.progress ? "hide" : "pprogresslineaer99"}>( { this.state.completed == 100 ? 99 : Math.floor(this.state.completed) }% )</p>
-		            <LinearProgress mode="determinate" value={this.state.completed} className={ !this.state.progress ? "hide" : "linaerprogfile"}/>
-		            <button className="btn btn-primary fr ml5 clearboth mt10" onClick={this.fileSave.bind(this)} disabled={ this.state.progress || !this.state.file.name }>SUBMIT</button>
-	          		<button className="btn btn-danger fr mt10" onClick={this.cancelFileSave.bind(this)} disabled={ this.state.progress }>CLOSE</button>
+            	<span className={this.state.file.document ? 'hide' : 'color888 expandleftpspan'}>Upload File</span>
+            	{ this.getPreviewIcon(this.state.file) }
+            	<i className={this.state.file.document ? 'fa fa-expand fr expandCircle' : 'fa fa-expand fr expandCircle'} aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
+            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} contentClassName={"bodyClassNamelist"}>
+					<div className="filemodal">
+						<div className={this.state.file.document ? 'hide' : 'nofilefound'}>
+							<i className="fa fa-files-o fileimage" aria-hidden="true"></i>
+							<span className="noimagetext">No file found, you can choose to add a file through our File Picker.</span>
+							<FilePicker chooseFile={ this.addFile.bind(this) }>
+								<button className="btn-primary filepicker">File Picker</button>
+							</FilePicker>
+						</div>
+						<div className={this.state.file.document ? 'nofilefound' : 'hide'}>
+							{ this.getFileIcon(this.state.file) }
+							<span className="filenamespan">{ this.state.file.name || "" }</span>
+							<button className="btn-primary downloadbtn" onClick={ this.downloadFile.bind(this) }>Download</button>
+							<FilePicker chooseFile={ this.addFile.bind(this) }>
+								<button className="btn-primary filepickerother">File Picker</button>
+							</FilePicker>
+							<button className="btn-danger deletebtn" onClick={ this.deleteFile.bind(this) }>Delete</button>
+						</div>
+					</div>
+		            <button disabled={ !!!this.state.file.document } className="btn btn-primary fr ml5 clearboth mt10" onClick={this.saveFile.bind(this)}>SAVE</button>
+	          		<button className="btn btn-danger fr mt10" onClick={this.cancelFileSave.bind(this,false)}>CLOSE</button>
         		</Dialog>
             </td>
 		);

@@ -971,6 +971,7 @@ td,th{
 .btn-danger:hover {
     color: white !important;
     background-color: rgba(236, 13, 13, 0.64) !important;
+    border: 2px solid rgb(243, 100, 100) !important
 }
 
 .btn-success,.btn-success:active,.btn-success::selection {
@@ -1578,4 +1579,187 @@ However, delay the fade out process for 2.5 seconds */
 }
 .loadertop{
     margin-right: 15px;
+}
+
+.topnav{
+    height: 40px;
+    padding: 8px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.topnavsnav{
+    padding: 5px;
+    background-color: rgb(88, 176, 245);
+    float: left;
+    margin-top: -4px;
+    cursor: pointer;
+    color: white;
+    border-radius: 3px;
+    font-weight: 600;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 64px;
+}
+.topnavsnavselected{
+    padding: 5px;
+    background-color: #1066aa;
+    float: left;
+    margin-top: -4px;
+    cursor: pointer;
+    color: white;
+    border-radius: 3px;
+    font-weight: 600;
+    margin-right: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 64px;
+}
+.folder{
+    float: right;
+    width: 38px !important;
+    height: 33px !important;
+    margin-top: -6px;
+    color: #158ae5 !important;
+    cursor: pointer;
+}
+.file{
+    float: right;
+    width: 38px !important;
+    height: 33px !important;
+    margin-top: -6px;
+    color: #1066aa !important;
+    cursor: pointer;
+}
+.addfiletext{
+    float: right;
+    margin-top: 2px;
+    color: #1066aa !important;
+    cursor: pointer;
+    font-weight: 600;
+}
+.content{
+    min-height: 300px;
+    background-color: #f1f1f1;
+    margin-top: 5px;
+    padding: 5px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+    padding-bottom: 10px;
+}
+.filediv{
+    max-width: 17%;
+    min-width: 17%;
+    border: 1px solid #dadada;
+    min-height: 100px;
+    float: left;
+    margin-left: 5px;
+    text-align: center;
+    border-radius: 5px;
+    max-height: 120px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    padding-top: 6px;
+    margin-bottom: 5px;
+    background-color: white;
+}
+.filediv:hover{
+    border: 2px solid #5BAEED !important;
+    background-color: #EBF7FF;
+    /*transform: scale(1.05,1.05);*/
+}
+.devfileicon{
+    width: 50px !important;
+    height: 50px !important;
+    color: #1066aa !important;
+}
+.divfoldericon{
+    width: 50px !important;
+    height: 50px !important;
+    color: #f55151 !important;
+}
+.divfilename{
+    width: 90%;
+    display: block;
+    overflow: hidden;
+    margin-left: 5%;
+    font-size: 13px;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+.slash{
+    color: #1066aa;
+    font-weight: 600;
+    font-size: 25px;
+    padding: 5px;
+}
+.filemodal{
+    min-height: 200px;
+    padding: 20px;
+}
+.nofilefound{
+    width: 100%;
+    text-align: center;
+}
+.fileimage{
+    display: block !important;
+    font-size: 100px !important;
+}
+.noimagetext{
+        display: block;
+    margin-top: 20px;
+    color: #797979;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+.filepicker{
+    color: white !important;
+    background-color: #158AE5 !important;
+    margin-bottom: 20px;
+}
+.filepickerother{
+    float: left;
+    color: white !important;
+    background-color: #158AE5 !important;
+    margin-top: 5%;
+    margin-bottom: 20px;
+}
+.downloadbtn{
+    float: left;
+    color: white !important;
+    background-color: orange !important;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 1%;
+        border-color: orange !important;
+        margin-bottom: 20px;
+}
+.downloadbtn:hover{
+    float: left;
+    color: white !important;
+    background-color: orange !important;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 1%;
+        border-color: orange !important;
+}
+.deletebtn{
+    float: left;
+    color: white !important;
+    margin-top: 5%;
+    margin-left: 1%;
+    background-color: rgba(236, 13, 13, 0.64) !important;
+    border-color: #f36464 !important;
+    margin-bottom: 20px;
+}
+.fileimagescr{
+    display: block !important;
+    font-size: 100px !important;
+    width: 200px;
+    height: 200px;
+    margin-left: 30%;
+}
+.filenamespan{
+    display: block;
+    margin-top: 5px;
+    font-weight: 600;
+    font-size: 15px;
 }
