@@ -25,7 +25,6 @@ before_deploy:
   - export GIT_TAG=2.0.$TRAVIS_BUILD_NUMBER
   - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
   - git push -q https://$GITLOGIN@github.com/CloudBoost/data-browser --tags
-  - ls -R
 deploy:
   provider: releases
   api_key: $GH_TOKEN

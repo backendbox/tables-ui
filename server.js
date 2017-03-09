@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'))
 
 app.get('/app/key.js',function(req,res){
 	res.setHeader('Content-type', 'text/plain');
@@ -37,6 +37,10 @@ app.get('/app/key.js',function(req,res){
 app.get('/status', function(req,res,next) {
 	res.status(200).json({status:200, message : "Tables Status : OK"});           
 });
+
+app.get('*', function (req, res) {
+  res.sendFile(__dirname + '/public/index.html');
+})
 
 let port = process.env.PORT || 3333
 app.listen(port, function () {

@@ -24,8 +24,8 @@ class Layout extends React.Component {
 	}
 	componentDidMount() {
 		axios.defaults.withCredentials = true
-		let appId = window.location.hash.split('/')[1]
-		let tableName = window.location.hash.split('/')[2]
+		let appId = window.location.pathname.split('/')[1]
+		let tableName = window.location.pathname.split('/')[2]
 		axios.get(USER_SERVICE_URL+'user').then((userData)=>{
 			axios.get(USER_SERVICE_URL+'app/'+appId).then((data)=>{
 				if(data.data && appId){
@@ -44,7 +44,7 @@ class Layout extends React.Component {
 				window.location.href = DASHBOARD_URL
 			})
 		},(err)=>{
-			window.location.href = ACCOUNTS_URL
+			window.location.href = ACCOUNTS_URL + '?redirectUrl=' + encodeURIComponent(window.location.href);
 		})
 	}
 	render() {
