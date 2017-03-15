@@ -86,13 +86,14 @@ class Header extends React.Component {
 				          animated={true}
 				          className="profilepop"
 				        >	
+							<div className="profilepoparrow"></div>
 							<p className="headingpop">{ this.props.userProfile ? this.props.userProfile.user.name.toUpperCase() : ''}</p>
 				        	<button className="coloptbtn" onClick={ this.dashprofileRedirect.bind(this) }>Profile</button>
 				        	<button className="coloptbtn" onClick={ this.dashRedirect.bind(this) }>Dashboard</button>
 				        	<button className="coloptbtn" onClick={ this.logout.bind(this) }>Logout</button>
 				    </Popover>
-					<i className="fa fa-book userHelpheadng cp" aria-hidden="true" onClick={ this.newPageRedirect.bind(this,"https://tutorials.cloudboost.io/") }></i>
-					<i className="fa fa-question userHelpheadng cp" aria-hidden="true" onClick={ this.newPageRedirect.bind(this,"https://slack.cloudboost.io") }></i>
+					<i className="fa fa-book userHelpheadng cp expandCircle" aria-hidden="true" onClick={ this.newPageRedirect.bind(this,"https://tutorials.cloudboost.io/") }></i>
+					<i className="fa fa-question userHelpheadng cp expandCircle" aria-hidden="true" onClick={ this.newPageRedirect.bind(this,"https://slack.cloudboost.io") }></i>
 					<HeaderTable tableStore={ this.props.tableStore }/>
 				</div>
 				<div id="dataSubHeader">
