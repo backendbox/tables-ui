@@ -49,6 +49,7 @@ class TableStore {
 		table.save().then((res)=>{
 			this.initialize(tableName)
 		},(err)=>{
+			this.showSnackbar("Error creating a table, please try again.")
 			console.log(err)			
 		})
 	}
@@ -57,6 +58,7 @@ class TableStore {
 		table.delete().then((res)=>{
 			this.initialize()
 		},(err)=>{
+			this.showSnackbar("Error deleting this table, please try again.")
 			console.log(err)
 		})
 	}
@@ -66,12 +68,12 @@ class TableStore {
 		table.save().then((res)=>{
 			this.setColumns()
 			this.setColumnsData()
-			// scroll to the extreme left
+			// scroll to the extreme left of the table
 			setTimeout(()=>{
 				$('#datatable').scrollLeft($('#datatable').outerWidth())
 			},500)
 		},(err)=>{
-			this.showSnackbar(3000,"Cannot add a column, please try again.")
+			this.showSnackbar("Cannot add a column, please try again.")
 			console.log(err)
 		})
 	}
@@ -82,6 +84,7 @@ class TableStore {
 			this.setColumns()
 			this.setColumnsData()
 		},(err)=>{
+			this.showSnackbar("Cannot delete this column, please try again.")
 			console.log(err)
 		})
 	}
@@ -95,6 +98,7 @@ class TableStore {
 			this.setColumns()
 			this.setColumnsData()
 		},(err)=>{
+			this.showSnackbar("Error editiing this column, please try again.")
 			console.log(err)
 		})
 	}
@@ -198,13 +202,12 @@ class TableStore {
 		$('#loaderTop').hide(500)
 		$('.searchheading').show(500)
 	}
-	showSnackbar(time,text){
-		$('#snackbar').html(text)
-		$('#snackbar').addClass('show')
-		setTimeout(()=>{
-			$('#snackbar').html('')
-			$('#snackbar').removeClass('show')
-		},time)
+	showSnackbar(text,type){
+		Messenger().post({
+			message: text,
+			type: type || 'error',
+			showCloseButton: true
+		});
 	}
 
 }

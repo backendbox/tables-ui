@@ -1,6 +1,5 @@
 import React from 'react'
 import { observer } from "mobx-react"
-import Snackbar from 'material-ui/Snackbar'
 import {Popover, PopoverAnimationVertical} from 'material-ui/Popover'
 //components
 import HideColumns from './headerComponents/hideColumnsComponent.js';
@@ -14,7 +13,6 @@ class Header extends React.Component {
 		super()
 		this.state = {
 			searchString:'',
-			searchErrorOpen: false,
 			open: false,
 		}
 	}
@@ -27,9 +25,7 @@ class Header extends React.Component {
 				this.props.tableStore.showTopLoader()
 			}
 		},(err)=>{
-			this.setState({
-				searchErrorOpen: true
-			})
+			this.props.tableStore.showSnackbar("Cannot Search, Table does not have a text datatype column.")
 		})
 	}
 	handleTouchTap(event){
@@ -106,12 +102,6 @@ class Header extends React.Component {
 					<FilterRows tableStore={ this.props.tableStore }/>
 					<Search tableStore={ this.props.tableStore } searchString={ this.state.searchString } search={ this.search.bind(this) }/>
 				</div>
-				<Snackbar
-		          open={this.state.searchErrorOpen}
-		          message="Cannot Search, Table does not have a text datatype column."
-		          autoHideDuration={4000}
-		          onRequestClose={this.handleRequestClose.bind(this,'searchErrorOpen')}
-		        />
 			</div>
 		);
 	}

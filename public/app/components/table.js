@@ -179,7 +179,6 @@ class Table extends React.Component {
 					<div className="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
 				</div>
 				<button className="btn btn-primary morerowsbtn hide" onClick={ this.showMoreRecord.bind(this) }>More</button>
-				<div id="snackbar"></div>
 		    </div>
 		);
 	}

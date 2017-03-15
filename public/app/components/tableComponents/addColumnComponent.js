@@ -64,7 +64,7 @@ class AddColumnComponent extends React.Component {
 		}
 		catch(e){
 			console.log(e)
-			this.props.tableStore.showSnackbar(3000,"Error adding column ,Please try again")
+			this.props.tableStore.showSnackbar("Error adding column ,Please try again")
 		}
 	}
 

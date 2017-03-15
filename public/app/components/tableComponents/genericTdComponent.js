@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configObject from '../../config/app.js'
-import Snackbar from 'material-ui/Snackbar'
 
 //components
 import TextTd from './td/textTdComponent'
@@ -149,7 +148,7 @@ class GenericTdComponent extends React.Component {
 		},(err)=>{
 			console.log(err)
 			this.fetchObject()
-			this.props.tableStore.showSnackbar(3000,err)
+			this.props.tableStore.showSnackbar("Error updating object. Please refresh and try again.")
 		})
 	}
 	fetchObject(){
