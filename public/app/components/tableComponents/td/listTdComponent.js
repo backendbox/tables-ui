@@ -102,6 +102,9 @@ class ListTdComponent extends React.Component {
 	render() {
 		let requiredClass = this.props.isRequired ? " requiredred":""
 		let elements = []
+		// For file images perview ,other data types will show a badge with a list counter
+		let filePreviewImages = []
+
 		if(this.state.elementData){
 			elements = this.state.elementData.map((data,index)=>{
 				return React.createElement(this.state.elementToRender, {
@@ -114,6 +117,14 @@ class ListTdComponent extends React.Component {
 					       	columnType:this.props.columnType.relatedTo
 			           })
 			})
+
+			// build file prview only if data type is file and files exist
+			if(this.props.columnType.relatedTo === 'File' && this.state.elementData.length){
+				filePreviewImages = this.state.elementData.map((file,index)=>{
+					// max three files to be shown
+					if(index < 3) return <img key={ index } className={'previewlistimages'} src={'/app/assets/images/file/file.png'} />
+				})
+			}
 		}
 		let dialogTitle = <div className="modaltitle">
 							<span className="diadlogTitleText">List Editor</span>
@@ -121,15 +132,20 @@ class ListTdComponent extends React.Component {
 						</div>
 		return (
             <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true,false)}>
-            	<span className="color888 expandleftpspan">
-	            	<Badge
-				      badgeContent={ this.state.elementData ? this.state.elementData.length : 0 }
-				      primary={ this.state.elementData ? !!this.state.elementData.length : false }
-				      className={ 'badgelistcount' }
-				    ></Badge>
-				    <span className="entriesbadgeright"> - Entries </span>
-			    </span>
-			{ /* <span className="color888">List - { this.state.elementData ? this.state.elementData.length : 0 } - Entries</span> */ }
+				<span className="color888 expandleftpspan">
+					<Badge
+						badgeContent={ this.state.elementData ? this.state.elementData.length : 0 }
+						primary={ this.state.elementData ? !!this.state.elementData.length : false }
+						className={ 'badgelistcount' }
+					></Badge>
+					{ 
+						filePreviewImages.length ? 
+							<span className="entriesbadgeright">  { filePreviewImages } </span> 
+							: 
+							<span className="entriesbadgeright"> - Entries </span> 
+					}
+				</span>
+
             	<i className="fa fa-expand fr expandCircle" aria-hidden="true" onClick={this.openCloseModal.bind(this,true,false)}></i>
             	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} contentClassName={"bodyClassNamelist"}>
          

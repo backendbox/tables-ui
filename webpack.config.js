@@ -9,6 +9,7 @@ var config = {
       path:'./public',
       filename: 'index.min.js',
    },
+   devtool: 'source-map',
    module: {
       loaders: [
          {
