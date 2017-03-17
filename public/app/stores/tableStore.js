@@ -1,4 +1,5 @@
 import { observable,computed } from 'mobx'
+import { browserHistory } from 'react-router';
 
 class TableStore {
 	@observable TABLE = {}
@@ -8,6 +9,7 @@ class TableStore {
 	@observable hiddenColumns = []
 	@observable rowsToDelete = []
 	@observable recordsToShow = 20
+	@observable appId = null
 
 	@computed get getColumns(){
 		if(this.columns.document){
@@ -23,7 +25,7 @@ class TableStore {
 		return this.tables.map( x => x.document )
 	}
 
-	initialize(tableName){
+	initialize(appId,tableName){
 		CB.CloudTable.getAll().then((data)=>{
 			if(data[0]){
 				this.TABLE = data[0].document.name
@@ -32,6 +34,8 @@ class TableStore {
 				let tableFound = data.filter(x => x.document.name == tableName)[0]
 				if(tableFound) this.TABLE = tableFound.document.name
 			}
+
+			this.appId = appId
 			this.tables = data
 			this.recordsToShow = 20
 			this.setColumns()
@@ -39,6 +43,7 @@ class TableStore {
 		})
 	}
 	changeTable(tableName){
+		browserHistory.push("/"+this.appId+"/"+tableName)
 		this.TABLE = tableName
 		this.recordsToShow = 20
 		this.setColumns()

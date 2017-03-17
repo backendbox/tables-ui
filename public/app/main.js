@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {blue500} from 'material-ui/styles/colors';
+import { blue500 } from 'material-ui/styles/colors';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import axios from 'axios'
+import { Router, browserHistory, Route, IndexRoute } from 'react-router';
 injectTapEventPlugin();
 
 //components
@@ -15,35 +16,35 @@ import Header from './components/header.js';
 import TableStore from './stores/tableStore.js';
 
 class Layout extends React.Component {
-	constructor(props){
+	constructor(props) {
 		super(props)
 		this.state = {
-			appName:'',
-			userProfile:''
+			appName: '',
+			userProfile: ''
 		}
 	}
 	componentDidMount() {
 		axios.defaults.withCredentials = true
 		let appId = window.location.pathname.split('/')[1]
 		let tableName = window.location.pathname.split('/')[2]
-		axios.get(USER_SERVICE_URL+'user').then((userData)=>{
-			axios.get(USER_SERVICE_URL+'app/'+appId).then((data)=>{
-				if(data.data && appId){
-					if(__isHosted == "true" || __isHosted == true){
-						CB.CloudApp.init(appId,data.data.keys.master)
-					} else CB.CloudApp.init(SERVER_URL,appId,data.data.keys.master)
-					if(tableName) TableStore.initialize(tableName)
-						else TableStore.initialize()
-					this.setState({appName:data.data.name,userProfile:userData.data})
-					document.title = "CloudBoost Table | "+data.data.name
+		axios.get(USER_SERVICE_URL + 'user').then((userData) => {
+			axios.get(USER_SERVICE_URL + 'app/' + appId).then((data) => {
+				if (data.data && appId) {
+					if (__isHosted == "true" || __isHosted == true) {
+						CB.CloudApp.init(appId, data.data.keys.master)
+					} else CB.CloudApp.init(SERVER_URL, appId, data.data.keys.master)
+					if (tableName) TableStore.initialize(appId,tableName)
+					else TableStore.initialize(appId,null)
+					this.setState({ appName: data.data.name, userProfile: userData.data })
+					document.title = "CloudBoost Table | " + data.data.name
 				} else {
 					window.location.href = DASHBOARD_URL
 				}
-			},(err)=>{
+			}, (err) => {
 				console.log(err)
 				window.location.href = DASHBOARD_URL
 			})
-		},(err)=>{
+		}, (err) => {
 			window.location.href = ACCOUNTS_URL + '?redirectUrl=' + encodeURIComponent(window.location.href);
 		})
 	}
@@ -59,12 +60,20 @@ class Layout extends React.Component {
 		return (
 			<MuiThemeProvider muiTheme={muiTheme}>
 				<div id="reactmain">
-		  		<Header tableStore={ TableStore } appName={ this.state.appName } userProfile={ this.state.userProfile }/>
-		  		<Table tableStore={ TableStore }></Table>
+					<Header tableStore={TableStore} appName={this.state.appName} userProfile={this.state.userProfile} />
+					<Table tableStore={TableStore}></Table>
 				</div>
 			</MuiThemeProvider>
 		);
 	}
 }
 
-ReactDOM.render(<Layout/>, document.getElementById('main'));
+ReactDOM.render(
+	<Router history={browserHistory}>
+		<Route path="/:appId/:tableName" component={Layout}>
+			<IndexRoute component={Layout} />
+		</Route>
+		<Route path="/:appId" component={Layout}>
+			<IndexRoute component={Layout} />
+		</Route>
+	</Router>, document.getElementById('main'));
