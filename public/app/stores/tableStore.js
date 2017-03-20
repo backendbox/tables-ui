@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 class TableStore {
 	@observable TABLE = {}
 	@observable tables = []
+	@observable apps = []
 	@observable columns = []
 	@observable columnsData = []
 	@observable hiddenColumns = []
@@ -25,7 +26,7 @@ class TableStore {
 		return this.tables.map( x => x.document )
 	}
 
-	initialize(appId,tableName){
+	initialize(appId,tableName,allApps){
 		CB.CloudTable.getAll().then((data)=>{
 			if(data[0]){
 				this.TABLE = data[0].document.name
@@ -35,6 +36,7 @@ class TableStore {
 				if(tableFound) this.TABLE = tableFound.document.name
 			}
 
+			this.apps = allApps
 			this.appId = appId
 			this.tables = data
 			this.recordsToShow = 20

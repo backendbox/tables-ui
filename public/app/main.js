@@ -27,19 +27,34 @@ class Layout extends React.Component {
 		axios.defaults.withCredentials = true
 		let appId = window.location.pathname.split('/')[1]
 		let tableName = window.location.pathname.split('/')[2]
+
+
 		axios.get(USER_SERVICE_URL + 'user').then((userData) => {
-			axios.get(USER_SERVICE_URL + 'app/' + appId).then((data) => {
-				if (data.data && appId) {
-					if (__isHosted == "true" || __isHosted == true) {
-						CB.CloudApp.init(appId, data.data.keys.master)
-					} else CB.CloudApp.init(SERVER_URL, appId, data.data.keys.master)
-					if (tableName) TableStore.initialize(appId,tableName)
-					else TableStore.initialize(appId,null)
-					this.setState({ appName: data.data.name, userProfile: userData.data })
-					document.title = "CloudBoost Table | " + data.data.name
+			axios.get(USER_SERVICE_URL + 'app').then((data) => {
+
+				if(data.data.length){
+	
+					let app = null
+					if(appId){
+						app = data.data.filter(x => x.appId == appId)[0]
+					}
+
+					if(app){
+						if (__isHosted == "true" || __isHosted == true) {
+							CB.CloudApp.init(app.appId, app.keys.master)
+						} else CB.CloudApp.init(SERVER_URL, appId, app.keys.master)
+						if (tableName) TableStore.initialize(appId,tableName,data.data)
+						else TableStore.initialize(appId,null,data.data)
+						this.setState({ appName: app.name, userProfile: userData.data })
+						document.title = "CloudBoost Table | " + app.name
+					} else {
+						window.location.pathname = "/"+data.data[0].appId
+					}
+
 				} else {
 					window.location.href = DASHBOARD_URL
 				}
+
 			}, (err) => {
 				console.log(err)
 				window.location.href = DASHBOARD_URL
@@ -74,6 +89,9 @@ ReactDOM.render(
 			<IndexRoute component={Layout} />
 		</Route>
 		<Route path="/:appId" component={Layout}>
+			<IndexRoute component={Layout} />
+		</Route>
+		<Route path="/" component={Layout}>
 			<IndexRoute component={Layout} />
 		</Route>
 	</Router>, document.getElementById('main'));

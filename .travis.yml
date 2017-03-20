@@ -5,6 +5,7 @@ env:
   global:
     # Ensure the install happens without prompts
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+    - CLOUDBOOST_HOSTED=true
 language: node_js
 node_js:
 - '6'
