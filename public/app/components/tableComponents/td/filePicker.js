@@ -88,6 +88,9 @@ class FilePicker extends React.Component {
         document.getElementById("fileBox").click()
     }
     openCloseModal(what) {
+        if(what === false && this.state.progress === true){
+            return false
+        }
         this.state.isModalOpen = what
         this.setState(this.state)
     }
@@ -123,7 +126,7 @@ class FilePicker extends React.Component {
                         onClick : this.openCloseModal.bind(this, true)
                     })
                 }
-                <Dialog title={dialogTitle} modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)}>
+                <Dialog title={dialogTitle} modal={false} open={this.state.isModalOpen} onRequestClose={this.openCloseModal.bind(this, false)}>
                     <div className={ this.state.progress ? "hide" : "topnav"}>
                         <span className="topnavsnav" onClick={ this.navigate.bind(this,'/') }>Home</span>
                         <span className="slash">/</span>
@@ -157,7 +160,6 @@ class FilePicker extends React.Component {
                     <p className={ !this.state.progress ? "hide" : "pprogresslineaer"}>Please wait while we upload your file.</p>
 		            <p className={ !this.state.progress ? "hide" : "pprogresslineaer99"}>( { this.state.completed == 100 ? 99 : Math.floor(this.state.completed) }% )</p>
                     <LinearProgress mode="determinate" value={this.state.completed} className={ !this.state.progress ? "hide" : "linaerprogfile"}/>
-                    <button className="btn btn-danger fr mt10" onClick={this.openCloseModal.bind(this, false)} disabled={ this.state.progress }>CLOSE</button>
                 </Dialog>
             </div>
         );

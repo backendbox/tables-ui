@@ -24,14 +24,14 @@
     "material-ui": "^0.16.0",
     "mobx": "^2.6.0",
     "mobx-react": "^3.5.8",
-    "react": "~15.2.1",
+    "react": "^15.4.2",
     "react-ace": "^3.6.1",
-    "react-dom": "~15.2.1",
+    "react-dom": "^15.4.2",
     "react-dropzone": "^3.6.0",
     "react-router": "^2.8.1",
-    "react-tap-event-plugin": "^1.0.0",
+    "react-tap-event-plugin": "*",
     "react-tooltip": "^3.2.1",
-    "webpack": "~1.13.1",
+    "webpack": "^2.2.1",
     "webpack-dev-server": "~1.14.1"
   },
   "devDependencies": {

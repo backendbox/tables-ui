@@ -51,9 +51,6 @@ class GeoTdComponent extends React.Component {
 		this.props.fetchObject()
 		this.openCloseModal(false)
 	}
-	handleClose(){
-		
-	}
 	render() {
 		let requiredClass = this.props.isRequired ? " requiredred":""
 		let data = {}
@@ -67,7 +64,7 @@ class GeoTdComponent extends React.Component {
             <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true)}>
             	<span className="color888 expandleftpspan">{ JSON.stringify(data) }</span>
             	<i className="fa fa-expand fr expandCircle" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
-            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)}>
+            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.cancelGeoUpdate.bind(this)}>
 	          		<div className="latdiv">
 	          			<p className="headinlatlon">Latitude </p>
 	          			<p className="ptaglatlong">Latitude must be range of -90 to 90</p>
@@ -99,8 +96,7 @@ class GeoTdComponent extends React.Component {
 					    />
 				    </div>
 				    <div className="geodiv">
-		          		<button className="btn btn-primary fr ml5" onClick={this.GeoSave.bind(this)}>SUBMIT</button>
-		          		<button className="btn btn-danger fr" onClick={this.cancelGeoUpdate.bind(this)}>CLOSE</button>
+		          		<button className="btn btn-primary fr" onClick={this.GeoSave.bind(this)}>Submit</button>
 	          		</div>
         		</Dialog>
             </td>

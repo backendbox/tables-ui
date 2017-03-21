@@ -67,7 +67,7 @@ class GeoPoint extends React.Component {
 				      onChange={this.changeHandler.bind(this,'longitude')}
 				      type="number"
 				    />
-	          		<button className="btn btn-danger fr" onClick={this.cancelGeoUpdate.bind(this)}>OK</button>
+	          		<button className="btn btn-danger fr" onClick={this.cancelGeoUpdate.bind(this)}>Done</button>
         		</Dialog>
             </div>
 		);

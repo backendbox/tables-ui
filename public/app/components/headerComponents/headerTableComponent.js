@@ -53,14 +53,12 @@ class HeaderTable extends React.Component {
 		this.setState(this.state)
 	}
 	openCloseModal(what){
+		this.handleRequestClose('openDeleteTable')
 		this.setState({isModalOpen:what})
 	}
 	changeHandler(which,e){
 		this.state[which] = e.target.value
 		this.setState(this.state)
-	}
-	handleClose(){
-
 	}
 	render() {
 		let { getTables,TABLE } = this.props.tableStore
@@ -109,13 +107,12 @@ class HeaderTable extends React.Component {
 			        <button className="deletetablebtn" type="submit" onClick={this.openCloseModal.bind(this,true)}><i className="ion ion-ios-trash-outline trash-icon" aria-hidden="true"></i> Delete </button>
 					
 		        </Popover>
-		        <Dialog title="Delete Confirmation" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="deletemodal" contentClassName={"contentclassdeletemodal"}>
+		        <Dialog title="Delete Confirmation" modal={false} open={this.state.isModalOpen} onRequestClose={this.openCloseModal.bind(this,false)} titleClassName="deletemodal" contentClassName={"contentclassdeletemodal"}>
 					
-					<p className="deleteconfirmtext">Please enter the name of the table, that you want to delete.</p>
+					<p className="deleteconfirmtext">Please confirm that you want to delete this table, by entering the table name i.e. { this.state.tableTodelete } </p>
 					<input className="deleteconfirminput" value={ this.state.confirmDeleteValue } onChange={ this.changeHandler.bind(this,'confirmDeleteValue') }/>
 
-					<button className="btn btn-primary fr ml5 clearboth mt10" onClick={ this.deleteTable.bind(this) } disabled={ this.state.confirmDeleteValue != this.state.tableTodelete }>DELETE</button>
-					<button className="btn btn-danger fr mt10" onClick={this.openCloseModal.bind(this,false)} >CLOSE</button>
+					<button className="btn btn-danger fr mt10" onClick={ this.deleteTable.bind(this) } disabled={ this.state.confirmDeleteValue != this.state.tableTodelete }>Delete</button>
 				</Dialog>
 
 			</div>

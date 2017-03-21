@@ -38,7 +38,7 @@ class ObjectC extends React.Component {
 				<span className="textnamerlation"> { this.props.columnData.name } </span>
 				<span className="color888 spanrelcustom">JSON Object</span>
 				<i className="fa fa-expand fr filerle cp" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
-            	<Dialog title="JSON EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
+            	<Dialog title="JSON EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.cancelJsonUpdate.bind(this)} titleClassName="modaltitle">
 	          		<AceEditor
 					    mode="json"
 					    theme="github"
@@ -47,8 +47,7 @@ class ObjectC extends React.Component {
 					    name="json"
 					    className="jsonmodal"
 					/>
-	          		<button className="btn btn-primary fr ml5" onClick={this.cancelJsonUpdate.bind(this)}>SUBMIT</button>
-	          		<button className="btn btn-danger fr" onClick={this.cancelJsonUpdate.bind(this)}>CLOSE</button>
+	          		<button className="btn btn-primary fr" onClick={this.cancelJsonUpdate.bind(this)}>Submit</button>
         		</Dialog>
             </div>
 		);

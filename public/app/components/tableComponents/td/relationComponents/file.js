@@ -106,27 +106,26 @@ class File extends React.Component {
 					<span className="filenamespan">{ this.state.file.name || "" }</span>
 					<button className="btn-primary filepickerotherrelation" onClick={this.openCloseModal.bind(this,true)}>Edit</button>
 				</div>
-            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} contentClassName={"bodyClassNamelist"}>
+            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.cancelFileSave.bind(this,false)} contentClassName={"bodyClassNamelist"}>
 					<div className="filemodal">
 						<div className={this.state.file.document ? 'hide' : 'nofilefound'}>
 							<i className="fa fa-files-o fileimage" aria-hidden="true"></i>
 							<span className="noimagetext">No file found, you can choose to add a file through our File Picker.</span>
 							<FilePicker chooseFile={ this.addFile.bind(this) }>
-								<button className="btn-primary filepicker">File Picker</button>
+								<button className="btn btn-primary filepicker">File Picker</button>
 							</FilePicker>
 						</div>
 						<div className={this.state.file.document ? 'nofilefound' : 'hide'}>
 							{ this.getFileIcon(this.state.file) }
 							<span className="filenamespan">{ this.state.file.name || "" }</span>
-							<button className="btn-primary downloadbtn" onClick={ this.downloadFile.bind(this) }>Download</button>
+							<button className="btn btn-orange downloadbtn" onClick={ this.downloadFile.bind(this) }>Download</button>
 							<FilePicker chooseFile={ this.addFile.bind(this) }>
-								<button className="btn-primary filepickerother">File Picker</button>
+								<button className="btn btn-primary filepickerother">File Picker</button>
 							</FilePicker>
-							<button className="btn-danger deletebtn" onClick={ this.deleteFile.bind(this) }>Delete</button>
+							<button className="btn btn-danger deletebtn" onClick={ this.deleteFile.bind(this) }>Delete</button>
 						</div>
 					</div>
-		            <button disabled={ !!!this.state.file.document } className="btn btn-primary fr ml5 clearboth mt10" onClick={this.saveFile.bind(this)}>SAVE</button>
-	          		<button className="btn btn-danger fr mt10" onClick={this.cancelFileSave.bind(this,false)}>CLOSE</button>
+		            <button disabled={ !!!this.state.file.document } className="btn btn-primary fr clearboth mt10" onClick={this.saveFile.bind(this)}>Save</button>
         		</Dialog>
             </div>
 		);

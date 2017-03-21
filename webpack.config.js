@@ -15,7 +15,7 @@ var config = {
             {
                 test: /\.js?$/,
                 exclude: /node_modules/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 query: {
                     cacheDirectory: true,
                     plugins: ['transform-decorators-legacy', "transform-class-properties"],

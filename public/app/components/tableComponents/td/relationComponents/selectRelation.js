@@ -61,7 +61,7 @@ class SelectRelation extends React.Component {
 		        		{ tableData }
 	          		</div>
 	          		<div className="cancelselctrela">
-		          			<button className="btn btn-danger fr ml5" onClick={this.openCloseModal.bind(this)}>CLOSE</button>
+		          			<button className="btn btn-danger fr ml5" onClick={this.openCloseModal.bind(this)}>Close</button>
 		          	</div>
 	    		</Dialog>
     		</div>

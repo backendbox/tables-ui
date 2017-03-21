@@ -96,9 +96,6 @@ class ListTdComponent extends React.Component {
 	changeHandler(value,e){
     	this.props.updateElement(value)
     }
-	handleClose(){
-
-	}
 	render() {
 		let requiredClass = this.props.isRequired ? " requiredred":""
 		let elements = []
@@ -147,7 +144,7 @@ class ListTdComponent extends React.Component {
 				</span>
 
             	<i className="fa fa-expand fr expandCircle" aria-hidden="true" onClick={this.openCloseModal.bind(this,true,false)}></i>
-            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} contentClassName={"bodyClassNamelist"}>
+            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.openCloseModal.bind(this,false,false)} contentClassName={"bodyClassNamelist"}>
          
             		<div className="listdivscontent">
 	          		{ elements }
@@ -159,8 +156,7 @@ class ListTdComponent extends React.Component {
             		/>
             		
 	          		<div className="savecanclist">
-	          			<button className="btn btn-danger fr ml5" onClick={this.openCloseModal.bind(this,false,false)}>CLOSE</button>
-	          			<button className="btn btn-primary fr" onClick={this.openCloseModal.bind(this,false,true)}>SAVE</button>
+	          			<button className="btn btn-primary fr" onClick={this.openCloseModal.bind(this,false,true)}>Save</button>
 	          		</div>
         		</Dialog>
             </td>

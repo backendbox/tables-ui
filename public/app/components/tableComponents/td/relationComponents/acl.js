@@ -139,7 +139,7 @@ class ACLTd extends React.Component {
 								        			updateAclData={ this.updateAclData.bind(this) }
 								        		/>
 								        		<div className="cancelselctrela">
-									          			<button className="btn btn-primary fr ml5" onClick={this.saveAcl.bind(this)}>OK</button>
+									          			<button className="btn btn-primary fr ml5" onClick={this.saveAcl.bind(this)}>Save</button>
 									          	</div>
 								    		</Dialog> : ''
             	}

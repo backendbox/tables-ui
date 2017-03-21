@@ -966,80 +966,61 @@ td,th{
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
 }
 .modaltitle{
-        background-color: #158AE5;
+        background-color: #549afc;
     color: white !important;
     /* padding-bottom: 18px !important; */
     margin-bottom: 4px !important;
 }
-.btn-danger,.btn-danger:active,.btn-danger::selection {
-    color: rgba(236, 13, 13, 0.64) !important;
-    background-color: rgba(255, 255, 255, 0.64) !important;
-    width: 100px;
-    font-weight: bold;
-    border-radius: 2px;
-    border: 2px solid rgba(236, 13, 13, 0.64);
-    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    transition: background-color ease 0.2s , color ease 0.2s;
-}
-.btn-danger:hover {
-    color: white !important;
+.btn-danger,.btn-danger:active,.btn-danger::selection,.btn-danger:hover, .btn-danger:focus {
+    box-sizing: border-box;
     background-color: rgba(236, 13, 13, 0.64) !important;
-    border: 2px solid rgb(243, 100, 100) !important
-}
-
-.btn-success,.btn-success:active,.btn-success::selection {
-    color: #5cb85c !important;
-    background-color: rgba(255, 255, 255, 0.64) !important;
-    width: 100px;
+    color: white;
     font-weight: bold;
-    border-radius: 2px;
-    border: 2px solid #5cb85c;
-    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
--moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-transition: background-color ease 0.2s , color ease 0.2s;
+    font-size: 14px !important;
+    border-radius: 4px !important;
+    padding: 6px 30px !important;
+    letter-spacing: 0.02em !important;
+    border: none;
+    outline: none !important;
 }
-
-.btn-success:hover {
-    color: white !important;
+.btn-success,.btn-success:active,.btn-success::selection,.btn-success:hover, .btn-success:focus {
+    box-sizing: border-box;
     background-color: #5cb85c !important;
-}
-
-.btn-primary,.btn-primary:active,.btn-primary::selection{
-    color: #158AE5 !important;
-    background-color: rgba(255, 255, 255, 0.64) !important;
-    border: 2px solid #158AE5 !important;
-    width: 100px;
+    color: white;
     font-weight: bold;
-    border-radius: 2px;
-    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
--moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-transition: background-color ease 0.2s , color ease 0.2s;
+    font-size: 14px !important;
+    border-radius: 4px !important;
+    padding: 6px 30px !important;
+    letter-spacing: 0.02em !important;
+    border: none;
+    outline: none !important;
 }
-
-.btn-primary:hover {
-    color: white !important;
-    background-color: #158AE5 !important;
+.btn-primary,.btn-primary:active,.btn-primary::selection,.btn-primary:hover, .btn-primary:focus {
+    box-sizing: border-box;
+    background-color: #549afc !important;
+    color: white;
+    font-weight: bold;
+    font-size: 14px !important;
+    border-radius: 4px !important;
+    padding: 6px 30px !important;
+    letter-spacing: 0.02em !important;
+    border: none;
+    outline: none !important;
 }
-
-.btn-orange,.btn-orange:hover,.btn-orange:active,.btn-orange::selection{
-        color: #fff !important;
+.btn-orange,.btn-orange:active,.btn-orange::selection,.btn-orange:hover, .btn-orange:focus {
+    box-sizing: border-box;
     background-color: rgba(255, 85, 0, 0.78) !important;
-    border-color: rgba(255, 85, 0, 0.84) !important;
-    width: 104px;
+    color: white;
     font-weight: bold;
-    border-radius: 1px;
-    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    margin-right: 4px;
+    font-size: 14px !important;
+    border-radius: 4px !important;
+    padding: 6px 30px !important;
+    letter-spacing: 0.02em !important;
+    border: none;
+    outline: none !important;
 }
-.btn-success,.btn-suserlogoimageuccess:hover,.btn-success:active,.btn-success::selection{
-    width: 100px;
-}
+
+
 .taleft{
     text-align: left !important;
 }
@@ -1716,7 +1697,6 @@ transition: background-color ease 0.2s , color ease 0.2s;
 }
 .filepicker{
     color: white !important;
-    background-color: #158AE5 !important;
     margin-bottom: 20px;
 }
 .filepickerselect{
@@ -1726,36 +1706,22 @@ transition: background-color ease 0.2s , color ease 0.2s;
 .filepickerother{
     float: left;
     color: white !important;
-    background-color: #158AE5 !important;
     margin-top: 5%;
     margin-bottom: 20px;
 }
 .downloadbtn{
     float: left;
     color: white !important;
-    background-color: orange !important;
     margin-top: 5%;
-    margin-left: 20%;
+    margin-left: 12%;
     margin-right: 1%;
-        border-color: orange !important;
-        margin-bottom: 20px;
-}
-.downloadbtn:hover{
-    float: left;
-    color: white !important;
-    background-color: orange !important;
-    margin-top: 5%;
-    margin-left: 20%;
-    margin-right: 1%;
-        border-color: orange !important;
+    margin-bottom: 20px;
 }
 .deletebtn{
     float: left;
     color: white !important;
     margin-top: 5%;
     margin-left: 1%;
-    background-color: rgba(236, 13, 13, 0.64) !important;
-    border-color: #f36464 !important;
     margin-bottom: 20px;
 }
 .fileimagescr{

@@ -57,7 +57,7 @@ class ObjectTdComponent extends React.Component {
             <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true)}>
             	<span className="color888 expandleftpspan">{ jsonData ? jsonData.slice(0,20) : '' }</span>
             	<i className="fa fa-expand fr expandCircle" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
-            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.handleClose.bind(this)} bodyClassName={"bodyClassNameobj"}>
+            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.cancelJsonUpdate.bind(this)} bodyClassName={"bodyClassNameobj"}>
 	          		<AceEditor
 					    mode="json"
 					    theme="github"
@@ -68,8 +68,7 @@ class ObjectTdComponent extends React.Component {
 					    setOptions={{wrapBehavioursEnabled:true}}
 					    minLines={5}
 					/>
-	          		<button className="btn btn-primary fr ml5" onClick={this.jsonSave.bind(this)} disabled={ !this.state.jsonValidated }>SUBMIT</button>
-	          		<button className="btn btn-danger fr" onClick={this.cancelJsonUpdate.bind(this)}>CLOSE</button>
+	          		<button className="btn btn-primary fr" onClick={this.jsonSave.bind(this)} disabled={ !this.state.jsonValidated }>Submit</button>
         		</Dialog>
             </td>
 		);

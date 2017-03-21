@@ -124,9 +124,6 @@ class ACLTd extends React.Component {
 		this.state['isOpenACL'] = what
 		this.setState(this.state)
 	}
-	handleClose(){
-
-	}
 	render() {
 		let dialogTitle = <div className="modaltitle">
 							<span className="diadlogTitleText">Access Control List</span>
@@ -137,7 +134,7 @@ class ACLTd extends React.Component {
             	<ViewACL aclList={ this.state.aclList }/>
             	<i className="fa fa-expand fr expandCircle" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
             	{	
-	            	this.state.isOpenACL ? <Dialog title={ dialogTitle } modal={false} open={this.state.isOpenACL} onRequestClose={this.handleClose.bind(this)}>
+	            	this.state.isOpenACL ? <Dialog title={ dialogTitle } modal={false} open={this.state.isOpenACL} onRequestClose={this.cancelAcl.bind(this)}>
 								        		<ACLRows 
 								        			aclList={ this.state.aclList }
 								        			removeAcl={ this.removeAcl.bind(this) }
@@ -145,8 +142,7 @@ class ACLTd extends React.Component {
 								        			updateAclData={ this.updateAclData.bind(this) }
 								        		/>
 								        		<div className="cancelselctrela">
-									          			<button className="btn btn-danger fr ml5" onClick={this.cancelAcl.bind(this)}>CLOSE</button>
-									          			<button className="btn btn-primary fr ml5" onClick={this.saveAcl.bind(this)}>SAVE</button>
+									          			<button className="btn btn-primary fr" onClick={this.saveAcl.bind(this)}>Save</button>
 									          	</div>
 								    		</Dialog> : ''
             	}
