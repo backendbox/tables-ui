@@ -27,7 +27,7 @@ class FilePicker extends React.Component {
         query.setLimit(9999)
         query.find({
             success: function (list) {
-                this.setState({ files: list })
+                this.setState({ files: ( list || [] ) })
             }.bind(this),
             error: function (error) {
                 console.log(error)

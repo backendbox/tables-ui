@@ -95,7 +95,7 @@ class Header extends React.Component {
 						this.props.userProfile.file ?
 							<img src={this.props.userProfile.file.document ? this.props.userProfile.file.document.url : ''} className="userlogoimage cp" onTouchTap={this.handleTouchTap.bind(this, 'open')} />
 							:
-							<i className="fa fa-user userLogoheadng cp" aria-hidden="true" onTouchTap={this.handleTouchTap.bind(this, 'open')} ></i>
+							<img src='/app/assets/images/user-image.png' className="userlogoimage cp" onTouchTap={this.handleTouchTap.bind(this, 'open')} />
 					}
 					<Popover
 						open={this.state.open}
@@ -106,7 +106,7 @@ class Header extends React.Component {
 						animated={true}
 						className="profilepop"
 					>
-						<div className="profilepoparrow"></div>
+						<img src="/app/assets/images/arrow-up.png"  className="profilepoparrow"/>
 						<p className="headingpop">{this.props.userProfile ? this.props.userProfile.user.name.toUpperCase() : ''}</p>
 						<button className="coloptbtn" onClick={this.dashprofileRedirect.bind(this)}>Profile</button>
 						<button className="coloptbtn" onClick={this.dashRedirect.bind(this)}>Dashboard</button>

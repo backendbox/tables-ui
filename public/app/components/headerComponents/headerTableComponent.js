@@ -88,6 +88,7 @@ class HeaderTable extends React.Component {
 		          animation={PopoverAnimationVertical}
 		          className="popupaddtable"
 		        >
+				<img src="/app/assets/images/arrow-up.png"  className="tablepoparrow"/>
 		        <form onSubmit={ this.addtable.bind(this) }>
 		        	<p className="headingpop">ADD NEW TABLE</p>
 			        <input className="inputaddtable" placeholder="Table name" onChange={ this.changeHandler.bind(this,'tableName') } value={ this.state.tableName } required />
