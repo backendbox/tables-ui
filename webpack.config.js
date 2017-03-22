@@ -7,7 +7,7 @@ var config = {
     entry: './public/app/main.js',
 
     output: {
-        path: './public',
+        path: './public/',
         filename: '/index.min.js',
     },
     module: {
