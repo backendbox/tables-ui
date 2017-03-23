@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CONFIG from '../../../../config/app.js'
+import Axios from 'axios'
 
 class FileListComponent extends React.Component {
 	constructor(){
@@ -38,7 +39,7 @@ class FileListComponent extends React.Component {
 			let fileType = file.type.split("/")[1]
 			if(fileType){
 				if(['png','jpeg','jpg','gif'].indexOf(fileType) > -1){
-					return <img className={file.document ? 'fileListPreveiew cp' : 'hide'} src={ file.document ?  file.document.url : ''} />
+					return <img className={file.document ? 'fileListPreveiew cp' : 'hide'} src={ this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url } />
 				} else if(CONFIG.iconTypes.indexOf(fileType) > -1){
 					return <img src={"/app/assets/images/file/"+fileType+".png"} className={file.document ? 'fileListPreveiew cp' : 'hide'} />
 				} else {
@@ -50,8 +51,35 @@ class FileListComponent extends React.Component {
 		}
     }
 	downloadFile(){
-		let win = window.open(this.state.filePreview.url, '_blank')
-  		win.focus()
+		if(!this.checkIfPrivateFile(this.state.filePreview)){
+			// for public files
+			let win = window.open(this.state.filePreview.url, '_blank')
+			win.focus()
+		} else {
+			// for private files
+			Axios({
+                method: 'post',
+                data: {
+                    key: CB.appKey
+                },
+                url: this.state.filePreview.url,
+                withCredentials: false,
+                responseType: 'blob'
+            }).then(function(res) {
+                var blob = res.data;
+                var fileURL = URL.createObjectURL(blob)
+                var newWindow = window.open(fileURL)
+				newWindow.focus()
+                URL.revokeObjectURL(fileURL)
+
+            }, function(err) {
+                console.log(err)
+            })
+		}
+	}
+	checkIfPrivateFile(file){
+		let fileACL = file.ACL.document || file.ACL
+		return fileACL.read.allow.user.indexOf('all') === -1
 	}
 	render() {
 		let previewIcon = React.cloneElement(( this.getPreviewIcon(this.state.filePreview) || <div/> ) ,{

@@ -5,6 +5,7 @@ import Dropzone from 'react-dropzone';
 import LinearProgress from 'material-ui/LinearProgress';
 import FilePicker from './filePicker'
 import CONFIG from '../../../config/app.js'
+import Axios from 'axios'
 
 
 class FileTdComponent extends React.Component {
@@ -31,8 +32,35 @@ class FileTdComponent extends React.Component {
 		this.openCloseModal(false)
 	}
 	downloadFile(){
-		let win = window.open(this.state.file.url, '_blank')
-  		win.focus()
+		if(!this.checkIfPrivateFile(this.state.file)){
+			// for public files
+			let win = window.open(this.state.file.url, '_blank')
+			win.focus()
+		} else {
+			// for private files
+			Axios({
+                method: 'post',
+                data: {
+                    key: CB.appKey
+                },
+                url: this.state.file.url,
+                withCredentials: false,
+                responseType: 'blob'
+            }).then(function(res) {
+                var blob = res.data;
+                var fileURL = URL.createObjectURL(blob)
+                var newWindow = window.open(fileURL)
+				newWindow.focus()
+                URL.revokeObjectURL(fileURL)
+
+            }, function(err) {
+                console.log(err)
+            })
+		}
+	}
+	checkIfPrivateFile(file){
+		let fileACL = file.ACL.document || file.ACL
+		return fileACL.read.allow.user.indexOf('all') === -1
 	}
 	deleteFile(){
 		this.props.updateElement(null)
@@ -58,7 +86,7 @@ class FileTdComponent extends React.Component {
 			let fileType = file.type.split("/")[1]
 			if(fileType){
 				if(['png','jpeg','jpg','gif'].indexOf(fileType) > -1){
-					return <img src={ file.url } className="fileimagescr"/>
+					return <img src={ this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url } className="fileimagescr"/>
 				} else if(CONFIG.iconTypes.indexOf(fileType) > -1){
 					return <img src={"/app/assets/images/file/"+fileType+".png"} className="fileimagescr" />
 				} else {
@@ -74,7 +102,7 @@ class FileTdComponent extends React.Component {
 			let fileType = file.type.split("/")[1]
 			if(fileType){
 				if(['png','jpeg','jpg','gif'].indexOf(fileType) > -1){
-					return <img className={file.document ? 'previewSmallImage' : 'hide'} src={ file.document ?  file.document.url : ''} />
+					return <img className={file.document ? 'previewSmallImage' : 'hide'} src={ this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url } />
 				} else if(CONFIG.iconTypes.indexOf(fileType) > -1){
 					return <img src={"/app/assets/images/file/"+fileType+".png"} className={file.document ? 'previewSmallImage' : 'hide'} />
 				} else {
