@@ -22,58 +22,60 @@ class ACLTd extends React.Component {
 	generaliseACL(props){
 		let users = {}
 		let roles = {}
-		for(var k in props.elementData.document.read.allow.user){
-			if(!users[props.elementData.document.read.allow.user[k]]) users[props.elementData.document.read.allow.user[k]] = {}
-			users[props.elementData.document.read.allow.user[k]].read = true
-		}
-		for(var k in props.elementData.document.read.deny.user){
-			if(!users[props.elementData.document.read.deny.user[k]]) users[props.elementData.document.read.deny.user[k]] = {}
-			users[props.elementData.document.read.deny.user[k]].read = false
-		}
-		for(var k in props.elementData.document.write.allow.user){
-			if(!users[props.elementData.document.write.allow.user[k]]) users[props.elementData.document.write.allow.user[k]] = {}
-			users[props.elementData.document.write.allow.user[k]].write = true
-		}
-		for(var k in props.elementData.document.write.deny.user){
-			if(!users[props.elementData.document.write.deny.user[k]]) users[props.elementData.document.write.deny.user[k]] = {}
-			users[props.elementData.document.write.deny.user[k]].write = false
-		}
-
-		for(var k in props.elementData.document.read.allow.role){
-			if(!roles[props.elementData.document.read.allow.role[k]]) roles[props.elementData.document.read.allow.role[k]] = {}
-			roles[props.elementData.document.read.allow.role[k]].read = true
-		}
-		for(var k in props.elementData.document.read.deny.role){
-			if(!roles[props.elementData.document.read.deny.role[k]]) roles[props.elementData.document.read.deny.role[k]] = {}
-			roles[props.elementData.document.read.deny.role[k]].read = false
-		}
-		for(var k in props.elementData.document.write.allow.role){
-			if(!roles[props.elementData.document.write.allow.role[k]]) roles[props.elementData.document.write.allow.role[k]] = {}
-			roles[props.elementData.document.write.allow.role[k]].write = true
-		}
-		for(var k in props.elementData.document.write.deny.role){
-			if(!roles[props.elementData.document.write.deny.role[k]]) roles[props.elementData.document.write.deny.role[k]] = {}
-			roles[props.elementData.document.write.deny.role[k]].write = false
-		}
-
-		let usersList = []
-		let rolesList = []
-		usersList = Object.keys(users).map((x)=>{
-			return {
-				id:x,
-				data:users[x],
-				type:'user'
+		if(props.elementData.document.read){
+			for(var k in props.elementData.document.read.allow.user){
+				if(!users[props.elementData.document.read.allow.user[k]]) users[props.elementData.document.read.allow.user[k]] = {}
+				users[props.elementData.document.read.allow.user[k]].read = true
 			}
-		})
-		rolesList = Object.keys(roles).map((x)=>{
-			return {
-				id:x,
-				data:roles[x],
-				type:'role'
+			for(var k in props.elementData.document.read.deny.user){
+				if(!users[props.elementData.document.read.deny.user[k]]) users[props.elementData.document.read.deny.user[k]] = {}
+				users[props.elementData.document.read.deny.user[k]].read = false
 			}
-		})
-		this.state.aclList = [...usersList,...rolesList]
-		this.setState(this.state)
+			for(var k in props.elementData.document.write.allow.user){
+				if(!users[props.elementData.document.write.allow.user[k]]) users[props.elementData.document.write.allow.user[k]] = {}
+				users[props.elementData.document.write.allow.user[k]].write = true
+			}
+			for(var k in props.elementData.document.write.deny.user){
+				if(!users[props.elementData.document.write.deny.user[k]]) users[props.elementData.document.write.deny.user[k]] = {}
+				users[props.elementData.document.write.deny.user[k]].write = false
+			}
+
+			for(var k in props.elementData.document.read.allow.role){
+				if(!roles[props.elementData.document.read.allow.role[k]]) roles[props.elementData.document.read.allow.role[k]] = {}
+				roles[props.elementData.document.read.allow.role[k]].read = true
+			}
+			for(var k in props.elementData.document.read.deny.role){
+				if(!roles[props.elementData.document.read.deny.role[k]]) roles[props.elementData.document.read.deny.role[k]] = {}
+				roles[props.elementData.document.read.deny.role[k]].read = false
+			}
+			for(var k in props.elementData.document.write.allow.role){
+				if(!roles[props.elementData.document.write.allow.role[k]]) roles[props.elementData.document.write.allow.role[k]] = {}
+				roles[props.elementData.document.write.allow.role[k]].write = true
+			}
+			for(var k in props.elementData.document.write.deny.role){
+				if(!roles[props.elementData.document.write.deny.role[k]]) roles[props.elementData.document.write.deny.role[k]] = {}
+				roles[props.elementData.document.write.deny.role[k]].write = false
+			}
+
+			let usersList = []
+			let rolesList = []
+			usersList = Object.keys(users).map((x)=>{
+				return {
+					id:x,
+					data:users[x],
+					type:'user'
+				}
+			})
+			rolesList = Object.keys(roles).map((x)=>{
+				return {
+					id:x,
+					data:roles[x],
+					type:'role'
+				}
+			})
+			this.state.aclList = [...usersList,...rolesList]
+			this.setState(this.state)
+		}
 	}
 	removeAcl(id){
 		this.state.aclList = this.state.aclList.filter(x => x.id != id)

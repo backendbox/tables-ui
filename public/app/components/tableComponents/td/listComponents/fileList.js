@@ -69,7 +69,6 @@ class FileListComponent extends React.Component {
                 var blob = res.data;
                 var fileURL = URL.createObjectURL(blob)
                 var newWindow = window.open(fileURL)
-				newWindow.focus()
                 URL.revokeObjectURL(fileURL)
 
             }, function(err) {
