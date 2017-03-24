@@ -49,8 +49,7 @@ class FileTdComponent extends React.Component {
             }).then(function(res) {
                 var blob = res.data;
                 var fileURL = URL.createObjectURL(blob)
-                var newWindow = window.open(fileURL)
-				newWindow.focus()
+                var newWindow = window.open(fileURL, '_blank')
                 URL.revokeObjectURL(fileURL)
 
             }, function(err) {
