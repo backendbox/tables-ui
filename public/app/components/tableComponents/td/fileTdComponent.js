@@ -48,11 +48,8 @@ class FileTdComponent extends React.Component {
                 responseType: 'blob'
             }).then(function(res) {
                 var blob = res.data;
-                var fileURL = URL.createObjectURL(blob)
-                var newWindow = window.open(fileURL, '_blank')
-                URL.revokeObjectURL(fileURL)
-
-            }, function(err) {
+				saveAs(blob,this.state.file.name)
+            }.bind(this), function(err) {
                 console.log(err)
             })
 		}

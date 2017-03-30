@@ -47,11 +47,9 @@ class File extends React.Component {
                 responseType: 'blob'
             }).then(function(res) {
                 var blob = res.data;
-                var fileURL = URL.createObjectURL(blob)
-                var newWindow = window.open(fileURL)
-                URL.revokeObjectURL(fileURL)
+				saveAs(blob,this.state.file.name)
 
-            }, function(err) {
+            }.bind(this), function(err) {
                 console.log(err)
             })
 		}

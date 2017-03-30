@@ -67,11 +67,8 @@ class FileListComponent extends React.Component {
                 responseType: 'blob'
             }).then(function(res) {
                 var blob = res.data;
-                var fileURL = URL.createObjectURL(blob)
-                var newWindow = window.open(fileURL)
-                URL.revokeObjectURL(fileURL)
-
-            }, function(err) {
+				saveAs(blob,this.state.filePreview.name)
+            }.bind(this), function(err) {
                 console.log(err)
             })
 		}
