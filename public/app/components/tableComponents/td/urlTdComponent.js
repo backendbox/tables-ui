@@ -16,7 +16,7 @@ class URLTdComponent extends React.Component {
 	}
 	toggleInput(which,e){
 		if(which){
-			if(e.target.checkValidity()){
+			if(this.checkUrlValidity(e.target)){
 				this.props.updateObject()
 				this.state.errorShow = false
 				this.state['inputHidden'] = which
@@ -28,6 +28,15 @@ class URLTdComponent extends React.Component {
 			this.state['inputHidden'] = which
 		}
 		this.setState(this.state)
+	}
+	checkUrlValidity(target){
+		if(!target.value.includes('http')){
+			if(target.value){
+				target.value = "https://" + target.value
+				this.props.updateElement(target.value)
+			}
+		}
+		return target.checkValidity()
 	}
 	componentDidUpdate(){
 		if(!this.state['inputHidden']){

@@ -197,9 +197,14 @@ class AddColumnComponent extends React.Component {
 
 		let columnTypes = dataTypes
 		.filter( x => ['ACL','Id'].indexOf(x.name) == -1 )
-		.map((x,i)=>{
-			return <option key={ i } value={ x.name }>{ x.name }</option>
-		})
+		.reduce((dataTypeObject,x,i)=>{
+			if(['List','Relation'].indexOf(x.name) === -1){
+				dataTypeObject.basic.push(<option key={ i } value={ x.name }>{ x.text }</option>) 
+			} else {
+				dataTypeObject.advance.push(<option key={ i } value={ x.name }>{ x.text }</option>)
+			}
+			return dataTypeObject
+		},{basic:[],advance:[]})
 
 		let targetTypesData = []
 		let targetTypesTable = []
@@ -236,13 +241,18 @@ class AddColumnComponent extends React.Component {
 							<div>
 								<p className="paddcolumns"> Column Type: </p>
 								<select required className="addcolselect" value={ this.state.dataType || 'Text' } onChange={ this.setDataType.bind(this) }>
-									{ columnTypes }
+									<optgroup label="Basic">
+										{ columnTypes.basic }
+									</optgroup>
+									<optgroup label="Advanced">
+										{ columnTypes.advance }
+									</optgroup>
 								</select>
 							</div>
 
 							<div>
 								<p className="paddcolumns"> Column Name:</p>
-								<input className="addcolinput" placeholder="Column name." type="text" value={ this.state.name } onChange={ this.changeHandler.bind(this,'name') } required/>
+								<input className="addcolinput" placeholder="Column name." type="text" value={ this.state.name } onChange={ this.changeHandler.bind(this,'name') } pattern="^[^<>'\/;`%@]*$" required/>
 				        	</div>
 
 							<div className={ this.TargetTypeIsAllowed(this.state.dataType) ? '' : 'hide'}>
