@@ -37,6 +37,9 @@ class FilterRow extends React.Component {
 	setDataValue(ischeckbox,e){
 		let value = e.target.value
 		if(ischeckbox) value = e.target.checked
+		if(this.props.filterData.columnType === 'Number'){
+			value = parseInt(value)
+		}
 		this.props.changeHandler('dataValue',value,this.props.filterData.id)
 	}
 	setListDataValue(e){
@@ -52,8 +55,11 @@ class FilterRow extends React.Component {
 	getInputType(props){
 		let inputType
 		if(props.filterData.columnType){
-			if(['Text','Email','URL','EncryptedText','Number'].indexOf(props.filterData.columnType) != -1){
+			if(['Text','Email','URL','EncryptedText'].indexOf(props.filterData.columnType) != -1){
 				inputType = <input type="text" className="inputfilter" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this,false) }/>
+			}
+			else if(['Number'].indexOf(props.filterData.columnType) != -1){
+				inputType = <input type="number" className="inputfilter" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this,false) }/>
 			} 
 			else if(['DateTime'].indexOf(props.filterData.columnType) != -1){
 				inputType = <input type="date" className="inputfilter" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this,false) }/>

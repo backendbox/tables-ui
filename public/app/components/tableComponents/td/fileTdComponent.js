@@ -9,82 +9,82 @@ import Axios from 'axios'
 
 
 class FileTdComponent extends React.Component {
-	constructor(){
+	constructor() {
 		super()
 		this.state = {
-			isModalOpen:false,
-			file:{}
+			isModalOpen: false,
+			file: {}
 		}
 	}
-	componentDidMount(){
+	componentDidMount() {
 		this.fetchImageFromCB(this.props)
 	}
-	componentWillReceiveProps(props){
+	componentWillReceiveProps(props) {
 		this.fetchImageFromCB(props)
 	}
-	
-	addFile(file){
-		this.setState({file:file})
+
+	addFile(file) {
+		this.setState({ file: file })
 	}
-	saveFile(){
+	saveFile() {
 		this.props.updateElement(this.state.file)
 		this.props.updateObject()
 		this.openCloseModal(false)
 	}
-	downloadFile(){
-		if(!this.checkIfPrivateFile(this.state.file)){
+	downloadFile() {
+		if (!this.checkIfPrivateFile(this.state.file)) {
 			// for public files
 			let win = window.open(this.state.file.url, '_blank')
 			win.focus()
 		} else {
 			// for private files
 			Axios({
-                method: 'post',
-                data: {
-                    key: CB.appKey
-                },
-                url: this.state.file.url,
-                withCredentials: false,
-                responseType: 'blob'
-            }).then(function(res) {
-                var blob = res.data;
-				saveAs(blob,this.state.file.name)
-            }.bind(this), function(err) {
-                console.log(err)
-            })
+				method: 'post',
+				data: {
+					key: CB.appKey
+				},
+				url: this.state.file.url,
+				withCredentials: false,
+				responseType: 'blob'
+			}).then(function (res) {
+				var blob = res.data;
+				saveAs(blob, this.state.file.name)
+			}.bind(this), function (err) {
+				console.log(err)
+			})
 		}
 	}
-	checkIfPrivateFile(file){
+	checkIfPrivateFile(file) {
 		let fileACL = file.ACL.document || file.ACL
 		return fileACL.read.allow.user.indexOf('all') === -1
 	}
-	deleteFile(){
+	deleteFile() {
 		this.props.updateElement(null)
 		this.props.updateObject()
 		this.setState({
-			file:{}
+			file: {}
 		})
 	}
-	fetchImageFromCB(props){
-		if(props.elementData){
+	fetchImageFromCB(props) {
+		if (props.elementData) {
 			props.elementData.fetch({
-			  success: function(file) {
-			  	this.setState({file:file})
-			     //received file Object
-			  }.bind(this), error: function(err) {
-			      //error in getting file Object
-			  }
+				success: function (file) {
+					this.setState({ file: file })
+					//received file Object
+				}.bind(this), error: function (err) {
+					//error in getting file Object
+				}
 			});
 		}
 	}
-	getFileIcon(file){
-		if(file.type){
+	getFileIcon(file) {
+		if (file.type) {
 			let fileType = file.type.split("/")[1]
-			if(fileType){
-				if(['png','jpeg','jpg','gif'].indexOf(fileType) > -1){
-					return <img src={ this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url } className="fileimagescr"/>
-				} else if(CONFIG.iconTypes.indexOf(fileType) > -1){
-					return <img src={"/app/assets/images/file/"+fileType+".png"} className="fileimagescr" />
+			if (fileType) {
+				if (['png', 'jpeg', 'jpg', 'gif'].indexOf(fileType) > -1) {
+					return <img src={this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url} className="fileimagescr" />
+				} else if (CONFIG.iconTypes.indexOf(fileType) > -1) {
+					return <img src={"/app/assets/images/file/" + fileType + ".png"} className="fileimagescr" />
 				} else {
 					return <img src={"/app/assets/images/file/file.png"} className="fileimagescr" />
 				}
@@ -92,15 +92,15 @@ class FileTdComponent extends React.Component {
 				return <img src={"/app/assets/images/file/file.png"} className="fileimagescr" />
 			}
 		}
-    }
-	getPreviewIcon(file){
-		if(file.type){
+	}
+	getPreviewIcon(file) {
+		if (file.type) {
 			let fileType = file.type.split("/")[1]
-			if(fileType){
-				if(['png','jpeg','jpg','gif'].indexOf(fileType) > -1){
-					return <img className={file.document ? 'previewSmallImage' : 'hide'} src={ this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url } />
-				} else if(CONFIG.iconTypes.indexOf(fileType) > -1){
-					return <img src={"/app/assets/images/file/"+fileType+".png"} className={file.document ? 'previewSmallImage' : 'hide'} />
+			if (fileType) {
+				if (['png', 'jpeg', 'jpg', 'gif'].indexOf(fileType) > -1) {
+					return <img className={file.document ? 'previewSmallImage' : 'hide'} src={this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url} />
+				} else if (CONFIG.iconTypes.indexOf(fileType) > -1) {
+					return <img src={"/app/assets/images/file/" + fileType + ".png"} className={file.document ? 'previewSmallImage' : 'hide'} />
 				} else {
 					return <img className={file.document ? 'previewSmallImage' : 'hide'} src={'/app/assets/images/file/file.png'} />
 				}
@@ -108,48 +108,54 @@ class FileTdComponent extends React.Component {
 				return <img className={file.document ? 'previewSmallImage' : 'hide'} src={'/app/assets/images/file/file.png'} />
 			}
 		}
-    }
-	cancelFileSave(){
+	}
+	cancelFileSave() {
 		this.props.fetchObject()
 		this.openCloseModal(false)
 	}
-	openCloseModal(what){
+	openCloseModal(what) {
 		this.state.isModalOpen = what
+		//open filepicker if no file is attachced
+		if(what === true && !this.state.file.document){
+			setTimeout(()=>{
+				$('.filepicker').click()
+			},0)
+		}
 		this.setState(this.state)
 	}
 	render() {
-		let requiredClass = this.props.isRequired ? " requiredred":""
+		let requiredClass = this.props.isRequired ? " requiredred" : ""
 		let dialogTitle = <div className="modaltitle">
-							<span className="diadlogTitleText">File Editor</span>
-							<i className='fa fa-paperclip iconmodal'></i>
-						</div>
+			<span className="diadlogTitleText">File Editor</span>
+			<i className='fa fa-paperclip iconmodal'></i>
+		</div>
 		return (
-            <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true)}>
-            	<span className={this.state.file.document ? 'hide' : 'color888 expandleftpspan'}>Upload File</span>
-            	{ this.getPreviewIcon(this.state.file) }
-            	<i className={this.state.file.document ? 'fa fa-expand fr expandCircle' : 'fa fa-expand fr expandCircle'} aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
-            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.cancelFileSave.bind(this,false)} contentClassName={"bodyClassNamelist"}>
+			<td className={'mdl-data-table__cell--non-numeric pointer' + requiredClass} onDoubleClick={this.openCloseModal.bind(this, true)}>
+				<span className={this.state.file.document ? 'hide' : 'color888 expandleftpspan'}>Upload File</span>
+				{this.getPreviewIcon(this.state.file)}
+				<i className={this.state.file.document ? 'fa fa-expand fr expandCircle' : 'fa fa-expand fr expandCircle'} aria-hidden="true" onClick={this.openCloseModal.bind(this, true)}></i>
+				<Dialog title={dialogTitle} modal={false} open={this.state.isModalOpen} onRequestClose={this.cancelFileSave.bind(this, false)} contentClassName={"bodyClassNamelist"}>
 					<div className="filemodal">
 						<div className={this.state.file.document ? 'hide' : 'nofilefound'}>
 							<i className="fa fa-files-o fileimage" aria-hidden="true"></i>
 							<span className="noimagetext">No file found, you can choose to add a file through our File Picker.</span>
-							<FilePicker chooseFile={ this.addFile.bind(this) }>
+							<FilePicker chooseFile={this.addFile.bind(this)}>
 								<button className="btn btn-primary filepicker">File Picker</button>
 							</FilePicker>
 						</div>
 						<div className={this.state.file.document ? 'nofilefound' : 'hide'}>
-							{ this.getFileIcon(this.state.file) }
-							<span className="filenamespan">{ this.state.file.name || "" }</span>
-							<button className="btn btn-orange downloadbtn" onClick={ this.downloadFile.bind(this) }>Download</button>
-							<FilePicker chooseFile={ this.addFile.bind(this) }>
+							{this.getFileIcon(this.state.file)}
+							<span className="filenamespan">{this.state.file.name || ""}</span>
+							<button className="btn btn-orange downloadbtn" onClick={this.downloadFile.bind(this)}>Download</button>
+							<FilePicker chooseFile={this.addFile.bind(this)}>
 								<button className="btn btn-primary filepickerother">File Picker</button>
 							</FilePicker>
-							<button className="btn btn-danger deletebtn" onClick={ this.deleteFile.bind(this) }>Delete</button>
+							<button className="btn btn-danger deletebtn" onClick={this.deleteFile.bind(this)}>Delete</button>
 						</div>
 					</div>
-		            <button disabled={ !!!this.state.file.document } className="btn btn-primary fr clearboth mt10" onClick={this.saveFile.bind(this)}>Save</button>
-        		</Dialog>
-            </td>
+					<button disabled={!!!this.state.file.document} className="btn btn-primary fr clearboth mt10" onClick={this.saveFile.bind(this)}>Save</button>
+				</Dialog>
+			</td>
 		);
 	}
 }

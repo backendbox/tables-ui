@@ -38,12 +38,13 @@ class DateTimeListComponent extends React.Component {
 	}
 	render() {
 		let data = this.props.data
+		let currentDate = this.props.data ? new Date(this.props.data) : new Date()
 		return (
 			<div className="datetimelist">
 				<span className='fl'>{ this.dateFormat(this.props.data) }</span>
             	<i className="fa fa-calendar fl dateml" aria-hidden="true" onClick={this.openInput.bind(this,'InputDate')}></i>
             	<i className="fa fa-clock-o fl dateml" aria-hidden="true" onClick={this.openInput.bind(this,'InputTime')}></i>
-            	<DatePicker id="date" ref="InputDate" className='width0 fl' onChange={this.viewChangeDate.bind(this)}/>
+            	<DatePicker id="date" ref="InputDate" className='width0 fl' onChange={this.viewChangeDate.bind(this)} value={currentDate}/>
             	<TimePicker id="time" ref="InputTime" className='width0 fl' onChange={this.viewChangeTime.bind(this)}/>
             	<i className="fa fa-times datedeletebt" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
 			</div>

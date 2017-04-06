@@ -37,6 +37,7 @@ class DateC extends React.Component {
     	
     }
 	render() {
+		let currentDate = this.props.elementData ? new Date(this.props.elementData) : new Date()
 		return (
 			<div className="textRaltion">
 				<span className="textnamerlation"> { this.props.columnData.name } </span>
@@ -44,7 +45,7 @@ class DateC extends React.Component {
 					<span className={''}>{ this.dateFormat(this.props.elementData) }</span>
 	            	<i className="fa fa-calendar fr mtl2 cp" aria-hidden="true" onClick={this.openInput.bind(this,'InputDate')}></i>
 	            	<i className="fa fa-clock-o fr mtl2 cp" aria-hidden="true" onClick={this.openInput.bind(this,'InputTime')}></i>
-	            	<DatePicker id="date" ref="InputDate" className='width0' onChange={this.viewChangeDate.bind(this)}/>
+	            	<DatePicker id="date" ref="InputDate" className='width0' onChange={this.viewChangeDate.bind(this)} value={currentDate}/>
 	            	<TimePicker id="time" ref="InputTime" className='width0' onChange={this.viewChangeTime.bind(this)}/>
             	</div>
             </div>

@@ -113,8 +113,10 @@ class ViewRelation extends React.Component {
 	}
 	saveElementData(){
 		this.state.elementData.save().then((res)=>{
+			this.props.openCloseModal(false,'isOpenView')
 			console.log(res)
 		},(err)=>{
+			this.props.openCloseModal(false,'isOpenView')
 			console.log(err)
 		})
 	}

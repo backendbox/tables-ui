@@ -56,8 +56,9 @@ class DateTdComponent extends React.Component {
 		let date = ''
 		let time = ''
 		let requiredClass = this.props.isRequired ? " requiredred":""
+		let currentDate = this.props.elementData ? new Date(this.props.elementData) : new Date()
 		if(this.state.dateOpen){
-			date = <DatePicker id="date" ref="InputDate" className='width0' onChange={this.viewChangeDate.bind(this)}/>
+			date = <DatePicker id="date" ref="InputDate" className='width0' onChange={this.viewChangeDate.bind(this)} value={currentDate}/>
 		}
 		if(this.state.timeOpen){
 			time = <TimePicker id="time" ref="InputTime" className='width0' onChange={this.viewChangeTime.bind(this)}/>
