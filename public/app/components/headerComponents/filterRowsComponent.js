@@ -85,7 +85,7 @@ class FilterRows extends React.Component {
 			this.state.orQueries.push(query[queryData.filterType](queryData.dataType,queryData.dataValue))
 		}
 		if(this.state.orQueries.length){
-			this.state.finalQuery = new CB.CloudQuery.or(this.state.orQueries,this.state.andQuery)
+			this.state.finalQuery = new CB.CloudQuery.or([...this.state.orQueries,this.state.andQuery])
 		} else {
 			this.state.finalQuery = this.state.andQuery
 		}
