@@ -12,7 +12,6 @@ class FilePicker extends React.Component {
     constructor() {
         super()
         this.state = {
-            isModalOpen: false,
             files: [],
             path: "/",
             progress:false,
@@ -91,8 +90,7 @@ class FilePicker extends React.Component {
         if(what === false && this.state.progress === true){
             return false
         }
-        this.state.isModalOpen = what
-        this.setState(this.state)
+        this.props.openCloseFilePicker(false)
     }
     handleClose() {
 
@@ -121,12 +119,7 @@ class FilePicker extends React.Component {
         })
         return (
             <div>
-                {
-                    React.cloneElement(this.props.children,{
-                        onClick : this.openCloseModal.bind(this, true)
-                    })
-                }
-                <Dialog title={dialogTitle} modal={false} open={this.state.isModalOpen} onRequestClose={this.openCloseModal.bind(this, false)}>
+                <Dialog title={dialogTitle} modal={false} open={this.props.isFilePickerOpen} onRequestClose={this.openCloseModal.bind(this, false)}>
                     <div className={ this.state.progress ? "hide" : "topnav"}>
                         <span className="topnavsnav" onClick={ this.navigate.bind(this,'/') }>Home</span>
                         <span className="slash">/</span>
