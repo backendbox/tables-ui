@@ -54,6 +54,14 @@ class FilterRow extends React.Component {
 	}
 	getInputType(props){
 		let inputType
+		// if filtertype selected is exists or doesnotexists then return disabled input
+		if(['exists','doesNotExists'].indexOf(props.filterData.filterType) !== -1){
+			return <input type="text" className="inputfilter" disabled="true"/>
+		}
+		// if no filtertype selected then return disabled input
+		if(!props.filterData.filterType){
+			return <input type="text" className="inputfilter" disabled="true"/>
+		}
 		if(props.filterData.columnType){
 			if(['Text','Email','URL','EncryptedText'].indexOf(props.filterData.columnType) != -1){
 				inputType = <input type="text" className="inputfilter" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this,false) }/>
@@ -71,10 +79,10 @@ class FilterRow extends React.Component {
 				inputType = this.getListInput(props)
 			}
 			else {
-				inputType = <input type="text" className="inputfilter" disabled="true" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this,false) }/>
+				inputType = <input type="text" className="inputfilter" disabled="true"/>
 			}
 		} else {
-			inputType = <input type="text" className="inputfilter" disabled="true" value={ props.filterData.dataValue } onChange={ this.setDataValue.bind(this,false) }/>
+			inputType = <input type="text" className="inputfilter" disabled="true"/>
 		}
 		return inputType
 	}
