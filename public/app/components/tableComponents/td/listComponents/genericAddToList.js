@@ -8,7 +8,8 @@ class GenericAddToList extends React.Component {
 	constructor(){
 		super()
 		this.state = {
-			isOpenSelect:false
+			isOpenSelect:false,
+			isFilePickerOpen:false
 		}
 	}
 	addRecord(type,e){
@@ -24,9 +25,15 @@ class GenericAddToList extends React.Component {
 			this.props.addToElementData('')
 		}
 	}
+	// drop handler for filepicker
 	dropHandler(file){
 		this.props.addToElementData(file)
     }
+	// close/open handler for file pciker
+	openCloseFilePicker(what){
+		this.state.isFilePickerOpen = what
+		this.setState(this.state)
+	}
     updateElementRealtion(relationObject){
 		this.props.addToElementData(relationObject)
 	}
@@ -43,12 +50,13 @@ class GenericAddToList extends React.Component {
 	render() {
 		let element = ''
 		if(this.props.columnType == 'File'){
-			element =	<FilePicker chooseFile={ this.dropHandler.bind(this) }>
-							<div className="listilepicker">
-								<i className="fa fa-paperclip attahcmentfile" aria-hidden="true"></i>
-								<span className="attahctext">Click to select files to upload.</span>
+			element =	
+						<div>
+							<div className="filelistpopoeveraddfile" onClick={this.openCloseFilePicker.bind(this,true)}>
+								<i className="ion-paperclip attahcfilepop" aria-hidden="true"></i>
 							</div>
-						</FilePicker>
+							<FilePicker chooseFile={ this.dropHandler.bind(this) } isFilePickerOpen={this.state.isFilePickerOpen} openCloseFilePicker={this.openCloseFilePicker.bind(this)} />
+						</div>
 		           		
 		} else if(['Text','Email','URL','EncryptedText','Boolean','Number','DateTime','GeoPoint','Object'].indexOf(this.props.columnType) == -1){
 			// for relation type

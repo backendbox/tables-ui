@@ -1778,12 +1778,11 @@ td,th{
     top: 0;
     text-align: center;
     z-index: 10;
-    background-color: black;
-    opacity: 0.9;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: auto;
+    background: rgba(0, 0, 0, 0.9);
 }
 .fsmheading{
     width: 100%;
@@ -1809,6 +1808,11 @@ td,th{
 .filenamefsm{
     font-size: 18px;
     color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+.filenamefsm:hover{
+    text-decoration: underline;
 }
 .closeiconfsm{
     float: right;
@@ -1846,4 +1850,109 @@ td,th{
     margin-right: 25px;
     font-weight: bolder;
     cursor: pointer;
+}
+.listpop{
+    min-width: 625px !important;
+    min-height: 400px;
+    border-radius: 5px !important;
+    background-color: rgba(253, 253, 253, 0.6) !important;
+    padding: 10px;
+    max-height: 500px !important;
+}
+.filelistpopoever{
+        float: left;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.23), 0 0 1px 0 rgba(0,0,0,0.23);
+    transition-property: box-shadow;
+    -webkit-transition-property: box-shadow;
+    -moz-transition-property: box-shadow;
+    transition-duration: .15s;
+    -webkit-transition-duration: .15s;
+    -moz-transition-duration: .15s;
+    transition-timing-function: ease-out;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-timing-function: ease-out;
+    transition-delay: 0s;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    position: relative;
+    width: 175px;
+    height: 175px;
+    vertical-align: top;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+.filelistpopoever:hover{
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25), 0 0 1px 0 rgba(0,0,0,0.23);
+}
+.filelistpopoeveraddfile{
+    float: left;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.23), 0 0 1px 0 rgba(0,0,0,0.23);
+    transition-property: box-shadow;
+    -webkit-transition-property: box-shadow;
+    -moz-transition-property: box-shadow;
+    transition-duration: .15s;
+    -webkit-transition-duration: .15s;
+    -moz-transition-duration: .15s;
+    transition-timing-function: ease-out;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-timing-function: ease-out;
+    transition-delay: 0s;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    position: relative;
+    width: 175px;
+    height: 175px;
+    vertical-align: top;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+.filelistpopoeveraddfile:hover{
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25), 0 0 1px 0 rgba(0,0,0,0.23);
+    background-color: #f7f7f7;
+}
+.filelistpopprev{
+    max-width: 100px;
+    margin-top: 10%;
+    height: 90px;
+}
+.filenamepoplist{
+    margin-top: 25px;
+    max-width: 100%;
+    overflow: hidden;
+    border-top: 1px solid #eaeaea;
+    color: #464646;
+    font-size: 13px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px;
+    padding-bottom: 0;
+    margin-bottom: 7px;
+}
+.listdivscontentfilepop{
+    max-height: 350px;
+    border-radius: 5px;
+    max-width: 824px;
+}
+.attahcfilepop{
+    font-size: 110px;
+    color: #a7a7a7;
+    margin-top: 16%;
+    float: left;
+    width: 100%;
 }

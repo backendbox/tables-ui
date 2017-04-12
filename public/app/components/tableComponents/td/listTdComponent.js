@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Dialog from 'material-ui/Dialog';
 import Badge from 'material-ui/Badge';
+import { Popover } from 'material-ui/Popover'
 
 import TextList from './listComponents/textList.js'
 import BooleanList from './listComponents/booleanList.js'
@@ -68,7 +69,8 @@ class ListTdComponent extends React.Component {
 		this.state.elementData = props.elementData
 		this.setState(this.state)
 	}
-	openCloseModal(what,save){
+	openCloseModal(what,save,event){
+		this.state.anchorEl = event.currentTarget
 		if(save){
 			this.props.updateElement(this.state.elementData)
 			this.props.updateObject()			
@@ -144,21 +146,45 @@ class ListTdComponent extends React.Component {
 				</span>
 
             	<i className="fa fa-expand fr expandCircle" aria-hidden="true" onClick={this.openCloseModal.bind(this,true,false)}></i>
-            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.openCloseModal.bind(this,false,false)} contentClassName={"bodyClassNamelist"}>
-         
-            		<div className="listdivscontent">
-	          		{ elements }
-	          		</div>
+				{ 	this.props.columnType.relatedTo === 'File' ?
+						<Popover
+							open={this.state.isModalOpen}
+							anchorEl={this.state.anchorEl}
+							anchorOrigin={{ "horizontal":"left","vertical":"bottom" }}
+							targetOrigin={{ "horizontal":"right","vertical":"top" }}
+							onRequestClose={this.openCloseModal.bind(this,false,true)}
+							animated={false}
+							className="listpop"
+						>
+							<div>
+								<div className="listdivscontentfilepop">
+									{ elements }
+								</div>
 
-	          		<GenericAddToList
-            			addToElementData={ this.addToElementData.bind(this) }
-            			columnType={ this.props.columnType.relatedTo }
-            		/>
-            		
-	          		<div className="savecanclist">
-	          			<button className="btn btn-primary fr" onClick={this.openCloseModal.bind(this,false,true)}>Save</button>
-	          		</div>
-        		</Dialog>
+								<GenericAddToList
+									addToElementData={ this.addToElementData.bind(this) }
+									columnType={ this.props.columnType.relatedTo }
+								/>
+							</div>
+						</Popover>
+					:
+						<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.openCloseModal.bind(this,false,false)} contentClassName={"bodyClassNamelist"}>
+				
+							<div className="listdivscontent">
+							{ elements }
+							</div>
+
+							<GenericAddToList
+								addToElementData={ this.addToElementData.bind(this) }
+								columnType={ this.props.columnType.relatedTo }
+							/>
+							
+							<div className="savecanclist">
+								<button className="btn btn-primary fr" onClick={this.openCloseModal.bind(this,false,true)}>Save</button>
+							</div>
+						</Dialog>
+					
+				}
             </td>
 		);
 	}

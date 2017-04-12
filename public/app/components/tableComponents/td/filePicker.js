@@ -119,7 +119,7 @@ class FilePicker extends React.Component {
         })
         return (
             <div>
-                <Dialog title={dialogTitle} modal={false} open={this.props.isFilePickerOpen} onRequestClose={this.openCloseModal.bind(this, false)}>
+                <Dialog title={dialogTitle} modal={false} open={this.props.isFilePickerOpen || false} onRequestClose={this.openCloseModal.bind(this, false)} style={{zIndex:3000}}>
                     <div className={ this.state.progress ? "hide" : "topnav"}>
                         <span className="topnavsnav" onClick={ this.navigate.bind(this,'/') }>Home</span>
                         <span className="slash">/</span>
