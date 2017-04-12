@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Dialog from 'material-ui/Dialog';
-import Dropzone from 'react-dropzone';
 import LinearProgress from 'material-ui/LinearProgress';
 import FilePicker from '../filePicker'
 import CONFIG from '../../../../config/app.js'
 import Axios from 'axios'
+import ReactTooltip from 'react-tooltip'
 
 
 class File extends React.Component {
 	constructor(){
 		super()
 		this.state = {
-			isModalOpen:false,
-			file:{}
+			isModalOpen: false,
+			file: {},
+			isFilePickerOpen:false
 		}
 	}
 	componentDidMount(){
@@ -24,11 +24,8 @@ class File extends React.Component {
 	}
 	
 	addFile(file){
-		this.setState({file:file})
-	}
-	saveFile(){
-		this.props.updateElementData(this.state.file,this.props.columnData.name)
-		this.openCloseModal(false)
+		this.setState({file:file, isFilePickerOpen:false})
+		this.props.updateElementData(file,this.props.columnData.name)
 	}
 	downloadFile(){
 		if(!this.checkIfPrivateFile(this.state.file)){
@@ -61,7 +58,8 @@ class File extends React.Component {
 	deleteFile(){
 		this.props.updateElementData(null)
 		this.setState({
-			file:{}
+			file:{},
+			isModalOpen:false
 		})
 	}
 	fetchImageFromCB(props){
@@ -76,22 +74,22 @@ class File extends React.Component {
 			});
 		}
 	}
-	getFileIcon(file){
-		if(file.type){
+	getFileIcon(file) {
+		if (file.type) {
 			let fileType = file.type.split("/")[1]
-			if(fileType){
-				if(['png','jpeg','jpg','gif'].indexOf(fileType) > -1){
-					return <img src={ this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url } className="fileimagescr"/>
-				} else if(CONFIG.iconTypes.indexOf(fileType) > -1){
-					return <img src={"/app/assets/images/file/"+fileType+".png"} className="fileimagescr" />
+			if (fileType) {
+				if (['png', 'jpeg', 'jpg', 'gif'].indexOf(fileType) > -1) {
+					return <img src={ this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url } className={ this.checkIfPrivateFile(file) ? 'fsmimagenf' : 'fsmimage' } />
+				} else if (CONFIG.iconTypes.indexOf(fileType) > -1) {
+					return <img src={"/app/assets/images/file/" + fileType + ".png"} className="fsmimagenf" />
 				} else {
-					return <img src={"/app/assets/images/file/file.png"} className="fileimagescr" />
+					return <img src={"/app/assets/images/file/file.png"} className="fsmimagenf" />
 				}
 			} else {
-				return <img src={"/app/assets/images/file/file.png"} className="fileimagescr" />
+				return <img src={"/app/assets/images/file/file.png"} className="fsmimagenf" />
 			}
 		}
-    }
+	}
 	getPreviewIcon(file){
 		if(file.type){
 			let fileType = file.type.split("/")[1]
@@ -111,47 +109,54 @@ class File extends React.Component {
 	cancelFileSave(){
 		this.openCloseModal(false)
 	}
-	openCloseModal(what){
+	openCloseModal(what) {
 		this.state.isModalOpen = what
+		//open filepicker if no file is attachced
+		if(what === true && !this.state.file.document){
+			this.state.isModalOpen = false
+			this.state.isFilePickerOpen = true
+		}
 		this.setState(this.state)
 	}
-	handleClose(){
 
+	openCloseFilePicker(what){
+		this.state.isFilePickerOpen = what
+		this.setState(this.state)
 	}
 	render() {
-		let dialogTitle = <div className="modaltitle">
-							<span className="diadlogTitleText">File Editor</span>
-							<i className='fa fa-paperclip iconmodal'></i>
-						</div>
 		return (
             <div className="halfreldivfile ">
             	<span className="textnamerlation"> { this.props.columnData.name } </span>
 				<div style={{textAlign:'center'}}>
 					{ this.getPreviewIcon(this.state.file) }
 					<span className="filenamespan">{ this.state.file.name || "" }</span>
-					<button className="btn-primary filepickerotherrelation" onClick={this.openCloseModal.bind(this,true)}>Edit</button>
+					<button className="btn-primary filepickerotherrelation" onClick={this.openCloseModal.bind(this,true)}>{ this.state.file.name ? "View/Edit" : "Add File" }</button>
 				</div>
-            	<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.cancelFileSave.bind(this,false)} contentClassName={"bodyClassNamelist"}>
-					<div className="filemodal">
-						<div className={this.state.file.document ? 'hide' : 'nofilefound'}>
-							<i className="fa fa-files-o fileimage" aria-hidden="true"></i>
-							<span className="noimagetext">No file found, you can choose to add a file through our File Picker.</span>
-							<FilePicker chooseFile={ this.addFile.bind(this) }>
-								<button className="btn btn-primary filepicker">File Picker</button>
-							</FilePicker>
-						</div>
-						<div className={this.state.file.document ? 'nofilefound' : 'hide'}>
-							{ this.getFileIcon(this.state.file) }
-							<span className="filenamespan">{ this.state.file.name || "" }</span>
-							<button className="btn btn-orange downloadbtn" onClick={ this.downloadFile.bind(this) }>Download</button>
-							<FilePicker chooseFile={ this.addFile.bind(this) }>
-								<button className="btn btn-primary filepickerother">File Picker</button>
-							</FilePicker>
-							<button className="btn btn-danger deletebtn" onClick={ this.deleteFile.bind(this) }>Delete</button>
-						</div>
-					</div>
-		            <button disabled={ !!!this.state.file.document } className="btn btn-primary fr clearboth mt10" onClick={this.saveFile.bind(this)}>Save</button>
-        		</Dialog>
+				<div>
+					{
+						//open modal only when filepicker is closed and open modal is true
+						this.state.isModalOpen && !this.state.isFilePickerOpen ? 
+							<div className={this.state.isModalOpen ? 'fsmodal':'hide'}>
+								<div className="fsmheading">
+									<span className="filenamefsm">{this.state.file.name || ""}</span>
+									<i className="ion-android-close closeiconfsm" onClick={this.cancelFileSave.bind(this, false)}></i>
+								</div>
+								{ this.getFileIcon(this.state.file) }
+								<div className="fsmfooter">
+									<i data-tip={ "Delete" } className="ion-ios-trash-outline deleteiconfsm" onClick={this.deleteFile.bind(this)}></i>
+									<i data-tip={ "Download" } className="ion-ios-download-outline downloadiconfsm" onClick={this.downloadFile.bind(this)}></i>
+									<i data-tip={ "Edit" } className="ion-edit editiconfsm" onClick={this.openCloseFilePicker.bind(this,true)}></i>
+								</div>
+								<ReactTooltip place="top" border={true} offset={{top: 10, left: 10}}/>
+							</div> : ''
+					}
+
+					{
+						this.state.isFilePickerOpen ? 
+							<FilePicker chooseFile={this.addFile.bind(this)} isFilePickerOpen={this.state.isFilePickerOpen} openCloseFilePicker={this.openCloseFilePicker.bind(this)}>
+							</FilePicker> : ''
+					}
+				</div>
             </div>
 		);
 	}

@@ -7,14 +7,19 @@ class FileListComponent extends React.Component {
 	constructor(){
 		super()
 		this.state = {
-			filePreview:null
+			filePreview:{},
+			isModalOpen: false
 		}
 	}
 	deleteValue(){
 		this.props.removeFromElementData(this.props.index)
+		this.openCloseModal(false)
 	}
 	componentDidMount(){
 		this.fetchImageFromCB(this.props)
+	}
+	componentWillReceiveProps(props){
+		this.fetchImageFromCB(props)
 	}
 	fetchImageFromCB(props){
 		if(props.data){
@@ -35,21 +40,37 @@ class FileListComponent extends React.Component {
 		}
 	}
 	getPreviewIcon(file){
-		if(file){
+		if(file.type){
 			let fileType = file.type.split("/")[1]
 			if(fileType){
 				if(['png','jpeg','jpg','gif'].indexOf(fileType) > -1){
-					return <img className={file.document ? 'fileListPreveiew cp' : 'hide'} src={ this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url } />
+					return <img className={file.document ? 'filelistpopprev cp' : 'hide'} src={ this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url } />
 				} else if(CONFIG.iconTypes.indexOf(fileType) > -1){
-					return <img src={"/app/assets/images/file/"+fileType+".png"} className={file.document ? 'fileListPreveiew cp' : 'hide'} />
+					return <img src={"/app/assets/images/file/"+fileType+".png"} className={file.document ? 'filelistpopprev cp' : 'hide'} />
 				} else {
-					return <img className={file.document ? 'fileListPreveiew cp' : 'hide'} src={'/app/assets/images/file/file.png'} />
+					return <img className={file.document ? 'filelistpopprev cp' : 'hide'} src={'/app/assets/images/file/file.png'} />
 				}
 			} else {
-				return <img className={file.document ? 'fileListPreveiew cp' : 'hide'} src={'/app/assets/images/file/file.png'} />
+				return <img className={file.document ? 'filelistpopprev cp' : 'hide'} src={'/app/assets/images/file/file.png'} />
 			}
 		}
     }
+	getFileIcon(file) {
+		if (file.type) {
+			let fileType = file.type.split("/")[1]
+			if (fileType) {
+				if (['png', 'jpeg', 'jpg', 'gif'].indexOf(fileType) > -1) {
+					return <img src={ this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url } className={ this.checkIfPrivateFile(file) ? 'fsmimagenf' : 'fsmimage' } />
+				} else if (CONFIG.iconTypes.indexOf(fileType) > -1) {
+					return <img src={"/app/assets/images/file/" + fileType + ".png"} className="fsmimagenf" />
+				} else {
+					return <img src={"/app/assets/images/file/file.png"} className="fsmimagenf" />
+				}
+			} else {
+				return <img src={"/app/assets/images/file/file.png"} className="fsmimagenf" />
+			}
+		}
+	}
 	downloadFile(){
 		if(!this.checkIfPrivateFile(this.state.filePreview)){
 			// for public files
@@ -77,14 +98,29 @@ class FileListComponent extends React.Component {
 		let fileACL = file.ACL.document || file.ACL
 		return fileACL.read.allow.user.indexOf('all') === -1
 	}
+	openCloseModal(what) {
+		this.state.isModalOpen = what
+		this.setState(this.state)
+	}
 	render() {
-		let previewIcon = React.cloneElement(( this.getPreviewIcon(this.state.filePreview) || <div/> ) ,{
-			onClick : this.downloadFile.bind(this)
-		})
+		let previewIcon = React.cloneElement(( this.getPreviewIcon(this.state.filePreview) || <div/> ) ,{})
 		return (
 			<div>
-				{ previewIcon }
-				<button onClick={ this.deleteValue.bind(this) } className="deletefilelist"><i className="fa fa-times" aria-hidden="true"></i> Delete</button>
+				<div className="filelistpopoever" onClick={this.openCloseModal.bind(this, true)}>
+					{ previewIcon }
+					<p className="filenamepoplist">{ this.state.filePreview.name || '' }</p>
+				</div>
+				<div className={this.state.isModalOpen ? 'fsmodal':'hide'}>
+					<div className="fsmheading">
+						<span className="filenamefsm">{this.state.filePreview.name || ""}</span>
+						<i className="ion-android-close closeiconfsm" onClick={this.openCloseModal.bind(this,false)}></i>
+					</div>
+					{ this.getFileIcon(this.state.filePreview) }
+					<div className="fsmfooter">
+						<i data-tip={ "Delete" } className="ion-ios-trash-outline deleteiconfsm" onClick={this.deleteValue.bind(this)}></i>
+						<i data-tip={ "Download" } className="ion-ios-download-outline downloadiconfsm" onClick={this.downloadFile.bind(this)}></i>
+					</div>
+				</div>
 			</div>
 		);
 	}
