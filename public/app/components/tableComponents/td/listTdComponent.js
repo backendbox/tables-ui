@@ -113,7 +113,8 @@ class ListTdComponent extends React.Component {
 					       	addToElementData:this.addToElementData.bind(this),
 					       	removeFromElementData:this.removeFromElementData.bind(this),
 					       	updateElementData:this.updateElementData.bind(this),
-					       	columnType:this.props.columnType.relatedTo
+					       	columnType:this.props.columnType.relatedTo,
+							isListOfRelation:false
 			           })
 			})
 

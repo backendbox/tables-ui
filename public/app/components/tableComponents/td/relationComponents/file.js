@@ -56,7 +56,7 @@ class File extends React.Component {
 		return fileACL.read.allow.user.indexOf('all') === -1
 	}
 	deleteFile(){
-		this.props.updateElementData(null)
+		this.props.updateElementData(null,this.props.columnData.name)
 		this.setState({
 			file:{},
 			isModalOpen:false
@@ -79,7 +79,7 @@ class File extends React.Component {
 			let fileType = file.type.split("/")[1]
 			if (fileType) {
 				if (['png', 'jpeg', 'jpg', 'gif'].indexOf(fileType) > -1) {
-					return <img src={ this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url } className={ this.checkIfPrivateFile(file) ? 'fsmimagenf' : 'fsmimage' } />
+					return <img src={ this.checkIfPrivateFile(file) ? '/app/assets/images/file/file.png' : file.url } className={ this.checkIfPrivateFile(file) ? 'fsmimagenf' : 'fsmimagenf' } />
 				} else if (CONFIG.iconTypes.indexOf(fileType) > -1) {
 					return <img src={"/app/assets/images/file/" + fileType + ".png"} className="fsmimagenf" />
 				} else {
