@@ -66,7 +66,7 @@ class HeaderTable extends React.Component {
 		if(getTables.length){
 			tables = getTables.map((x,i)=>{
 				if(TABLE == x.name) return <div key={ i } className="tableselected">
-												<p className="white tacenter">{ x.name } { ['User','Role','Device'].indexOf(x.name) == -1 ? <i className="fa fa-caret-down deletear cp" aria-hidden="true" onTouchTap={this.handleTouchTap.bind(this,'openDeleteTable')} data-table={ x.name }></i> : ''}</p>
+												<p className="tacenter" style={{fontWeight:'bold'}}>{ x.name } { ['User','Role','Device'].indexOf(x.name) == -1 ? <i className="fa fa-caret-down deletear cp" aria-hidden="true" onTouchTap={this.handleTouchTap.bind(this,'openDeleteTable')} data-table={ x.name }></i> : ''}</p>
 												
 											</div>
 					else return <div key={ i } className="tablenotselected cp" onClick={ this.changeTable.bind(this,x.name) }>

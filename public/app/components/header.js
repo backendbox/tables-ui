@@ -78,12 +78,13 @@ class Header extends React.Component {
 					<span className="dasboardlink cp" onClick={this.dashRedirect.bind(this)}> Dashboard</span>
 					<p className="appname cp" onTouchTap={this.handleTouchTap.bind(this, 'appSelectorOpen')}>
 						{this.props.appName}
+						<i className="fa fa-caret-down appselectoracarte" aria-hidden="true"></i>
 					</p>
 					<Popover
 						open={this.state.appSelectorOpen}
 						anchorEl={this.state.anchorEl}
-						anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-						targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+						anchorOrigin={{ horizontal: 'middle', vertical: 'center' }}
+						targetOrigin={{ horizontal: 'middle', vertical: 'top' }}
 						onRequestClose={this.handleRequestClose.bind(this, 'appSelectorOpen')}
 						animated={true}
 						className="profilepop"
@@ -117,7 +118,7 @@ class Header extends React.Component {
 					<HeaderTable tableStore={this.props.tableStore} />
 				</div>
 				<div id="dataSubHeader">
-					<div className="btn subhbtn ml5" onClick={this.refreshRows.bind(this)}><i className="fa fa-refresh mr2" aria-hidden="true"></i> Refresh rows</div>
+					<div className="btn subhbtn" onClick={this.refreshRows.bind(this)}><i className="fa fa-refresh mr2" aria-hidden="true"></i> Refresh rows</div>
 					<button className={this.props.tableStore.rowsToDelete.length > 0 ? 'btn subhbtn' : 'hide'} onClick={this.deleteRows.bind(this)}><i className="fa fa-trash mr2" aria-hidden="true"></i> Delete rows</button>
 					<HideColumns tableStore={this.props.tableStore} />
 					<FilterRows tableStore={this.props.tableStore} />
