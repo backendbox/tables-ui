@@ -1943,6 +1943,7 @@ td,th{
     padding: 5px;
     padding-bottom: 0;
     margin-bottom: 7px;
+    height: 30px;
 }
 .listdivscontentfilepop{
     max-height: 350px;
