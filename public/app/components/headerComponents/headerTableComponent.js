@@ -23,6 +23,7 @@ class HeaderTable extends React.Component {
 	changeTable(name){
 		this.props.tableStore.changeTable(name)
 		this.props.tableStore.showLoader()
+		this.setState({openTableSelector:false})
 	}
 	deleteTable(){
 		this.props.tableStore.showLoader()

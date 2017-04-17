@@ -340,43 +340,47 @@ td,th{
     margin-bottom: 1px;
 }
 .popupfilterrrow{
-    width: 600px !important;
-    background-color: white;
+    min-width: 300px !important;
     min-height: 150px;
+    max-width: 550px !important;
     border: 1px solid #cccccc;
     border-radius: 4px !important;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif !important;
+    padding: 10px;
 }
 .selectfilter{
     float: left;
-    width: 110px;
+    width: 100px;
     height: 29px;
     border: 1px solid white;
     outline: none !important;
 }
 .filterrow{
-    padding-left: 5px;
-    padding-right: 5px;
     width: 100%;
     margin-top: 6px;
     height: 31px;
     border: none;
+    float: left;
     border-top: 0px;
-
 }
 .addfilter,.addfilter:active{
-    margin-top: 6px;
-    background-color: #F3F3F3;
     margin-bottom: 10px;
     font-size: 12px;
     outline: none !important;
-    width: 356px;
     height: 27px;
-    margin-left: 18%;
     line-height: 1px;
+    background-color: white;
+    float: left;
+}
+.addfilter:hover{
+    background-color: #F3F3F3;
+}
+.plusaddfilter{
+    margin-right: 8px;
 }
 .inputfilter{
     float: left;
-    width: 220px;
+    width: 200px;
     height: 29px;
     border-radius: 1px;
     border: 1px solid #EEE;
@@ -621,6 +625,7 @@ td,th{
     border-radius: 4px !important;
     padding: 10px;
     max-height: 600px !important;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif !important;
 }
 .tablesearchnameicon{
     float: left;
@@ -712,6 +717,7 @@ td,th{
    width: 150px !important;
     background-color: white;
     height: 33px;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif !important;
 }
 .deletetablebtn{
         width: 100%;
@@ -1200,6 +1206,7 @@ td,th{
     min-height: 100px !important;
     border-radius: 5px !important;
     background-color: #f3faff !important;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif !important;
 }
 .profilepop{
     min-width: 220px !important;
@@ -1208,6 +1215,7 @@ td,th{
     background-color: #f3faff !important;
     margin-top: 15px;
     overflow: visible !important;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif !important;
 }
 .profilepop > div {
     overflow: visible !important;
@@ -1447,41 +1455,50 @@ td,th{
     font-weight: bold;
 }
 .applyfiler{
-        width: 100px;
     color: #158AE5 !important;
-    background-color: #FFFFFF !important;
-    border-color: #158AE5 !important;
+    background-color: #ffffff !important;
     font-weight: bold;
-    border-radius: 1px;
-    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    margin-left: 31%;
-    border: 2px solid #158AE5 !important;
+    border: 0px;
     font-size: 12px;
-
+    float: right;
+    margin-right: 7px;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 .clearfilter{
-    width: 100px;
     color: rgba(236, 13, 13, 0.64) !important;
-    background-color: rgba(255, 255, 255, 0.64) !important;
     font-weight: bold;
-    border-radius: 2px;
-    border: 2px solid rgba(236, 13, 13, 0.64);
-    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.47);
-    margin-left: 3px;
+    border: 0px;
+    float: right;
     font-size: 12px;
+    background-color: white;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.nofiltertext{
+    text-align: center;
+    color: #777777;
+    float: left;
+    width: 100%;
+    min-height: 45px;
+}
+.applyfiler:hover,.applyfiler:focus{
+    background-color: #F3F3F3 !important;
+    outline: none !important;
+}
+.clearfilter:hover,.clearfilter:focus{
+    background-color: #F3F3F3 !important;
+    outline: none !important;
 }
 .filterbutton{
     float: left;
     width: 100%;
-    margin-bottom: 7px;
 }
 .filterrowdiv{
     float: left;
-    width: 100%;
+    width: 530px;
     min-height: 80px;
     padding-bottom: 10px;
 }
@@ -1982,6 +1999,7 @@ td,th{
     background-color: rgba(253, 253, 253, 0.6) !important;
     padding: 10px;
     max-height: 500px !important;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif !important;
 }
 .filelistpopoever{
         float: left;
