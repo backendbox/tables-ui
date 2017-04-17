@@ -20,8 +20,8 @@ class NumberListComponent extends React.Component {
 	render() {
 		let data = this.props.data
 		return (
-			<div>
-				<input type="number" className="listtexttableinput" value={ this.props.data } onChange={ this.updateValue.bind(this) }/>
+			<div className="textlistinputcontainer">
+				<input type="number" className="listtexttableinput" value={ this.props.data } onChange={ this.updateValue.bind(this) } placeholder="Enter Number."/>
 				<i className="fa fa-times trashlistinputtext" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
 			</div>
 		);

@@ -55,7 +55,7 @@ class SelectRelation extends React.Component {
 		return (
 			<div className="fr">
 	            
-	        	<Dialog title="Select a Relation Object" modal={false} open={this.props.open} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle">
+	        	<Dialog title="Select a Relation Object" modal={false} open={this.props.open} onRequestClose={this.handleClose.bind(this)} titleClassName="modaltitle" style={{zIndex:3000}}>
 	        		<div className="relationselectordiv">
 		        		<input className="searchrelation" placeholder="Search .." onChange={ this.search.bind(this,'search') }/>
 		        		{ tableData }

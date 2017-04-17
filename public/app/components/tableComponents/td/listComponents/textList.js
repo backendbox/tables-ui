@@ -20,8 +20,8 @@ class TextListComponent extends React.Component {
 	render() {
 		let data = this.props.data
 		return (
-			<div>
-				<input type="text" className="listtexttableinput" value={ this.props.data } onChange={ this.updateValue.bind(this) }/>
+			<div className="textlistinputcontainer">
+				<input type="text" className="listtexttableinput" value={ this.props.data } onChange={ this.updateValue.bind(this) } placeholder="Enter text."/>
 				<i className="fa fa-times trashlistinputtext" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
 			</div>
 		);

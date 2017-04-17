@@ -22,7 +22,7 @@ class BooleanListComponent extends React.Component {
 	render() {
 		let data = this.props.data
 		return (
-			<div>
+			<div className="textlistinputcontainer">
 				<Toggle
 					label="Boolean Value Select"
 					className='booleanlistval'

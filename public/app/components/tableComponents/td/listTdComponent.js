@@ -44,6 +44,9 @@ class ListTdComponent extends React.Component {
 			case "Email":
 				this.state.elementToRender =  TextList
 				break;
+			case "URL":
+				this.state.elementToRender =  TextList
+				break;
 			case "Url":
 				this.state.elementToRender =  TextList
 				break;
@@ -169,22 +172,28 @@ class ListTdComponent extends React.Component {
 							</div>
 						</Popover>
 					:
-						<Dialog title={ dialogTitle } modal={false} open={this.state.isModalOpen} onRequestClose={this.openCloseModal.bind(this,false,false)} contentClassName={"bodyClassNamelist"}>
-				
-							<div className="listdivscontent">
-							{ elements }
-							</div>
+						<Popover
+							open={this.state.isModalOpen}
+							anchorEl={this.state.anchorEl}
+							anchorOrigin={{ "horizontal":"left","vertical":"bottom" }}
+							targetOrigin={{ "horizontal":"right","vertical":"top" }}
+							onRequestClose={this.openCloseModal.bind(this,false,true)}
+							animated={false}
+							className="listother"
+						>
+							<div>
+								<div className="listdivscontent">
+									{ 
+										elements.length ? elements : <p className="emptylisttext">This List is empty.</p>
+									}
+								</div>
 
-							<GenericAddToList
-								addToElementData={ this.addToElementData.bind(this) }
-								columnType={ this.props.columnType.relatedTo }
-							/>
-							
-							<div className="savecanclist">
-								<button className="btn btn-primary fr" onClick={this.openCloseModal.bind(this,false,true)}>Save</button>
+								<GenericAddToList
+									addToElementData={ this.addToElementData.bind(this) }
+									columnType={ this.props.columnType.relatedTo }
+								/>
 							</div>
-						</Dialog>
-					
+						</Popover>					
 				}
             </td>
 		);

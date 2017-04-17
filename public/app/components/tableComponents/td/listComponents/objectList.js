@@ -32,8 +32,8 @@ class ObjectListComponent extends React.Component {
 	render() {
 		let data = this.props.data
 		return (
-			<div>
-				<Dialog title="JSON EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.openCloseModal.bind(this,false)}titleClassName="modaltitle">
+			<div className="textlistinputcontainer">
+				<Dialog title="JSON EDITOR" modal={false} open={this.state.isModalOpen} onRequestClose={this.openCloseModal.bind(this,false)}titleClassName="modaltitle" style={{zIndex:3000}}>
 	          		<AceEditor
 					    mode="json"
 					    theme="github"
@@ -44,8 +44,11 @@ class ObjectListComponent extends React.Component {
 					/>
 	          		<button className="btn btn-primary fr ml5" onClick={this.openCloseModal.bind(this,false)}>Submit</button>
         		</Dialog>
-				<input type="text" className="listtexttableinput" value={ JSON.stringify(this.props.data) } disabled="true" />
-				<i className="fa fa-expand trashlistinputtext expandiconlist" aria-hidden="true" onClick={ this.openCloseModal.bind(this,true) }></i>
+				<div className="listtexttableinput cp" onClick={ this.openCloseModal.bind(this,true) }>
+					{
+						JSON.stringify(this.props.data)
+					}
+				</div>
 				<i className="fa fa-times trashlistinputtext" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
 			</div>
 		);

@@ -23,13 +23,6 @@ class DateTimeListComponent extends React.Component {
 		date.setMonth(data.getMonth())
 		this.props.updateElementData(date,this.props.index)
 	}
-	viewChangeTime(e,data){
-		let date = new Date(this.props.data)
-		date.setHours(data.getHours())
-		date.setMinutes(data.getMinutes())
-		date.setSeconds(data.getSeconds())
-		this.props.updateElementData(date,this.props.index)
-	}
 	dateFormat(date){
 		return new Date(date).toISOString().slice(0,10).replace(/-/g,"/") + ", " + new Date(date).getHours()+":"+new Date(date).getMinutes()
 	}
@@ -40,13 +33,13 @@ class DateTimeListComponent extends React.Component {
 		let data = this.props.data
 		let currentDate = this.props.data ? new Date(this.props.data) : new Date()
 		return (
-			<div className="datetimelist">
-				<span className='fl'>{ this.dateFormat(this.props.data) }</span>
-            	<i className="fa fa-calendar fl dateml" aria-hidden="true" onClick={this.openInput.bind(this,'InputDate')}></i>
-            	<i className="fa fa-clock-o fl dateml" aria-hidden="true" onClick={this.openInput.bind(this,'InputTime')}></i>
-            	<DatePicker id="date" ref="InputDate" className='width0 fl' onChange={this.viewChangeDate.bind(this)} value={currentDate}/>
-            	<TimePicker id="time" ref="InputTime" className='width0 fl' onChange={this.viewChangeTime.bind(this)}/>
-            	<i className="fa fa-times datedeletebt" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
+			<div className="textlistinputcontainer">
+				<span className='fl datetimevaluelsist'>{ this.dateFormat(this.props.data) }</span>
+				<i className="fa fa-times trashlistinputdate" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
+            	<i className="fa fa-calendar dateml" aria-hidden="true" onClick={this.openInput.bind(this,'InputDate')}></i>
+				
+            	<DatePicker id="date" ref="InputDate" className='pofixedvishide' onChange={this.viewChangeDate.bind(this)} value={currentDate} style={{zIndex:3000}} container="inline"/>
+            	
 			</div>
 		);
 	}
