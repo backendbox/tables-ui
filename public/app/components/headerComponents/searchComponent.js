@@ -43,7 +43,7 @@ class Search extends React.Component {
 			<div style={{display:'inline'}}>
 
 				<div id="loaderTop" className="" style={{display:'none'}}>
-					<Loader color="#FFF" className="loadertop"/>
+					<Loader color="#333" className="loadertop"/>
 				</div>
 
 				<i className="fa fa-search searchheading cp" aria-hidden="true" onTouchTap={this.handleTouchTap.bind(this)}></i>
