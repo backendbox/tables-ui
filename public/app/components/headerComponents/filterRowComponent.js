@@ -56,7 +56,7 @@ class FilterRow extends React.Component {
 		let inputType
 		// if filtertype selected is exists or doesnotexists then return disabled input
 		if(['exists','doesNotExists'].indexOf(props.filterData.filterType) !== -1){
-			return <input type="text" className="inputfilter" disabled="true"/>
+			return <input type="text" className="inputfilter" disabled="true" style={{visibility:'hidden'}}/>
 		}
 		// if no filtertype selected then return disabled input
 		if(!props.filterData.filterType){

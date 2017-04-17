@@ -12,10 +12,12 @@ class HeaderTable extends React.Component {
 		this.state = {
 			openNewTable: false,
 			openDeleteTable: false,
+			openTableSelector:false,
 			tableName:'',
 			tableTodelete:'',
 			isModalOpen:false,
-			confirmDeleteValue:''
+			confirmDeleteValue:'',
+			tableSearch:''
 		}
 	}
 	changeTable(name){
@@ -63,6 +65,7 @@ class HeaderTable extends React.Component {
 	render() {
 		let { getTables,TABLE } = this.props.tableStore
 		let tables = []
+		let tableSelectorList = []
 		if(getTables.length){
 			tables = getTables.map((x,i)=>{
 				if(TABLE == x.name) return <div key={ i } className="tableselected">
@@ -74,9 +77,38 @@ class HeaderTable extends React.Component {
 									
 								</div>
 			})
+
+			tableSelectorList = getTables.filter((x)=>{
+				if(this.state.tableSearch){
+					return x.name.toLowerCase().includes(this.state.tableSearch)
+				} else return true
+			})
+			.map((x,i)=>{
+				return 	<p className="tablenameselector" onClick={ this.changeTable.bind(this,x.name) } key={ i }>
+							{
+								TABLE == x.name ? <i className="fa fa-check tablecheckcselected" aria-hidden="true"></i> : ''
+							}
+							{ x.name }
+						</p>
+			})
 		}
 		return (
 			<div className="headertablecrud">
+				<i className="fa fa-bars tablemenuheading" aria-hidden="true" onTouchTap={this.handleTouchTap.bind(this,'openTableSelector')}></i>
+				<Popover
+		          open={this.state.openTableSelector}
+		          anchorEl={this.state.anchorEl}
+		          anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+		          targetOrigin={{horizontal: 'left', vertical: 'top'}}
+		          onRequestClose={this.handleRequestClose.bind(this,'openTableSelector')}
+		          className="popuptableselector"
+		        >	
+					<i className="fa fa-search tablesearchnameicon" aria-hidden="true"></i>
+					<input type="text" className="tablesearchname" placeholder="Find a table." onChange={ this.changeHandler.bind(this,'tableSearch') } value={ this.state.tableSearch }/>
+					<div className="tablenamecontainer">
+						{ tableSelectorList }
+					</div>
+		        </Popover>
 				{ tables }
 				<div className="tableadd cp" onTouchTap={this.handleTouchTap.bind(this,'openNewTable')}><i className="fa fa-plus addicoontable" aria-hidden="true"></i></div>
 				<Popover
@@ -88,12 +120,12 @@ class HeaderTable extends React.Component {
 		          animation={PopoverAnimationVertical}
 		          className="popupaddtable"
 		        >
-				<img src="/app/assets/images/arrow-up.png"  className="tablepoparrow"/>
-		        <form onSubmit={ this.addtable.bind(this) }>
-		        	<p className="headingpop">ADD NEW TABLE</p>
-			        <input className="inputaddtable" placeholder="Table name" onChange={ this.changeHandler.bind(this,'tableName') } value={ this.state.tableName } required />
-			        <button className="addtablebutton" type="submit">Add</button>
-			    </form>
+					<img src="/app/assets/images/arrow-up.png"  className="tablepoparrow"/>
+					<form onSubmit={ this.addtable.bind(this) }>
+						<p className="headingpop">ADD NEW TABLE</p>
+						<input className="inputaddtable" placeholder="Table name" onChange={ this.changeHandler.bind(this,'tableName') } value={ this.state.tableName } required />
+						<button className="addtablebutton" type="submit">Add</button>
+					</form>
 		        </Popover>
 
 		        <Popover
