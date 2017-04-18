@@ -1058,7 +1058,7 @@ td,th{
     margin-top: 1px;
 }
 .filerle{
-        margin-right: 20px;
+    margin-right: 20px;
     margin-top: 5px;
 }
 .textnamerlationrle{
@@ -1071,7 +1071,7 @@ td,th{
     margin-left: -10px;
 }
 .listrelationdiv{
-        width: 90%;
+    width: 90%;
     min-height: 44px;
     float: left;
     border: 1px solid #DDD;
@@ -1079,6 +1079,7 @@ td,th{
     margin-right: 5%;
     border-radius: 2px;
     padding: 10px;
+    position: relative;
 }
 .listrelationdivacl{
         width: 90%;
@@ -1121,6 +1122,7 @@ td,th{
     overflow-y: auto;
     padding-bottom: 10px;
     padding-left: 3px;
+    min-height: 200px;
 }
 .halfreldivfile{
        width: 90%;

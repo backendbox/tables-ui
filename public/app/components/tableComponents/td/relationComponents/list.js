@@ -13,106 +13,109 @@ import RelationList from '../listComponents/relationList.js'
 import GenericAddToList from '../listComponents/genericAddToList.js'
 
 class ListTdComponent extends React.Component {
-	constructor(){
+	constructor() {
 		super()
 		this.state = {
-			elementData:[],
-			elementToRender:TextList
+			elementData: [],
+			elementToRender: TextList
 		}
 	}
-	componentDidMount(){
+	componentDidMount() {
 		this.generaliseList(this.props)
 	}
-	componentWillReceiveProps(props){
+	componentWillReceiveProps(props) {
 		this.generaliseList(props)
 	}
-	generaliseList(props){
+	generaliseList(props) {
 		switch (props.columnData.relatedTo) {
 			case "Text":
-				this.state.elementToRender =  TextList
+				this.state.elementToRender = TextList
 				break;
 			case "EncryptedText":
-				this.state.elementToRender =  PasswordList
+				this.state.elementToRender = PasswordList
 				break;
 			case "Boolean":
-				this.state.elementToRender =  BooleanList
+				this.state.elementToRender = BooleanList
 				break;
 			case "Email":
-				this.state.elementToRender =  TextList
+				this.state.elementToRender = TextList
 				break;
 			case "Url":
-				this.state.elementToRender =  TextList
+				this.state.elementToRender = TextList
 				break;
 			case "DateTime":
-				this.state.elementToRender =  DateTimeList
+				this.state.elementToRender = DateTimeList
 				break;
 			case "File":
-				this.state.elementToRender =  FileList
+				this.state.elementToRender = FileList
 				break;
 			case "Object":
-				this.state.elementToRender =  ObjectList
+				this.state.elementToRender = ObjectList
 				break;
 			case "Number":
-				this.state.elementToRender =  NumberList
+				this.state.elementToRender = NumberList
 				break;
 			case "GeoPoint":
-				this.state.elementToRender =  GeoList
+				this.state.elementToRender = GeoList
 				break;
 			default:
-				this.state.elementToRender =  RelationList
+				this.state.elementToRender = RelationList
 				break;
 		}
 		this.state.elementData = props.elementData
 		this.setState(this.state)
 	}
-	updateElementData(data,index){
+	updateElementData(data, index) {
 		this.state.elementData[index] = data
 		this.setState(this.state)
-		this.props.updateElementData(this.state.elementData,this.props.columnData.name)
+		this.props.updateElementData(this.state.elementData, this.props.columnData.name)
 	}
-	addToElementData(data){
-		if(!this.state.elementData){
+	addToElementData(data) {
+		if (!this.state.elementData) {
 			this.state.elementData = []
 		}
 		this.state.elementData.push(data)
 		this.setState(this.state)
-		this.props.updateElementData(this.state.elementData,this.props.columnData.name)
+		this.props.updateElementData(this.state.elementData, this.props.columnData.name)
 	}
-	removeFromElementData(index){
-		this.state.elementData.splice(index,1)
+	removeFromElementData(index) {
+		this.state.elementData.splice(index, 1)
 		this.setState(this.state)
-		this.props.updateElementData(this.state.elementData,this.props.columnData.name)
+		this.props.updateElementData(this.state.elementData, this.props.columnData.name)
 	}
-	handleClose(){
+	handleClose() {
 
 	}
 	render() {
 		let elements = []
-		if(this.state.elementData){
-			elements = this.state.elementData.map((data,index)=>{
+		if (this.state.elementData) {
+			elements = this.state.elementData.map((data, index) => {
 				return React.createElement(this.state.elementToRender, {
-							index:index,
-					       	key:index,
-					       	data:data,
-					       	addToElementData:this.addToElementData.bind(this),
-					       	removeFromElementData:this.removeFromElementData.bind(this),
-					       	updateElementData:this.updateElementData.bind(this),
-							isListOfRelation:true
-			           })
+					index: index,
+					key: index,
+					data: data,
+					addToElementData: this.addToElementData.bind(this),
+					removeFromElementData: this.removeFromElementData.bind(this),
+					updateElementData: this.updateElementData.bind(this),
+					isListOfRelation: true
+				})
 			})
 		}
 		return (
-            <div className="listrelationdiv">
-            	<span className="textnamerlationrle"> { this.props.columnData.name } </span>
-            	<div className="listdivrel">
-            		<GenericAddToList
-            			addToElementData={ this.addToElementData.bind(this) }
-            			columnType={ this.props.columnData.relatedTo }
-            		/>
-	          		{ elements }
-	          		
-        		</div>
-           	</div>
+			<div className="listrelationdiv">
+				<span className="textnamerlationrle"> {this.props.columnData.name} </span>
+				<div className="listdivrel">
+					<GenericAddToList
+						addToElementData={this.addToElementData.bind(this)}
+						columnType={this.props.columnData.relatedTo}
+					/>
+					{
+						// if no elementData are found then show empty list( only for non file data types )
+						elements.length || this.props.columnData.relatedTo === 'File' ? elements : <p className="emptylisttext">This List is empty.</p>
+					}
+
+				</div>
+			</div>
 		);
 	}
 }
