@@ -70,7 +70,7 @@ class Header extends React.Component {
 	render() {
 		let allApps = []
 		if(this.props.tableStore.apps) {
-			let allApps = this.props.tableStore.apps.map((app, i) => {
+			allApps = this.props.tableStore.apps.map((app, i) => {
 				return <button className="coloptbtn" key={i} onClick={this.switchApp.bind(this,app.appId)}>{app.name}</button>
 			})
 		}
