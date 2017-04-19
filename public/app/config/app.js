@@ -123,7 +123,7 @@ var configObject = {
       visible: true,
       columnsOption: ['hide'],
       unique: false,
-      icon: 'fa'
+      icon: 'fa fa-code'
     }
 
   ],

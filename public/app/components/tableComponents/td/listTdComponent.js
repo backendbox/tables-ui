@@ -88,9 +88,27 @@ class ListTdComponent extends React.Component {
 		this.setState(this.state)
 	}
 	addToElementData(data){
+
 		if(!this.state.elementData){
 			this.state.elementData = []
 		}
+		// if data is not provided then compute it here
+		if(data === false){
+			// check type of related to , and add elemnt accordingly
+			let type = this.props.columnType.relatedTo
+			if(type == 'Number'){
+				data = 0
+			} else if(type == 'DateTime'){
+				data = new Date()
+			} else if(type == 'GeoPoint'){
+				data = new CB.CloudGeoPoint(0,0)
+			} else if(type == 'Boolean'){
+				data = false
+			} else {
+				data = ''
+			}
+		}
+		// push the empty data into elementData
 		this.state.elementData.push(data)
 		this.setState(this.state)
 	}
@@ -106,6 +124,8 @@ class ListTdComponent extends React.Component {
 		let elements = []
 		// For file images perview ,other data types will show a badge with a list counter
 		let filePreviewImages = []
+		// For text.number,email,boolean perview ,other data types will show a badge with a list counter
+		let textPreview = []
 
 		if(this.state.elementData){
 			elements = this.state.elementData.map((data,index)=>{
@@ -128,6 +148,21 @@ class ListTdComponent extends React.Component {
 					if(index < 3) return <img key={ index } className={'previewlistimages'} src={'/app/assets/images/file/file.png'} />
 				})
 			}
+
+			// build prview if data type is text.number,email
+			if(['Text','Number','Email'].indexOf(this.props.columnType.relatedTo) > -1 && this.state.elementData.length){
+				textPreview = this.state.elementData.map((elem,index)=>{
+					// max two files to be shown
+					if(index < 2) return <div key={ index }className={'previewlisttext'}>{ elem.toString().substring(0,3) }..</div>
+				})
+			}
+			// build prview if data type is boolean
+			if(['Boolean'].indexOf(this.props.columnType.relatedTo) > -1 && this.state.elementData.length){
+				textPreview = this.state.elementData.map((elem,index)=>{
+					// max two files to be shown
+					if(index < 2) return <div key={ index }className={'previewlisttext'}>{ elem ? 'true' : 'false' }</div>
+				})
+			}
 		}
 		let dialogTitle = <div className="modaltitle">
 							<span className="diadlogTitleText">List Editor</span>
@@ -144,8 +179,13 @@ class ListTdComponent extends React.Component {
 					{ 
 						filePreviewImages.length ? 
 							<span className="entriesbadgeright">  { filePreviewImages } </span> 
-							: 
-							<span className="entriesbadgeright"> - Entries </span> 
+							:
+							(
+								textPreview.length ?
+									<span className="entriesbadgeright">  { textPreview } </span>
+									: 
+									<span className="entriesbadgeright"> - Entries </span> 
+							)
 					}
 				</span>
 
@@ -184,7 +224,7 @@ class ListTdComponent extends React.Component {
 							<div>
 								<div className="listdivscontent">
 									{ 
-										elements.length ? elements : <p className="emptylisttext">This List is empty.</p>
+										elements.length ? elements : <p className="emptylisttext">This list is empty.</p>
 									}
 								</div>
 

@@ -51,7 +51,7 @@ class ObjectTdComponent extends React.Component {
 		let jsonData = JSON.stringify(this.props.elementData) || ''
 		let dialogTitle = <div className="modaltitle">
 							<span className="diadlogTitleText">JSON Object</span>
-							<i className='fa iconmodal'></i>
+							<i className='fa fa-code iconmodal'></i>
 						</div>
 		return (
             <td className={'mdl-data-table__cell--non-numeric pointer'+requiredClass} onDoubleClick={this.openCloseModal.bind(this,true)}>

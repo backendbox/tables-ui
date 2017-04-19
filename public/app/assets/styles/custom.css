@@ -440,16 +440,15 @@ td,th{
 .emptylisttext{
     text-align: center;
     margin-top: 5%;
-    font-size: 21px;
-    font-weight: bold;
+    font-size: 15px;
     background-color: white;
-    width: 50%;
-    height: 100px;
+    width: 41%;
+    height: 60px;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.23), 0 0 1px 0 rgba(0,0,0,0.23);
     margin-left: auto;
     margin-right: auto;
-    padding-top: 20px;
-    color: #777777;
+    padding-top: 18px;
+    color: #a2a2a2;
 }
 .listtexttableinput:hover,.listtexttableinput:focus,.listtexttableinput:active{
     border: 1px solid #e0e0e0;
@@ -461,10 +460,11 @@ td,th{
     border-radius: 5px;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.23), 0 0 1px 0 rgba(0,0,0,0.23);
     padding: 5px;
-    margin-bottom: 10px;
+    margin-top: 10px;
     width: 94%;
     height: 60px;
     margin-left: 3%;
+    position: relative;
 }
 .textlistinputcontainer:hover{
     box-shadow: 0 2px 6px rgba(0,0,0,0.25), 0 0 1px 0 rgba(0,0,0,0.23);
@@ -504,13 +504,15 @@ td,th{
     background-color: #F3F3F3
 }
 .trashlistinputtext{
-    margin-left: 5px;
-    font-size: 14px !important;
+    font-size: 11px !important;
     cursor: pointer;
-    color: #484848;
-    float: right;
-    margin-top: 6px;
-    margin-right: 5px;
+    position: absolute;
+    right: -7px;
+    top: -8px;
+    padding: 4px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.48);
+    color: white;
 }
 .fileListPreveiew{
     width: 150px;
@@ -918,7 +920,7 @@ td,th{
 }
 .relationselectordiv{
     min-height: 250px;
-    max-height: 390px;
+    max-height: 350px;
     /* overflow-y: auto; */
     /* width: 100%; */
     overflow-y: auto;
@@ -961,9 +963,11 @@ td,th{
     margin-right: 32px;
 }
 .cancelselctrela{
-        float: right;
+    float: right;
     width: 100%;
     margin-top: 8px;
+    padding: 15px;
+    border-top: 2px solid #e8e8e8;
 }
 .textRaltion{
     float: left;
@@ -1016,18 +1020,18 @@ td,th{
     margin-right: 10px;
 }
 .cancelaclrow{
-    float: right;
     font-size: 20px !important;
-    margin-top: 1px;
-    margin-left: 9%;
+    float: left;
+    margin-left: 40%;
     cursor: pointer;
-    margin-right: 7px;
+    margin-top: -35%;
+    color: rgba(255, 0, 0, 0.81);
 }
 .selectautoacl{
-        /* text-align: center; */
-    float: left;
-    /* margin-left: 64%; */
-    width: 150% !important;
+    height: 60px !important;
+}
+.selectautoacl > label {
+    top: 20px !important
 }
 .aclrowpublic{
        width: 100%;
@@ -1176,10 +1180,11 @@ td,th{
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
 }
 .modaltitle{
-        background-color: #549afc;
+    background-color: #549afc;
     color: white !important;
-    /* padding-bottom: 18px !important; */
-    margin-bottom: 4px !important;
+    position: relative;
+    padding-top: 11px !important;
+    padding-bottom: 36px !important;
 }
 .btn-danger,.btn-danger:active,.btn-danger::selection,.btn-danger:hover, .btn-danger:focus {
     box-sizing: border-box;
@@ -1393,7 +1398,7 @@ td,th{
     margin-top: -6px !important;
 }
 .entriesbadgeright{
-    margin-left: 38px;
+    margin-left: 30px;
     float: left;
     margin-top: -1px;
 }
@@ -1671,8 +1676,9 @@ td,th{
     z-index: 20;
 }
 .bodyClassNamerel{
-    padding-right: 0 !important;
+        padding-right: 0 !important;
     background-color: #FAFAFA;
+    padding-bottom: 0px !important;
 }
 .bodyClassNameobj{
     padding-left: 0 !important;
@@ -1746,12 +1752,19 @@ td,th{
 }
 .diadlogTitleText{
     font-weight: bold;
+    margin-top: -4px !IMPORTANT;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif;
+}
+.diadlogTitleTextSub{
+    position: absolute;
+    bottom: 11px;
+    font-size: 13px;
+    left: 24px;
 }
 .iconmodal{
         float: right;
     padding: 12px;
-    /* border: 1px solid; */
-    margin-top: -10px;
+    margin-top: 3px;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.26);
     padding-left: 16px;
@@ -1779,10 +1792,10 @@ td,th{
 }
 .loadertop{
     margin-right: 15px;
-    margin-top: 1px;
+    margin-top: 4px;
 }
 .loadertop div{
-    height: 22px !important;
+    height: 18px !important;
 }
 
 .topnav{
@@ -2191,4 +2204,37 @@ td,th{
     margin-top: 16%;
     float: left;
     width: 100%;
+}
+.listdivscontentrelation{
+    
+}
+.bodyClassNameACL{
+    padding: 0px !important;
+}
+.acltdthwidth{
+    width: 340px;
+}
+.acltddeletethwidth{
+    width: 100px;
+}
+.acltable td,.acltable th {
+    padding-top: 12px !important;
+    /*border: 0px !important;*/
+}
+.acloverlay{
+    max-width: 725px !important;
+}
+.tdgrey{
+    background-color: #F3F3F3 !important;
+}
+.previewlisttext{
+    padding: 5px;
+    background-color: #d0f0fd;
+    color: #000000;
+    border-radius: 999px;
+    font-size: 11px;
+    margin-top: -4px;
+    padding-right: 11px;
+    float: left;
+    margin-right: 1px;
 }

@@ -129,6 +129,7 @@ class ACLTd extends React.Component {
 	render() {
 		let dialogTitle = <div className="modaltitle">
 							<span className="diadlogTitleText">Access Control List</span>
+							<span className="diadlogTitleTextSub">Manage who can access this document.</span>
 							<i className='fa fa-lock iconmodal'></i>
 						</div>
 		return (
@@ -136,7 +137,7 @@ class ACLTd extends React.Component {
             	<ViewACL aclList={ this.state.aclList }/>
             	<i className="fa fa-expand fr expandCircle" aria-hidden="true" onClick={this.openCloseModal.bind(this,true)}></i>
             	{	
-	            	this.state.isOpenACL ? <Dialog title={ dialogTitle } modal={false} open={this.state.isOpenACL} onRequestClose={this.cancelAcl.bind(this)}>
+	            	this.state.isOpenACL ? <Dialog bodyClassName={"bodyClassNameACL"} contentClassName={"acloverlay"} title={ dialogTitle } modal={false} open={this.state.isOpenACL} onRequestClose={this.cancelAcl.bind(this)}>
 								        		<ACLRows 
 								        			aclList={ this.state.aclList }
 								        			removeAcl={ this.removeAcl.bind(this) }
