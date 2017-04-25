@@ -41,7 +41,7 @@ class Layout extends React.Component {
 
 					if(app){
 						if (__isHosted == "true" || __isHosted == true) {
-							CB.CloudApp.init(app.appId, app.keys.master)
+							CB.CloudApp.init(SERVER_URL,app.appId, app.keys.master)
 						} else CB.CloudApp.init(SERVER_URL, appId, app.keys.master)
 						if (tableName) TableStore.initialize(appId,tableName,data.data)
 						else TableStore.initialize(appId,null,data.data)
