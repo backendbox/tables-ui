@@ -2069,6 +2069,14 @@ td,th{
 .fsmimagenf{
     max-height: 300px;
 }
+.nofilefoundref{
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    float: left;
+    margin-top: 15%;
+    color: #565656;
+}
 .filenamefsm{
     font-size: 18px;
     color: white;

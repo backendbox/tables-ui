@@ -66,6 +66,7 @@ class File extends React.Component {
 		if(props.elementData){
 			props.elementData.fetch({
 			  success: function(file) {
+				file = file || {}
 			  	this.setState({file:file})
 			     //received file Object
 			  }.bind(this), error: function(err) {

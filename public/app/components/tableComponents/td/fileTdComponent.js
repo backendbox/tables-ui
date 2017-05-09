@@ -54,9 +54,12 @@ class FileTdComponent extends React.Component {
 		let fileACL = file.ACL.document || file.ACL
 		return fileACL.read.allow.user.indexOf('all') === -1
 	}
-	deleteFile() {
+	deleteFile(permanent) {
 		this.props.updateElement(null)
 		this.props.updateObject()
+		if(permanent){
+			this.state.file.delete()
+		}
 		this.setState({
 			file: {},
 			isModalOpen:false
@@ -66,6 +69,7 @@ class FileTdComponent extends React.Component {
 		if (props.elementData) {
 			props.elementData.fetch({
 				success: function (file) {
+					file = file || {}
 					this.setState({ file: file })
 					//received file Object
 				}.bind(this), error: function (err) {
@@ -146,7 +150,8 @@ class FileTdComponent extends React.Component {
 							</div>
 							{ this.getFileIcon(this.state.file) }
 							<div className="fsmfooter">
-								<i data-tip={ "Delete" } className="ion-ios-trash-outline deleteiconfsm" onClick={this.deleteFile.bind(this)}></i>
+								<i data-tip={ "Delete Permanently" } className="ion-ios-trash-outline deleteiconfsm" onClick={this.deleteFile.bind(this,true)}></i>
+								<i data-tip={ "Delete Reference From CloudObject" } className="ion-android-remove-circle deleteiconfsm" onClick={this.deleteFile.bind(this,false)}></i>
 								<i data-tip={ "Download" } className="ion-ios-download-outline downloadiconfsm" onClick={this.downloadFile.bind(this)}></i>
 								<i data-tip={ "Edit" } className="ion-edit editiconfsm" onClick={this.openCloseFilePicker.bind(this,true)}></i>
 							</div>
