@@ -38,6 +38,7 @@ class RelationTd extends React.Component {
 												open={ this.state.isOpenView }
 												openCloseModal={ this.openCloseModal.bind(this) }
 												overlay={ false }
+												columnName = { this.props.columnName }
 							            	/> : ''
             	}
             	{

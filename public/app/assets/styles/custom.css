@@ -986,7 +986,7 @@ td,th{
 .textinputrltion{
     float: left;
     border: 1px solid rgba(84, 154, 252, 0.44);
-    width: 90%;
+    width: 97%;
     padding: 7px;
     border-radius: 6px;
     background-color: white;
@@ -1075,7 +1075,7 @@ td,th{
     margin-left: -10px;
 }
 .listrelationdiv{
-    width: 90%;
+    width: 97%;
     min-height: 44px;
     float: left;
     border: 1px solid #DDD;
@@ -1086,7 +1086,7 @@ td,th{
     position: relative;
 }
 .listrelationdivacl{
-        width: 90%;
+        width: 97%;
     min-height: 42px;
     float: left;
     border: 1px solid #DDD;
@@ -1129,7 +1129,7 @@ td,th{
     min-height: 200px;
 }
 .halfreldivfile{
-       width: 90%;
+       width: 97%;
     min-height: 100px;
     float: left;
     border: 1px solid #DDD;
@@ -1185,6 +1185,30 @@ td,th{
     position: relative;
     padding-top: 11px !important;
     padding-bottom: 36px !important;
+}
+.modaltitlerelation{
+    background-color: white;
+    color: white !important;
+    position: relative;
+    padding: 0px !important;
+    border-radius: 9px 9px 0px 0px;
+    border-bottom: 2px solid gainsboro !important;
+    height: 50px;
+}
+.diadlogTitleTextrelationtype{
+    color: #565656;
+    font-size: 17px;
+    margin-left: 15px;
+    font-weight: bold;
+    display: block;
+}
+.diadlogTitleTextrelationtable{
+    color: #9c9c9c;
+    font-size: 12px;
+    margin-left: 15px;
+    font-weight: bold;
+    display: block;
+    margin-top: -13px;
 }
 .btn-danger,.btn-danger:active,.btn-danger::selection,.btn-danger:hover, .btn-danger:focus {
     box-sizing: border-box;
