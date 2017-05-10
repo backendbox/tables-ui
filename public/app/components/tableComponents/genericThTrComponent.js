@@ -52,7 +52,7 @@ class GenericTh extends React.Component {
 			return <th key={index} className={ hidden ? 'hide':'taleft pb7'}>
 						{ IconElem }
 						{ smallIconElem }
-						<span className="colname"> { x.name } </span>
+						<span className="colname"> { x.name.slice(0,15) } </span>
 						<i className='fr ion-arrow-down-b cp' onTouchTap={this.handleTouchTap.bind(this,x)}></i>
 					</th>
 		})

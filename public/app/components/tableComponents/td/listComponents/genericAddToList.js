@@ -60,10 +60,10 @@ class GenericAddToList extends React.Component {
 		           		
 		} else if(['Text','Email','URL','EncryptedText','Boolean','Number','DateTime','GeoPoint','Object'].indexOf(this.props.columnType) == -1){
 			// for relation type
-			element = 	<button className="addtextrecord" onClick={this.openCloseModal.bind(this,true,'isOpenSelect')}>+ Add New Record</button>
+			element = 	<div className="listbottomdiv"><button className="addtextrecord" onClick={this.openCloseModal.bind(this,true,'isOpenSelect')}>+ Add New Record</button></div>
 		} else {
 			// for other datatypes except from relation and File
-			element = <button className="addtextrecord" onClick={ this.addRecord.bind(this,this.props.columnType) }>+ Add New Record</button>
+			element = <div className="listbottomdiv"><button className="addtextrecord" onClick={ this.addRecord.bind(this,this.props.columnType) }>+ Add New Record</button></div>
 		}
 		return (
 			<div>

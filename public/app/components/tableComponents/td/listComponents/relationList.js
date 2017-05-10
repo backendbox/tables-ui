@@ -25,9 +25,10 @@ class RelationListComponent extends React.Component {
 	render() {
 		let data = this.props.data
 		return (
-			<div>
-				<input type="text" className="listtexttableinput" value={ this.props.data ? this.props.data.id : 'unassigned' } onChange={ this.updateValue.bind(this) } disabled="true"/>
-				<i className="fa fa-expand trashlistinputtext expandiconlist" aria-hidden="true" onClick={this.openCloseModal.bind(this,true,'isOpenView')}></i>
+			<div className="textlistinputcontainer">
+				<div className="listtexttableinput cp" onClick={ this.openCloseModal.bind(this,true) } onClick={this.openCloseModal.bind(this,true,'isOpenView')}>
+					{ this.props.data ? this.props.data.id : 'unassigned' }
+				</div>
 				<i className="fa fa-times trashlistinputtext" aria-hidden="true" onClick={ this.deleteValue.bind(this) }></i>
 				{	
 	            	this.state.isOpenView ? <ViewRelation 

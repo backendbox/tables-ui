@@ -422,9 +422,6 @@ td,th{
     width: 199px !important;
     float: left;
 }
-.divadditionallist{
-
-}
 .minuslist{
     float: left;
     /* font-size: 14px !important; */
@@ -433,32 +430,89 @@ td,th{
     cursor: pointer;
 }
 .listtexttableinput{
-        width: 90%;
-    padding: 4px;
-    margin-top: 5px;
+    width: 88%;
     margin-left: 2%;
-    border: 2px solid #D4D4D4;
-    border-radius: 4px;
-    background-color: white;
+    border: 0px;
+    height: 100%;
+    padding: 5px;
+    float: left;
 }
-.addtextrecord{
-    width: 483px;
-    margin-bottom: 10px;
+.emptylisttext{
+    text-align: center;
+    margin-top: 5%;
+    font-size: 15px;
     background-color: white;
-    border-radius: 2px;
-    height: 30px;
-    background: #FFFFFF;
-    color: #3E3B3B;
-    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
-    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.14);
-    border: 1px solid #ECEAEA;
-    margin-left: 18px;
+    width: 41%;
+    height: 60px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.23), 0 0 1px 0 rgba(0,0,0,0.23);
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 18px;
+    color: #a2a2a2;
+}
+.listtexttableinput:hover,.listtexttableinput:focus,.listtexttableinput:active{
+    border: 1px solid #e0e0e0;
+    outline: none !important;
+}
+.textlistinputcontainer{
+    background-color: white;
+    float: left;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.23), 0 0 1px 0 rgba(0,0,0,0.23);
+    padding: 5px;
+    margin-top: 10px;
+    width: 94%;
+    height: 60px;
+    margin-left: 3%;
+    position: relative;
+}
+.textlistinputcontainer:hover{
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25), 0 0 1px 0 rgba(0,0,0,0.23);
+}
+.addtextrecord,.addtextrecord:focus{
+        float: left;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.23), 0 0 1px 0 rgba(0,0,0,0.23);
+    transition-property: box-shadow;
+    -webkit-transition-property: box-shadow;
+    -moz-transition-property: box-shadow;
+    transition-duration: .15s;
+    -webkit-transition-duration: .15s;
+    -moz-transition-duration: .15s;
+    transition-timing-function: ease-out;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-timing-function: ease-out;
+    transition-delay: 0s;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    position: relative;
+    width: 90%;
+    vertical-align: top;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-left: 5%;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    text-align: center;
+    border: none;
+    height: 33px;
+    outline: none !important;
+}
+.addtextrecord:hover{
+    background-color: #F3F3F3
 }
 .trashlistinputtext{
-    margin-left: 5px;
-    font-size: 20px !important;
+    font-size: 11px !important;
     cursor: pointer;
+    position: absolute;
+    right: -7px;
+    top: -8px;
+    padding: 4px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.48);
+    color: white;
 }
 .fileListPreveiew{
     width: 150px;
@@ -534,8 +588,30 @@ td,th{
     cursor: pointer;
 }
 .dateml{
-    margin-left: 10px;
     cursor: pointer;
+    font-size: 17px !important;
+    margin-top: 10px;
+    float: left;
+    margin-left: 20px;
+}
+.datetimevaluelsist{
+    font-size: 20px;
+    margin-left: 5%;
+    margin-top: 2%;
+    float: left;
+    font-weight: bold;
+}
+.trashlistinputdate{
+    font-size: 14px !important;
+    cursor: pointer;
+    color: #484848;
+    float: right;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+.pofixedvishide{
+    position: fixed !important;
+    visibility: hidden !important;
 }
 .cp{
     cursor: pointer !important;
@@ -844,10 +920,10 @@ td,th{
 }
 .relationselectordiv{
     min-height: 250px;
-    max-height: 390px;
-    /* overflow-y: auto; */
-    /* width: 100%; */
+    max-height: calc(100% - 75px);
     overflow-y: auto;
+    float: left;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif !important;
 }
 .searchrelation{
        width: 100%;
@@ -887,9 +963,11 @@ td,th{
     margin-right: 32px;
 }
 .cancelselctrela{
-        float: right;
+    float: right;
     width: 100%;
     margin-top: 8px;
+    padding: 15px;
+    border-top: 2px solid #e8e8e8;
 }
 .textRaltion{
     float: left;
@@ -906,13 +984,13 @@ td,th{
     margin-bottom: 0px;
 }
 .textinputrltion{
-        float: left;
-    border: 1px solid #D5D7D9;
-    width: 90%;
-    height: 30px;
-    padding: 5px;
-    border-radius: 2px;
+    float: left;
+    border: 1px solid rgba(84, 154, 252, 0.44);
+    width: 97%;
+    padding: 7px;
+    border-radius: 6px;
     background-color: white;
+    font-size: 15px;
 }
 .aclrow{
     width: 100%;
@@ -942,18 +1020,18 @@ td,th{
     margin-right: 10px;
 }
 .cancelaclrow{
-    float: right;
     font-size: 20px !important;
-    margin-top: 1px;
-    margin-left: 9%;
+    float: left;
+    margin-left: 40%;
     cursor: pointer;
-    margin-right: 7px;
+    margin-top: -35%;
+    color: rgba(255, 0, 0, 0.81);
 }
 .selectautoacl{
-        /* text-align: center; */
-    float: left;
-    /* margin-left: 64%; */
-    width: 150% !important;
+    height: 60px !important;
+}
+.selectautoacl > label {
+    top: 20px !important
 }
 .aclrowpublic{
        width: 100%;
@@ -984,7 +1062,7 @@ td,th{
     margin-top: 1px;
 }
 .filerle{
-        margin-right: 20px;
+    margin-right: 20px;
     margin-top: 5px;
 }
 .textnamerlationrle{
@@ -997,7 +1075,7 @@ td,th{
     margin-left: -10px;
 }
 .listrelationdiv{
-        width: 90%;
+    width: 97%;
     min-height: 44px;
     float: left;
     border: 1px solid #DDD;
@@ -1005,9 +1083,10 @@ td,th{
     margin-right: 5%;
     border-radius: 2px;
     padding: 10px;
+    position: relative;
 }
 .listrelationdivacl{
-        width: 90%;
+        width: 97%;
     min-height: 42px;
     float: left;
     border: 1px solid #DDD;
@@ -1047,9 +1126,10 @@ td,th{
     overflow-y: auto;
     padding-bottom: 10px;
     padding-left: 3px;
+    min-height: 200px;
 }
 .halfreldivfile{
-       width: 90%;
+       width: 97%;
     min-height: 100px;
     float: left;
     border: 1px solid #DDD;
@@ -1100,10 +1180,35 @@ td,th{
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.44);
 }
 .modaltitle{
-        background-color: #549afc;
+    background-color: #549afc;
     color: white !important;
-    /* padding-bottom: 18px !important; */
-    margin-bottom: 4px !important;
+    position: relative;
+    padding-top: 11px !important;
+    padding-bottom: 36px !important;
+}
+.modaltitlerelation{
+    background-color: white;
+    color: white !important;
+    position: relative;
+    padding: 0px !important;
+    border-radius: 9px 9px 0px 0px;
+    border-bottom: 2px solid gainsboro !important;
+    height: 50px;
+}
+.diadlogTitleTextrelationtype{
+    color: #565656;
+    font-size: 17px;
+    margin-left: 15px;
+    font-weight: bold;
+    display: block;
+}
+.diadlogTitleTextrelationtable{
+    color: #9c9c9c;
+    font-size: 12px;
+    margin-left: 15px;
+    font-weight: bold;
+    display: block;
+    margin-top: -13px;
 }
 .btn-danger,.btn-danger:active,.btn-danger::selection,.btn-danger:hover, .btn-danger:focus {
     box-sizing: border-box;
@@ -1299,16 +1404,14 @@ td,th{
     padding-left: 49px;
 }
 .boollistel{
-        float: left;
+    float: right;
     margin-left: 20px;
+    margin-top: 0px;
 }
 .listdivscontent{
-    /*min-height: 200px;*/
-    max-height: 350px;
+    height: 330px;
+    max-width: 824px;
     overflow-y: auto;
-    /*background-color: #F3F5F7;*/
-    border-radius: 5px;
-    padding: 8px;
 }
 .badgelistcount{
     position: relative;
@@ -1319,7 +1422,7 @@ td,th{
     margin-top: -6px !important;
 }
 .entriesbadgeright{
-    margin-left: 38px;
+    margin-left: 30px;
     float: left;
     margin-top: -1px;
 }
@@ -1586,7 +1689,7 @@ td,th{
     margin-top: 13%;
 }
 .imagewrapperfilerel{
-        position: absolute;
+    position: absolute;
     width: 285px;
     height: 165px;
     border: 1px solid black;
@@ -1599,6 +1702,10 @@ td,th{
 .bodyClassNamerel{
     padding-right: 0 !important;
     background-color: #FAFAFA;
+    padding-bottom: 0px !important;
+    height: 90vh !important;
+    border-radius: 10px;
+    padding-top: 10px !important;
 }
 .bodyClassNameobj{
     padding-left: 0 !important;
@@ -1672,12 +1779,19 @@ td,th{
 }
 .diadlogTitleText{
     font-weight: bold;
+    margin-top: -4px !IMPORTANT;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif;
+}
+.diadlogTitleTextSub{
+    position: absolute;
+    bottom: 11px;
+    font-size: 13px;
+    left: 24px;
 }
 .iconmodal{
         float: right;
     padding: 12px;
-    /* border: 1px solid; */
-    margin-top: -10px;
+    margin-top: 3px;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.26);
     padding-left: 16px;
@@ -1689,6 +1803,15 @@ td,th{
 }
 .relcontent{
     width: 680px !important;
+    top: 0 !important;
+    position: absolute !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    left: 0;
+    right: 0;
+}
+.relcontent > div {
+    border-radius: 10px !important;
 }
 .advanceoptionaddcolum,.advanceoptionaddcolum:hover{
      color: #666767;
@@ -1705,10 +1828,10 @@ td,th{
 }
 .loadertop{
     margin-right: 15px;
-    margin-top: 1px;
+    margin-top: 4px;
 }
 .loadertop div{
-    height: 22px !important;
+    height: 18px !important;
 }
 
 .topnav{
@@ -1946,6 +2069,14 @@ td,th{
 .fsmimagenf{
     max-height: 300px;
 }
+.nofilefoundref{
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    float: left;
+    margin-top: 15%;
+    color: #565656;
+}
 .filenamefsm{
     font-size: 18px;
     color: white;
@@ -1992,6 +2123,26 @@ td,th{
     font-weight: bolder;
     cursor: pointer;
 }
+.listother{
+    width: 550px !important;
+    min-height: 400px;
+    border-radius: 5px !important;
+    background-color: rgba(253, 253, 253, 0.6) !important;
+    padding: 10px;
+    max-height: 500px !important;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif !important;
+}
+.listbottomdiv{
+    width: 100%;
+    background-color: rgb(246, 246, 246);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 54px;
+    border-top: 1px solid #d2d2d2;
+    z-index: 2;
+}
+
 .listpop{
     min-width: 625px !important;
     min-height: 400px;
@@ -2098,4 +2249,37 @@ td,th{
     margin-top: 16%;
     float: left;
     width: 100%;
+}
+.listdivscontentrelation{
+    
+}
+.bodyClassNameACL{
+    padding: 0px !important;
+}
+.acltdthwidth{
+    width: 340px;
+}
+.acltddeletethwidth{
+    width: 100px;
+}
+.acltable td,.acltable th {
+    padding-top: 12px !important;
+    /*border: 0px !important;*/
+}
+.acloverlay{
+    max-width: 725px !important;
+}
+.tdgrey{
+    background-color: #F3F3F3 !important;
+}
+.previewlisttext{
+    padding: 5px;
+    background-color: #d0f0fd;
+    color: #000000;
+    border-radius: 999px;
+    font-size: 11px;
+    margin-top: -4px;
+    padding-right: 11px;
+    float: left;
+    margin-right: 1px;
 }

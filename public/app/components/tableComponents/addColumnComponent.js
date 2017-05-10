@@ -250,11 +250,6 @@ class AddColumnComponent extends React.Component {
 								</select>
 							</div>
 
-							<div>
-								<p className="paddcolumns"> Column Name:</p>
-								<input className="addcolinput" placeholder="Column name." type="text" value={ this.state.name } onChange={ this.changeHandler.bind(this,'name') } pattern="^[^<>'\/;`%@]*$" required/>
-				        	</div>
-
 							<div className={ this.TargetTypeIsAllowed(this.state.dataType) ? '' : 'hide'}>
 								<p className="paddcolumns"> Target Type: </p>
 								<select className="addcolselect" value={ this.state.target } onChange={ this.changeHandler.bind(this,'target') }>
@@ -267,6 +262,11 @@ class AddColumnComponent extends React.Component {
 									</optgroup>
 								</select>
 							</div>
+
+							<div>
+								<p className="paddcolumns"> Column Name:</p>
+								<input className="addcolinput" placeholder="Column name." type="text" value={ this.state.name } onChange={ this.changeHandler.bind(this,'name') } pattern="^[^<>'\/;`%@]*$" required/>
+				        	</div>
 
 							<div className={this.defaultValueIsAllowed(this.state.dataType) ? 'paddcolumns' : 'hide'}>
 								<a id="advanceOption" className={"cp advanceoptionaddcolum"} onClick={this.toggleState.bind(this)}>{ this.state.showAdvanceOptions ? "Hide Options" : "Advance Options" }</a>

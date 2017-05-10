@@ -126,6 +126,7 @@ class ViewRelation extends React.Component {
 	render() {
 		let tableColumns = []
 		if(this.state.tableData && this.state.elementData){
+			// debugger
 			tableColumns = this.state.tableData.map((x,i)=>{
 				let { componentToRender,elementData } = this.generaliseComponent(x.document)
 				return React.createElement(componentToRender, {
@@ -136,13 +137,13 @@ class ViewRelation extends React.Component {
 			           })
 			})
 		}
-		let dialogTitle = <div className="modaltitle">
-							<span className="diadlogTitleText">Relation Object</span>
-							<i className='fa fa-external-link iconmodal'></i>
+		let dialogTitle = <div className="modaltitlerelation">
+							<span className="diadlogTitleTextrelationtype">{ this.props.columnName }</span>
+							<span className="diadlogTitleTextrelationtable">CloudObject from { this.props.table }</span>
 						</div>
 		return (
 			<div className="fr">
-	        	<Dialog title={ dialogTitle } modal={false} open={this.props.open} onRequestClose={this.openCloseModal.bind(this)} overlayClassName={this.props.overlay ? "overlayrelation" : ''} contentClassName={this.props.overlay ? "tsnnone relcontent" : 'relcontent'} bodyClassName={"bodyClassNamerel"}>
+	        	<Dialog title={ dialogTitle } modal={false} open={this.props.open} onRequestClose={this.openCloseModal.bind(this)} overlayClassName={this.props.overlay ? "overlayrelation" : ''} contentClassName={this.props.overlay ? "tsnnone relcontent" : 'relcontent'} bodyClassName={"bodyClassNamerel"} style={{zIndex:3000}}>
 	        		<div className="relationselectordiv">
 		        		{ tableColumns }
 	          		</div>

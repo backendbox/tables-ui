@@ -28,6 +28,7 @@ class FileListComponent extends React.Component {
 			try {
 				props.data.fetch({
 					success: function (file) {
+						file = file || {}
 						this.state.filePreview = file
 						if (this._isMounted) {
 							this.setState(this.state)
@@ -57,7 +58,7 @@ class FileListComponent extends React.Component {
 			} else {
 				return <img className={file.document ? 'filelistpopprev cp' : 'hide'} src={'/app/assets/images/file/file.png'} />
 			}
-		}
+		} else return <span className="nofilefoundref">This file was deleted.</span>
 	}
 	getFileIcon(file) {
 		if (file.type) {
@@ -114,7 +115,7 @@ class FileListComponent extends React.Component {
 		let previewIcon = React.cloneElement((this.getPreviewIcon(this.state.filePreview) || <div />), {})
 		return (
 			<div>
-				<div className="filelistpopoever" onClick={this.openCloseModal.bind(this, true)}>
+				<div className="filelistpopoever" onClick={ this.state.filePreview.name ? this.openCloseModal.bind(this, true) : this.deleteValue.bind(this) }>
 					{previewIcon}
 					<p className="filenamepoplist">{this.state.filePreview.name || ''}</p>
 				</div>
